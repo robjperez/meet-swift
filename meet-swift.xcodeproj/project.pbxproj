@@ -7,35 +7,74 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
+		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
+		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
 		F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0401ADEB671000090DA /* AppDelegate.swift */; };
-		F8FBD0431ADEB671000090DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0421ADEB671000090DA /* ViewController.swift */; };
+		F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0421ADEB671000090DA /* SelectRoomViewController.swift */; };
 		F8FBD0461ADEB671000090DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0441ADEB671000090DA /* Main.storyboard */; };
 		F8FBD0481ADEB671000090DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0471ADEB671000090DA /* Images.xcassets */; };
 		F8FBD04B1ADEB671000090DA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0491ADEB671000090DA /* LaunchScreen.xib */; };
-		F8FBD0571ADEB671000090DA /* meet_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0561ADEB671000090DA /* meet_swiftTests.swift */; };
+		F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0601ADEB689000090DA /* VideoToolbox.framework */; };
+		F8FBD07B1ADEB6A3000090DA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0631ADEB6A2000090DA /* libc++.dylib */; };
+		F8FBD07C1ADEB6A3000090DA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0641ADEB6A2000090DA /* GLKit.framework */; };
+		F8FBD07D1ADEB6A3000090DA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0651ADEB6A2000090DA /* libxml2.dylib */; };
+		F8FBD07E1ADEB6A3000090DA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */; };
+		F8FBD07F1ADEB6A3000090DA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */; };
+		F8FBD0801ADEB6A3000090DA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */; };
+		F8FBD0811ADEB6A3000090DA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */; };
+		F8FBD0821ADEB6A3000090DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */; };
+		F8FBD0831ADEB6A3000090DA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */; };
+		F8FBD0841ADEB6A3000090DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06C1ADEB6A2000090DA /* Security.framework */; };
+		F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */; };
+		F8FBD0861ADEB6A3000090DA /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */; };
+		F8FBD0871ADEB6A3000090DA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */; };
+		F8FBD0881ADEB6A3000090DA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */; };
+		F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0711ADEB6A3000090DA /* libz.dylib */; };
+		F8FBD08A1ADEB6A3000090DA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0721ADEB6A3000090DA /* libicucore.dylib */; };
+		F8FBD08B1ADEB6A3000090DA /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */; };
+		F8FBD08D1ADEB6A3000090DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */; };
+		F8FBD08E1ADEB6A3000090DA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */; };
+		F8FBD08F1ADEB6A3000090DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0771ADEB6A3000090DA /* UIKit.framework */; };
+		F8FBD0901ADEB6A3000090DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0781ADEB6A3000090DA /* Foundation.framework */; };
+		F8FBD0911ADEB6A3000090DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F8FBD0511ADEB671000090DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8FBD0331ADEB671000090DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F8FBD03A1ADEB671000090DA;
-			remoteInfo = "meet-swift";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		F88721581AE42306001291F5 /* RoomInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomInfo.swift; sourceTree = "<group>"; };
+		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		F8FBD03B1ADEB671000090DA /* meet-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meet-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FBD03F1ADEB671000090DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8FBD0401ADEB671000090DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8FBD0421ADEB671000090DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F8FBD0421ADEB671000090DA /* SelectRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomViewController.swift; sourceTree = "<group>"; };
 		F8FBD0451ADEB671000090DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F8FBD0471ADEB671000090DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F8FBD04A1ADEB671000090DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F8FBD0501ADEB671000090DA /* meet-swiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "meet-swiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8FBD0551ADEB671000090DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8FBD0561ADEB671000090DA /* meet_swiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = meet_swiftTests.swift; sourceTree = "<group>"; };
+		F8FBD0601ADEB689000090DA /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		F8FBD0631ADEB6A2000090DA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		F8FBD0641ADEB6A2000090DA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		F8FBD0651ADEB6A2000090DA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F8FBD06C1ADEB6A2000090DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		F8FBD0711ADEB6A3000090DA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F8FBD0721ADEB6A3000090DA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F8FBD0771ADEB6A3000090DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F8FBD0781ADEB6A3000090DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F8FBD0931ADEB72B000090DA /* meet-swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meet-swift-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,13 +82,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8FBD04D1ADEB671000090DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */,
+				F8FBD08D1ADEB6A3000090DA /* QuartzCore.framework in Frameworks */,
+				F8FBD08F1ADEB6A3000090DA /* UIKit.framework in Frameworks */,
+				F8FBD07B1ADEB6A3000090DA /* libc++.dylib in Frameworks */,
+				F8FBD0821ADEB6A3000090DA /* SystemConfiguration.framework in Frameworks */,
+				F8FBD0861ADEB6A3000090DA /* CoreAudio.framework in Frameworks */,
+				F8FBD0901ADEB6A3000090DA /* Foundation.framework in Frameworks */,
+				F8FBD08E1ADEB6A3000090DA /* AVFoundation.framework in Frameworks */,
+				F8FBD0801ADEB6A3000090DA /* MobileCoreServices.framework in Frameworks */,
+				F8FBD0841ADEB6A3000090DA /* Security.framework in Frameworks */,
+				F8FBD0881ADEB6A3000090DA /* OpenGLES.framework in Frameworks */,
+				F8FBD0811ADEB6A3000090DA /* CFNetwork.framework in Frameworks */,
+				F8FBD0911ADEB6A3000090DA /* CoreGraphics.framework in Frameworks */,
+				F8FBD0831ADEB6A3000090DA /* CoreMedia.framework in Frameworks */,
+				F8FBD08B1ADEB6A3000090DA /* libstdc++.dylib in Frameworks */,
+				F8FBD0871ADEB6A3000090DA /* CoreVideo.framework in Frameworks */,
+				F8FBD08A1ADEB6A3000090DA /* libicucore.dylib in Frameworks */,
+				F8FBD07D1ADEB6A3000090DA /* libxml2.dylib in Frameworks */,
+				F8FBD07C1ADEB6A3000090DA /* GLKit.framework in Frameworks */,
+				F8FBD07E1ADEB6A3000090DA /* libsqlite3.dylib in Frameworks */,
+				F8FBD07F1ADEB6A3000090DA /* CoreTelephony.framework in Frameworks */,
+				F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */,
+				F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */,
+				F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
-				F8FBD0531ADEB671000090DA /* meet-swiftTests */,
 				F8FBD03C1ADEB671000090DA /* Products */,
+				F8FBD0621ADEB690000090DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				F8FBD03B1ADEB671000090DA /* meet-swift.app */,
-				F8FBD0501ADEB671000090DA /* meet-swiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,11 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				F8FBD0401ADEB671000090DA /* AppDelegate.swift */,
-				F8FBD0421ADEB671000090DA /* ViewController.swift */,
+				F8FBD0421ADEB671000090DA /* SelectRoomViewController.swift */,
 				F8FBD0441ADEB671000090DA /* Main.storyboard */,
 				F8FBD0471ADEB671000090DA /* Images.xcassets */,
 				F8FBD0491ADEB671000090DA /* LaunchScreen.xib */,
 				F8FBD03E1ADEB671000090DA /* Supporting Files */,
+				F88721561AE41A83001291F5 /* RoomViewController.swift */,
+				F88721581AE42306001291F5 /* RoomInfo.swift */,
 			);
 			path = "meet-swift";
 			sourceTree = "<group>";
@@ -91,25 +148,40 @@
 			isa = PBXGroup;
 			children = (
 				F8FBD03F1ADEB671000090DA /* Info.plist */,
+				F8FBD0931ADEB72B000090DA /* meet-swift-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F8FBD0531ADEB671000090DA /* meet-swiftTests */ = {
+		F8FBD0621ADEB690000090DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8FBD0561ADEB671000090DA /* meet_swiftTests.swift */,
-				F8FBD0541ADEB671000090DA /* Supporting Files */,
+				F887215A1AE434A9001291F5 /* OpenTok.framework */,
+				F8FBD0631ADEB6A2000090DA /* libc++.dylib */,
+				F8FBD0641ADEB6A2000090DA /* GLKit.framework */,
+				F8FBD0651ADEB6A2000090DA /* libxml2.dylib */,
+				F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */,
+				F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */,
+				F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */,
+				F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */,
+				F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */,
+				F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */,
+				F8FBD06C1ADEB6A2000090DA /* Security.framework */,
+				F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */,
+				F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */,
+				F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */,
+				F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */,
+				F8FBD0711ADEB6A3000090DA /* libz.dylib */,
+				F8FBD0721ADEB6A3000090DA /* libicucore.dylib */,
+				F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */,
+				F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */,
+				F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */,
+				F8FBD0771ADEB6A3000090DA /* UIKit.framework */,
+				F8FBD0781ADEB6A3000090DA /* Foundation.framework */,
+				F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */,
+				F8FBD0601ADEB689000090DA /* VideoToolbox.framework */,
 			);
-			path = "meet-swiftTests";
-			sourceTree = "<group>";
-		};
-		F8FBD0541ADEB671000090DA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F8FBD0551ADEB671000090DA /* Info.plist */,
-			);
-			name = "Supporting Files";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,24 +204,6 @@
 			productReference = F8FBD03B1ADEB671000090DA /* meet-swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F8FBD04F1ADEB671000090DA /* meet-swiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F8FBD05D1ADEB671000090DA /* Build configuration list for PBXNativeTarget "meet-swiftTests" */;
-			buildPhases = (
-				F8FBD04C1ADEB671000090DA /* Sources */,
-				F8FBD04D1ADEB671000090DA /* Frameworks */,
-				F8FBD04E1ADEB671000090DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F8FBD0521ADEB671000090DA /* PBXTargetDependency */,
-			);
-			name = "meet-swiftTests";
-			productName = "meet-swiftTests";
-			productReference = F8FBD0501ADEB671000090DA /* meet-swiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,10 +215,6 @@
 				TargetAttributes = {
 					F8FBD03A1ADEB671000090DA = {
 						CreatedOnToolsVersion = 6.3;
-					};
-					F8FBD04F1ADEB671000090DA = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = F8FBD03A1ADEB671000090DA;
 					};
 				};
 			};
@@ -182,7 +232,6 @@
 			projectRoot = "";
 			targets = (
 				F8FBD03A1ADEB671000090DA /* meet-swift */,
-				F8FBD04F1ADEB671000090DA /* meet-swiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -198,13 +247,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8FBD04E1ADEB671000090DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -212,28 +254,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FBD0431ADEB671000090DA /* ViewController.swift in Sources */,
+				F88721591AE42306001291F5 /* RoomInfo.swift in Sources */,
+				F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */,
+				F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8FBD04C1ADEB671000090DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8FBD0571ADEB671000090DA /* meet_swiftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F8FBD0521ADEB671000090DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8FBD03A1ADEB671000090DA /* meet-swift */;
-			targetProxy = F8FBD0511ADEB671000090DA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F8FBD0441ADEB671000090DA /* Main.storyboard */ = {
@@ -295,6 +323,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +362,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -342,9 +372,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/rpc/tokbox/meet-swift",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "meet-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -352,43 +391,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/rpc/tokbox/meet-swift",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "meet-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		F8FBD05E1ADEB671000090DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "meet-swiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/meet-swift.app/meet-swift";
-			};
-			name = Debug;
-		};
-		F8FBD05F1ADEB671000090DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "meet-swiftTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/meet-swift.app/meet-swift";
+				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -411,14 +425,7 @@
 				F8FBD05C1ADEB671000090DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		F8FBD05D1ADEB671000090DA /* Build configuration list for PBXNativeTarget "meet-swiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8FBD05E1ADEB671000090DA /* Debug */,
-				F8FBD05F1ADEB671000090DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
