@@ -35,10 +35,12 @@ class SelectRoomViewController: UIViewController {
             alert.show()
             return
         }
+
+        let urlString = "http://meet.tokbox.com/\(roomName!.text)"
+        let urlRequest = NSURL(string: urlString)
         
-        let urlRequest = NSURL(string: "http://localhost:4567")
-        
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = ["content-type": "application/json"]
         
         var session = NSURLSession(configuration: configuration)
         
