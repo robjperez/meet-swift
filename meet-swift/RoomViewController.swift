@@ -12,6 +12,9 @@ import OpenTok
 class RoomViewController: UIViewController,
             OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate
 {
+    @IBOutlet weak var backgroundView :UIView?;
+    @IBOutlet weak var publisherView :UIView?;
+    
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
@@ -31,7 +34,8 @@ class RoomViewController: UIViewController,
         session!.connectWithToken(roomInfo!.token,
             error: &error)
         
-        publisher = OTPublisher(delegate: self, name: roomInfo!.userName)
+        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true);
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +76,38 @@ class RoomViewController: UIViewController,
     
     func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
         // Add view
+        let pubView = self.publisher?.view;
+        pubView?.setTranslatesAutoresizingMaskIntoConstraints(false);
+        self.publisherView?.addSubview(pubView!);
+        
+        let constraints = [
+            NSLayoutConstraint(
+                item: self.publisherView!,
+                attribute:NSLayoutAttribute.Left,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: pubView!,
+                attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: self.publisherView!,
+                attribute:NSLayoutAttribute.Top,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: pubView!,
+                attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: self.publisherView!,
+                attribute:NSLayoutAttribute.Width,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: pubView!,
+                attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: self.publisherView!,
+                attribute:NSLayoutAttribute.Height,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: pubView!,
+                attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        ];
+
+        self.publisherView?.addConstraints(constraints);
     }
 
     func publisher(publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
