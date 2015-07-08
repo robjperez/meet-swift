@@ -65,7 +65,10 @@ class SelectRoomViewController: UIViewController {
                 
                 self!.loadingAlert!.dismissWithClickedButtonIndex(0, animated: false)
                 
-                self!.performSegueWithIdentifier("startChat", sender: self)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self!.performSegueWithIdentifier("startChat", sender: self)
+                }
+
             }
         )
         

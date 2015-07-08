@@ -12,9 +12,6 @@ import OpenTok
 class RoomViewController: UIViewController,
             OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate
 {
-    @IBOutlet weak var roomName : UILabel?
-    @IBOutlet weak var apiKey : UILabel?
-    
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
@@ -25,8 +22,6 @@ class RoomViewController: UIViewController,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        roomName!.text = roomInfo!.roomName
-        apiKey!.text = roomInfo!.apiKey
         
         var error:OTError?
         
