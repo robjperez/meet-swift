@@ -20,6 +20,9 @@ class RoomViewController: UIViewController,
     var subscribers = Dictionary<String, OTSubscriber>()
     
     var roomInfo: RoomInfo?
+    
+    var disconnectingAlert : UIAlertView?;
+    var connectingAlert: UIAlertView?;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,9 @@ class RoomViewController: UIViewController,
             error: &error)
         
         publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true);
+        
+        self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
+        self.connectingAlert?.show();
 
     }
 
@@ -43,7 +49,28 @@ class RoomViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func switchCameraPressed(sender: AnyObject) {
 
+    }
+    
+    @IBAction func mutePressed(sender: AnyObject) {
+
+    }
+
+    @IBAction func endCallPressed(sender: AnyObject) {
+        var error : OTError?;
+        if self.session?.sessionConnectionStatus == OTSessionConnectionStatus.Connected ||
+            self.session?.sessionConnectionStatus == OTSessionConnectionStatus.Connecting
+        {
+            self.session?.disconnect(&error);
+        
+            self.disconnectingAlert = UIAlertView(title: "Disconnecting", message: "Disconnecting from session...", delegate: nil, cancelButtonTitle: nil);
+            self.disconnectingAlert?.show()
+        } else {
+            self.dismissViewControllerAnimated(true, completion: nil);
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -56,13 +83,19 @@ class RoomViewController: UIViewController,
     // Session Delegate
     
     func sessionDidConnect(session: OTSession!) {
+        self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
         var error: OTError?
         session!.publish(publisher, error: &error)
     }
     
-    func sessionDidDisconnect(session: OTSession!) {}
+    func sessionDidDisconnect(session: OTSession!) {
+        self.disconnectingAlert?.dismissWithClickedButtonIndex(0, animated: false);
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
     
-    func session(session: OTSession!, didFailWithError error: OTError!) {}
+    func session(session: OTSession!, didFailWithError error: OTError!) {
+            self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
+    }
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
         var subscriber = OTSubscriber(stream: stream, delegate: self)
