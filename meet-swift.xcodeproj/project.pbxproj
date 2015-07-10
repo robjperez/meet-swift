@@ -11,6 +11,8 @@
 		F8210BCD1B4FC552006754E4 /* icon_arrowLeft_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8210BC91B4FC552006754E4 /* icon_arrowLeft_enabled-28@2x.png */; };
 		F8210BCE1B4FC552006754E4 /* icon_arrowRight_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F8210BCA1B4FC552006754E4 /* icon_arrowRight_enabled-28.png */; };
 		F8210BCF1B4FC552006754E4 /* icon_arrowRight_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8210BCB1B4FC552006754E4 /* icon_arrowRight_enabled-28@2x.png */; };
+		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
+		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
 		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
 		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
@@ -53,6 +55,8 @@
 		F8210BC91B4FC552006754E4 /* icon_arrowLeft_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28@2x.png"; path = "../OpenTokRTC-iOS/webrtcDemoiOS/icon_arrowLeft_enabled-28@2x.png"; sourceTree = "<group>"; };
 		F8210BCA1B4FC552006754E4 /* icon_arrowRight_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28.png"; path = "../OpenTokRTC-iOS/webrtcDemoiOS/icon_arrowRight_enabled-28.png"; sourceTree = "<group>"; };
 		F8210BCB1B4FC552006754E4 /* icon_arrowRight_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28@2x.png"; path = "../OpenTokRTC-iOS/webrtcDemoiOS/icon_arrowRight_enabled-28@2x.png"; sourceTree = "<group>"; };
+		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		F88721581AE42306001291F5 /* RoomInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomInfo.swift; sourceTree = "<group>"; };
 		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
@@ -113,8 +117,10 @@
 				F8FBD08A1ADEB6A3000090DA /* libicucore.dylib in Frameworks */,
 				F8FBD07D1ADEB6A3000090DA /* libxml2.dylib in Frameworks */,
 				F8FBD07C1ADEB6A3000090DA /* GLKit.framework in Frameworks */,
+				F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */,
 				F8FBD07E1ADEB6A3000090DA /* libsqlite3.dylib in Frameworks */,
 				F8FBD07F1ADEB6A3000090DA /* CoreTelephony.framework in Frameworks */,
+				F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */,
 				F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */,
 				F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */,
 				F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */,
@@ -148,6 +154,8 @@
 		F8FBD0321ADEB671000090DA = {
 			isa = PBXGroup;
 			children = (
+				F8210BD11B4FEB4E006754E4 /* Fabric.framework */,
+				F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */,
 				F8210BC71B4FC43C006754E4 /* New Group */,
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
 				F8FBD03C1ADEB671000090DA /* Products */,
@@ -232,6 +240,7 @@
 				F8FBD0381ADEB671000090DA /* Frameworks */,
 				F8FBD0391ADEB671000090DA /* Resources */,
 				8211D97E94E640C47E38AA9C /* Copy Pods Resources */,
+				F8210BD01B4FEB22006754E4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -323,6 +332,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F8210BD01B4FEB22006754E4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run cde951859fbe1f0ee64bba4c146c6e231717f4ea 9d1f199f01132a5c5385c7af1310dfdee3e4eb3c79f8052231e830caa7b9781c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
