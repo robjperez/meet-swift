@@ -12,12 +12,16 @@ import OpenTok
 class RoomViewController: UIViewController,
             OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate
 {
-    @IBOutlet weak var backgroundView :UIView?;
-    @IBOutlet weak var publisherView :UIView?;
+    @IBOutlet weak var backgroundView :UIView?
+    @IBOutlet weak var publisherView :UIView?
+    
+    @IBOutlet weak var previousSub: UIButton?
+    @IBOutlet weak var nextSub: UIButton?
     
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
+    var selectedSubscriber : String?;
     
     var roomInfo: RoomInfo?
     
@@ -49,12 +53,36 @@ class RoomViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func switchCameraPressed(sender: AnyObject) {
+    @IBAction func switchCameraPressed(sender: AnyObject?) {
+        
+    }
+    
+    @IBAction func mutePressed(sender: AnyObject?) {
 
     }
     
-    @IBAction func mutePressed(sender: AnyObject) {
-
+    @IBAction func nextSubPresseed(sender: AnyObject?) {
+        if self.subscribers.count <= 1 { return }
+        
+        let sortedKeys = Array(self.subscribers.keys).sorted(<)
+        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        let nextIndex = (currentIndex! + 1) % self.subscribers.count
+        let nextKey = sortedKeys[nextIndex]
+        
+        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
+    }
+    
+    @IBAction func prevSubPresseed(sender: AnyObject) {
+        if self.subscribers.count <= 1 { return }
+        
+        let sortedKeys = Array(self.subscribers.keys).sorted(<)
+        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        var nextIndex = 0
+        if currentIndex == 0 { nextIndex = self.subscribers.count - 1}
+        else { nextIndex = currentIndex! - 1 }
+        let nextKey = sortedKeys[nextIndex]
+        
+        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
     }
 
     @IBAction func endCallPressed(sender: AnyObject) {
@@ -101,12 +129,14 @@ class RoomViewController: UIViewController,
         var subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
         subscribers[stream.streamId] = subscriber
+        self.toggleSubsButtons()
         self.session?.subscribe(subscriber, error: &error)
     }
     
     func session(session: OTSession!, streamDestroyed stream: OTStream!) {
-        let subs = self.subscribers[stream.streamId]
-        subs?.view.removeFromSuperview()
+        self.nextSubPresseed(nil)
+        self.subscribers.removeValueForKey(stream.streamId)
+        toggleSubsButtons()
     }
     
     // MARK: Publisher Delegate
@@ -131,10 +161,36 @@ class RoomViewController: UIViewController,
         let sub = self.subscribers[subscriber.stream.streamId];
         let subView = sub?.view;
         
-        self.addVideoView(subView, container: self.view, atIndex: 0)
+        if self.subscribers.count > 1 && self.selectedSubscriber != nil {
+            self.performSubscriberAnimation(subscriber.stream.streamId)
+        } else {
+            self.addVideoView(subView, container: self.view, atIndex: 0)
+        }
+        
+        self.selectedSubscriber = subscriber.stream.streamId
     }
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
+    
+    private func performSubscriberAnimation(subId: String) {
+        if selectedSubscriber == subId { return }
+        
+        let previousSubscriber = self.subscribers[self.selectedSubscriber!]
+        let newSubscriber = self.subscribers[subId]!
+        
+        newSubscriber.view.alpha = 0.0
+        self.addVideoView(newSubscriber.view, container: self.view, atIndex: 0)
+        
+        UIView.animateWithDuration(0.4,
+            animations: { () -> Void in
+                previousSubscriber?.view.alpha = 0.0
+                newSubscriber.view.alpha = 1.0
+            },
+            completion: { (finished) -> Void in
+                self.selectedSubscriber = subId
+                previousSubscriber?.view.removeFromSuperview()
+            })
+    }
     
     // MARK: Private methods
     private func addVideoView(videoView: UIView?, container:UIView?, atIndex: Int? = nil) {
@@ -173,6 +229,16 @@ class RoomViewController: UIViewController,
         ];
         
         container?.addConstraints(constraints)
+    }
+    
+    private func toggleSubsButtons() {
+        if self.subscribers.count > 1 {
+            self.previousSub?.hidden = false
+            self.nextSub?.hidden = false
+        } else {
+            self.previousSub?.hidden = true
+            self.nextSub?.hidden = true
+        }
     }
 
 }
