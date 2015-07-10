@@ -80,8 +80,8 @@ class RoomViewController: UIViewController,
         // Pass the selected object to the new view controller.
     }
     */
-    // Session Delegate
-    
+
+    // MARK: Session Delegate
     func sessionDidConnect(session: OTSession!) {
         self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
         var error: OTError?
@@ -99,58 +99,80 @@ class RoomViewController: UIViewController,
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
         var subscriber = OTSubscriber(stream: stream, delegate: self)
+        var error: OTError?
         subscribers[stream.streamId] = subscriber
+        self.session?.subscribe(subscriber, error: &error)
     }
     
-    func session(session: OTSession!, streamDestroyed stream: OTStream!) {}
+    func session(session: OTSession!, streamDestroyed stream: OTStream!) {
+        let subs = self.subscribers[stream.streamId]
+        subs?.view.removeFromSuperview()
+    }
     
-    // Publisher delegate
+    // MARK: Publisher Delegate
     func publisher(publisher: OTPublisherKit!, didFailWithError error: OTError!) {}
     
     func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
         // Add view
         let pubView = self.publisher?.view;
-        pubView?.setTranslatesAutoresizingMaskIntoConstraints(false);
-        self.publisherView?.addSubview(pubView!);
-        
-        let constraints = [
-            NSLayoutConstraint(
-                item: self.publisherView!,
-                attribute:NSLayoutAttribute.Left,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: pubView!,
-                attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: self.publisherView!,
-                attribute:NSLayoutAttribute.Top,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: pubView!,
-                attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: self.publisherView!,
-                attribute:NSLayoutAttribute.Width,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: pubView!,
-                attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: self.publisherView!,
-                attribute:NSLayoutAttribute.Height,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: pubView!,
-                attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-        ];
-
-        self.publisherView?.addConstraints(constraints);
+        self.addVideoView(pubView, container: self.publisherView)
     }
 
     func publisher(publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
         // Remove view
     }
     
-    // Subscriber delegate
-    func subscriberVideoDataReceived(subscriber: OTSubscriber!) {}
-    func subscriberDidConnectToStream(subscriber: OTSubscriberKit!) {}
+    // MARK: Subscriber Delegate
+    func subscriberVideoDataReceived(subscriber: OTSubscriber!) {
+        
+    }
+    
+    func subscriberDidConnectToStream(subscriber: OTSubscriberKit!) {
+        let sub = self.subscribers[subscriber.stream.streamId];
+        let subView = sub?.view;
+        
+        self.addVideoView(subView, container: self.view, atIndex: 0)
+    }
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
+    
+    // MARK: Private methods
+    private func addVideoView(videoView: UIView?, container:UIView?, atIndex: Int? = nil) {
+        videoView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        if let unwrappedIndex = atIndex {
+            container?.insertSubview(videoView!, atIndex: unwrappedIndex)
+        } else {
+            container?.addSubview(videoView!)
+        }
+        
+        let constraints = [
+            NSLayoutConstraint(
+                item:container!,
+                attribute:NSLayoutAttribute.Left,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: videoView!,
+                attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: container!,
+                attribute:NSLayoutAttribute.Top,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: videoView!,
+                attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: container!,
+                attribute:NSLayoutAttribute.Width,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: videoView!,
+                attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0),
+            NSLayoutConstraint(
+                item: container!,
+                attribute:NSLayoutAttribute.Height,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: videoView!,
+                attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        ];
+        
+        container?.addConstraints(constraints)
+    }
 
 }

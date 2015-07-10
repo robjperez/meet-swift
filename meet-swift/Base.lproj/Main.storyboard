@@ -122,6 +122,7 @@
                     <navigationItem key="navigationItem" id="sHc-Dg-D3m"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="joinButton" destination="RaW-U4-uwV" id="omL-hm-mff"/>
                         <outlet property="roomName" destination="KJg-2b-bLy" id="j1W-se-Vda"/>
                         <outlet property="userName" destination="DtQ-kV-RDu" id="BLA-P5-R2s"/>
                         <segue destination="aXS-fQ-fp6" kind="showDetail" identifier="startChat" id="ozH-CY-oQA"/>
@@ -143,23 +144,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpE-CL-MMQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75A-5T-4G6">
-                                        <rect key="frame" x="8" y="488" width="151" height="110"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.77272727269999997" green="0.77272727269999997" blue="0.77272727269999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" secondItem="75A-5T-4G6" secondAttribute="height" multiplier="6:1" id="FxS-K4-tno"/>
-                                    <constraint firstItem="75A-5T-4G6" firstAttribute="leading" secondItem="hpE-CL-MMQ" secondAttribute="leading" constant="8" id="IVX-Pi-aUd"/>
-                                    <constraint firstAttribute="width" secondItem="75A-5T-4G6" secondAttribute="width" multiplier="5:2" id="fUL-1E-eGz"/>
-                                </constraints>
-                            </view>
                             <view alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ya-pJ-9gS">
-                                <rect key="frame" x="0.0" y="614" width="375" height="53"/>
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCR-89-Z71">
                                         <rect key="frame" x="150" y="12" width="74" height="30"/>
@@ -199,23 +185,26 @@
                                     <constraint firstAttribute="centerX" secondItem="PCR-89-Z71" secondAttribute="centerX" constant="0.5" id="z1J-BU-FUp"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75A-5T-4G6">
+                                <rect key="frame" x="16" y="496" width="151" height="110"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="1Ya-pJ-9gS" secondAttribute="trailing" constant="-16" id="5QW-fB-Z79"/>
-                            <constraint firstItem="hpE-CL-MMQ" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="-20" id="8bf-0l-nur"/>
-                            <constraint firstItem="hpE-CL-MMQ" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" constant="-16" id="FCW-Wl-z82"/>
+                            <constraint firstItem="75A-5T-4G6" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" id="62i-ne-Q1H"/>
+                            <constraint firstAttribute="height" secondItem="75A-5T-4G6" secondAttribute="height" multiplier="6:1" id="MYv-6K-8mN"/>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" constant="-16" id="NMm-Ik-90D"/>
-                            <constraint firstItem="hpE-CL-MMQ" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="-20" id="Scr-9S-6c9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hpE-CL-MMQ" secondAttribute="trailing" constant="-16" id="YwT-kC-h9Q"/>
-                            <constraint firstItem="DpI-eO-5AV" firstAttribute="top" secondItem="hpE-CL-MMQ" secondAttribute="bottom" id="dol-qF-q0x"/>
-                            <constraint firstItem="1Ya-pJ-9gS" firstAttribute="top" secondItem="75A-5T-4G6" secondAttribute="bottom" constant="16" id="l3J-nZ-6n7"/>
+                            <constraint firstAttribute="width" secondItem="75A-5T-4G6" secondAttribute="width" multiplier="5:2" id="NRJ-oR-NMo"/>
+                            <constraint firstItem="75A-5T-4G6" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="476" id="Oke-A6-idc"/>
+                            <constraint firstItem="1Ya-pJ-9gS" firstAttribute="top" secondItem="75A-5T-4G6" secondAttribute="bottom" constant="8" id="SJ0-I6-dDk"/>
                             <constraint firstItem="DpI-eO-5AV" firstAttribute="top" secondItem="1Ya-pJ-9gS" secondAttribute="bottom" id="yCA-73-Y5L"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="hpE-CL-MMQ" id="hpE-hO-ZQ0"/>
                         <outlet property="publisherView" destination="75A-5T-4G6" id="6G2-kQ-T0g"/>
+                        <outlet property="view" destination="5Fu-jf-Yey" id="C43-Nh-gSn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIv-ER-ccU" userLabel="First Responder" sceneMemberID="firstResponder"/>

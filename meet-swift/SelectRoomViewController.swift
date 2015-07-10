@@ -11,6 +11,7 @@ import UIKit
 class SelectRoomViewController: UIViewController {
     @IBOutlet weak var roomName: UITextField?
     @IBOutlet weak var userName: UITextField?
+    @IBOutlet weak var joinButton: UIButton?
     
     var loadingAlert : UIAlertView?
     
