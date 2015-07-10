@@ -21,6 +21,8 @@ class SelectRoomViewController: UIViewController {
         super.viewDidLoad()
         
         loadingAlert = UIAlertView(title: "Loading", message: "Getting session details", delegate: nil, cancelButtonTitle: nil);
+        
+        self.userName?.text = UIDevice.currentDevice().name
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +38,8 @@ class SelectRoomViewController: UIViewController {
             alert.show()
             return
         }
+        
+        self.view.endEditing(true)
 
         let urlString = "http://meet.tokbox.com/\(roomName!.text)"
         let urlRequest = NSURL(string: urlString)
