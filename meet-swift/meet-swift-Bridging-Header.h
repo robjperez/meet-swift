@@ -11,4 +11,8 @@
 
 #import <OpenTok/OpenTok.h>
 
+@interface OTSession (APIURL)
+- (void)setApiRootURL:(NSURL*)aURL;
+@end
+
 #endif

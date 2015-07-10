@@ -38,6 +38,17 @@ class RoomViewController: UIViewController,
         session = OTSession(apiKey: roomInfo!.apiKey,
             sessionId: roomInfo!.sessionId,
             delegate: self)
+        
+        var envs: NSDictionary?
+        var envUrl : NSURL?
+        if let path = NSBundle.mainBundle().pathForResource("environment", ofType: "plist") {
+            envs = NSDictionary(contentsOfFile: path)
+        }
+        if let dict = envs {
+            envUrl = NSURL(string: envs?.objectForKey("meet") as! String)
+        }
+        
+        session!.setApiRootURL(envUrl)
         session!.connectWithToken(roomInfo!.token,
             error: &error)
         

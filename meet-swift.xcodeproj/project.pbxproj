@@ -17,6 +17,7 @@
 		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
 		F8E94E47CD6442E0A22BEBEC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17ACCC294C676BF5DA3D6D4D /* libPods.a */; };
+		F8F80E6B1B4FF539000C3FEB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8F80E6A1B4FF539000C3FEB /* environment.plist */; };
 		F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0401ADEB671000090DA /* AppDelegate.swift */; };
 		F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0421ADEB671000090DA /* SelectRoomViewController.swift */; };
 		F8FBD0461ADEB671000090DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0441ADEB671000090DA /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		F88721581AE42306001291F5 /* RoomInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomInfo.swift; sourceTree = "<group>"; };
 		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		F8F80E6A1B4FF539000C3FEB /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 		F8FBD03B1ADEB671000090DA /* meet-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "meet-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8FBD03F1ADEB671000090DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8FBD0401ADEB671000090DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		F8FBD03E1ADEB671000090DA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F8F80E6A1B4FF539000C3FEB /* environment.plist */,
 				F8FBD03F1ADEB671000090DA /* Info.plist */,
 				F8FBD0931ADEB72B000090DA /* meet-swift-Bridging-Header.h */,
 			);
@@ -290,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8F80E6B1B4FF539000C3FEB /* environment.plist in Resources */,
 				F8FBD0461ADEB671000090DA /* Main.storyboard in Resources */,
 				F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */,
 				F877235B1B4FF2760083743A /* icon_arrowRight_enabled-28.png in Resources */,
