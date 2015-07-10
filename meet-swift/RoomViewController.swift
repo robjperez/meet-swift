@@ -54,11 +54,15 @@ class RoomViewController: UIViewController,
     }
     
     @IBAction func switchCameraPressed(sender: AnyObject?) {
-        
+        if self.publisher?.cameraPosition == AVCaptureDevicePosition.Back {
+            self.publisher?.cameraPosition = AVCaptureDevicePosition.Front
+        } else {
+            self.publisher?.cameraPosition = AVCaptureDevicePosition.Back
+        }
     }
     
     @IBAction func mutePressed(sender: AnyObject?) {
-
+        self.publisher!.publishAudio = !(self.publisher!.publishAudio)
     }
     
     @IBAction func nextSubPresseed(sender: AnyObject?) {
@@ -180,6 +184,9 @@ class RoomViewController: UIViewController,
         
         newSubscriber.view.alpha = 0.0
         self.addVideoView(newSubscriber.view, container: self.view, atIndex: 0)
+        
+        previousSubscriber?.subscribeToVideo = false
+        newSubscriber.subscribeToVideo = true
         
         UIView.animateWithDuration(0.4,
             animations: { () -> Void in

@@ -149,6 +149,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCR-89-Z71">
                                         <rect key="frame" x="150" y="12" width="74" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <state key="normal" title="End Call">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -159,6 +160,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O3-VC-mpr">
                                         <rect key="frame" x="8" y="12" width="81" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <state key="normal" title="Camera">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,6 +171,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-LF-cep">
                                         <rect key="frame" x="286" y="12" width="81" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                         <state key="normal" title="Mute">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -210,6 +213,13 @@
                                     <action selector="prevSubPresseed:" destination="aXS-fQ-fp6" eventType="touchUpInside" id="vZq-o1-fOV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CE3-aa-F1M">
+                                <rect key="frame" x="313" y="34" width="46" height="30"/>
+                                <state key="normal" title="Mute">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -217,12 +227,14 @@
                             <constraint firstItem="75A-5T-4G6" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" id="62i-ne-Q1H"/>
                             <constraint firstAttribute="centerY" secondItem="UMy-OQ-Pte" secondAttribute="centerY" constant="-0.5" id="C2o-fc-SHf"/>
                             <constraint firstItem="UMy-OQ-Pte" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" id="CYK-cN-pLg"/>
+                            <constraint firstItem="CE3-aa-F1M" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="14" id="KxU-pL-RbD"/>
                             <constraint firstAttribute="height" secondItem="75A-5T-4G6" secondAttribute="height" multiplier="6:1" id="MYv-6K-8mN"/>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" constant="-16" id="NMm-Ik-90D"/>
                             <constraint firstAttribute="centerY" secondItem="aUI-nD-bhZ" secondAttribute="centerY" constant="-0.5" id="NPD-bF-1oo"/>
                             <constraint firstAttribute="width" secondItem="75A-5T-4G6" secondAttribute="width" multiplier="5:2" id="NRJ-oR-NMo"/>
                             <constraint firstItem="75A-5T-4G6" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="476" id="Oke-A6-idc"/>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="top" secondItem="75A-5T-4G6" secondAttribute="bottom" constant="8" id="SJ0-I6-dDk"/>
+                            <constraint firstItem="CE3-aa-F1M" firstAttribute="trailing" secondItem="5Fu-jf-Yey" secondAttribute="trailingMargin" id="Zw0-dj-MNp"/>
                             <constraint firstItem="aUI-nD-bhZ" firstAttribute="trailing" secondItem="5Fu-jf-Yey" secondAttribute="trailingMargin" id="mNS-Xk-VZm"/>
                             <constraint firstItem="DpI-eO-5AV" firstAttribute="top" secondItem="1Ya-pJ-9gS" secondAttribute="bottom" id="yCA-73-Y5L"/>
                         </constraints>
