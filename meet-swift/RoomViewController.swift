@@ -18,6 +18,9 @@ class RoomViewController: UIViewController,
     @IBOutlet weak var previousSub: UIButton?
     @IBOutlet weak var nextSub: UIButton?
     
+    @IBOutlet weak var muteButton: UIButton?
+    @IBOutlet weak var cameraButton: UIButton?
+    
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
@@ -74,6 +77,7 @@ class RoomViewController: UIViewController,
     
     @IBAction func mutePressed(sender: AnyObject?) {
         self.publisher!.publishAudio = !(self.publisher!.publishAudio)
+        (sender as! UIButton).selected = self.publisher!.publishAudio
     }
     
     @IBAction func nextSubPresseed(sender: AnyObject?) {
@@ -126,6 +130,9 @@ class RoomViewController: UIViewController,
 
     // MARK: Session Delegate
     func sessionDidConnect(session: OTSession!) {
+        self.muteButton?.enabled = true;
+        self.cameraButton?.enabled = true;
+        
         self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
         var error: OTError?
         session!.publish(publisher, error: &error)
