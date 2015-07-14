@@ -21,6 +21,11 @@ class RoomViewController: UIViewController,
     @IBOutlet weak var muteButton: UIButton?
     @IBOutlet weak var cameraButton: UIButton?
     
+    @IBOutlet weak var roomName: UILabel?
+    @IBOutlet weak var numberOfStreams: UILabel?
+    
+    @IBOutlet weak var muteSubscriber: UIButton?
+    
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
@@ -58,7 +63,12 @@ class RoomViewController: UIViewController,
         publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true);
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
-        self.connectingAlert?.show();
+        self.connectingAlert?.show()
+        
+        self.roomName?.text = roomInfo!.roomName
+        self.numberOfStreams?.text = "👥 1"
+        
+        self.muteSubscriber?.hidden = true
 
     }
 
@@ -153,12 +163,16 @@ class RoomViewController: UIViewController,
         subscribers[stream.streamId] = subscriber
         self.toggleSubsButtons()
         self.session?.subscribe(subscriber, error: &error)
+        
+        updateParticipants(true)
     }
     
     func session(session: OTSession!, streamDestroyed stream: OTStream!) {
         self.nextSubPresseed(nil)
         self.subscribers.removeValueForKey(stream.streamId)
         toggleSubsButtons()
+        
+        updateParticipants(false)
     }
     
     // MARK: Publisher Delegate
@@ -263,6 +277,14 @@ class RoomViewController: UIViewController,
         } else {
             self.previousSub?.hidden = true
             self.nextSub?.hidden = true
+        }
+    }
+    
+    private func updateParticipants(increment: Bool) {
+        if let currentNumber = self.numberOfStreams?.text {
+            let number = currentNumber.substringFromIndex(advance(currentNumber.startIndex, 2)).toInt()!
+            let text = "👥 " + (increment ? number+1 : number-1).description
+            self.numberOfStreams!.text = text
         }
     }
 
