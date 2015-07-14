@@ -175,6 +175,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="selected" image="mic_muted-24.png"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="343" y="18" width="24" height="24"/>
+                                        </variation>
                                         <connections>
                                             <action selector="mutePressed:" destination="aXS-fQ-fp6" eventType="touchUpInside" id="Ksc-4s-Hh9"/>
                                         </connections>
@@ -191,7 +194,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75A-5T-4G6">
-                                <rect key="frame" x="16" y="496" width="151" height="110"/>
+                                <rect key="frame" x="16" y="495" width="151" height="111"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUI-nD-bhZ">
@@ -227,10 +230,14 @@
                             <constraint firstAttribute="centerY" secondItem="UMy-OQ-Pte" secondAttribute="centerY" constant="-0.5" id="C2o-fc-SHf"/>
                             <constraint firstItem="UMy-OQ-Pte" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leadingMargin" id="CYK-cN-pLg"/>
                             <constraint firstItem="CE3-aa-F1M" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="bottom" constant="14" id="KxU-pL-RbD"/>
-                            <constraint firstAttribute="height" secondItem="75A-5T-4G6" secondAttribute="height" multiplier="6:1" id="MYv-6K-8mN"/>
+                            <constraint firstAttribute="height" secondItem="75A-5T-4G6" secondAttribute="height" multiplier="6:1" constant="-30" id="MYv-6K-8mN">
+                                <variation key="heightClass=compact" constant="-500"/>
+                            </constraint>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leading" id="NMm-Ik-90D"/>
                             <constraint firstAttribute="centerY" secondItem="aUI-nD-bhZ" secondAttribute="centerY" constant="-0.5" id="NPD-bF-1oo"/>
-                            <constraint firstAttribute="width" secondItem="75A-5T-4G6" secondAttribute="width" multiplier="5:2" id="NRJ-oR-NMo"/>
+                            <constraint firstAttribute="width" secondItem="75A-5T-4G6" secondAttribute="width" multiplier="5:2" id="NRJ-oR-NMo">
+                                <variation key="heightClass=compact" constant="300"/>
+                            </constraint>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="top" secondItem="75A-5T-4G6" secondAttribute="bottom" constant="8" id="SJ0-I6-dDk"/>
                             <constraint firstItem="CE3-aa-F1M" firstAttribute="trailing" secondItem="5Fu-jf-Yey" secondAttribute="trailingMargin" id="Zw0-dj-MNp"/>
                             <constraint firstItem="aUI-nD-bhZ" firstAttribute="trailing" secondItem="5Fu-jf-Yey" secondAttribute="trailingMargin" id="mNS-Xk-VZm"/>
