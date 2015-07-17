@@ -29,12 +29,15 @@ class RoomViewController: UIViewController,
     var session: OTSession?
     var publisher: OTPublisher?
     var subscribers = Dictionary<String, OTSubscriber>()
-    var selectedSubscriber : String?;
+    var selectedSubscriber : String?
     
     var roomInfo: RoomInfo?
     
-    var disconnectingAlert : UIAlertView?;
-    var connectingAlert: UIAlertView?;
+    var disconnectingAlert : UIAlertView?
+    var connectingAlert: UIAlertView?
+    
+    var wasSubscribingToVideo = false
+    var wasPublishingVideo = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +74,9 @@ class RoomViewController: UIViewController,
         self.muteSubscriber?.hidden = true
         
         UIApplication.sharedApplication().idleTimerDisabled = true;
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterForeground", name: UIApplicationWillEnterForegroundNotification, object: nil)
 
     }
 
@@ -288,6 +294,34 @@ class RoomViewController: UIViewController,
             let number = currentNumber.substringFromIndex(advance(currentNumber.startIndex, 2)).toInt()!
             let text = "👥 " + (increment ? number+1 : number-1).description
             self.numberOfStreams!.text = text
+        }
+    }
+    
+    func onEnterBackground() {
+        if let pub = self.publisher {
+            self.wasPublishingVideo = pub.publishVideo
+            pub.publishVideo = false
+        }
+
+        if let subId = self.selectedSubscriber {
+            let sub = self.subscribers[subId]
+            if let videoEnabled = sub?.subscribeToVideo {
+                self.wasPublishingVideo = videoEnabled
+            }
+            
+            sub?.subscribeToVideo = false
+        }
+
+    }
+    
+    func onEnterForeground() {
+        if let pub = self.publisher {
+            pub.publishVideo = self.wasPublishingVideo
+        }
+        
+        if let subId = self.selectedSubscriber {
+            let sub = self.subscribers[subId]
+            sub?.subscribeToVideo = self.wasSubscribingToVideo
         }
     }
 
