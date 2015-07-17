@@ -169,7 +169,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-LF-cep">
-                                        <rect key="frame" x="331" y="17" width="24" height="24"/>
+                                        <rect key="frame" x="311" y="7" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="5I9-Eo-IUS"/>
+                                            <constraint firstAttribute="height" constant="44" id="xwz-l1-7YR"/>
+                                        </constraints>
                                         <state key="normal" image="mic-24.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
