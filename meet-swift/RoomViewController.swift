@@ -69,6 +69,8 @@ class RoomViewController: UIViewController,
         self.numberOfStreams?.text = "👥 1"
         
         self.muteSubscriber?.hidden = true
+        
+        UIApplication.sharedApplication().idleTimerDisabled = true;
 
     }
 
