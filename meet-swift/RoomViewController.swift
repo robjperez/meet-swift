@@ -87,7 +87,8 @@ class RoomViewController: UIViewController,
     
     @IBAction func mutePressed(sender: AnyObject?) {
         self.publisher!.publishAudio = !(self.publisher!.publishAudio)
-        (sender as! UIButton).selected = self.publisher!.publishAudio
+        (sender as! UIButton).selected = !self.publisher!.publishAudio
+        NSLog("selected" + (sender as! UIButton).selected.description)
     }
     
     @IBAction func nextSubPresseed(sender: AnyObject?) {
