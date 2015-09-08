@@ -7,13 +7,22 @@
 //
 
 import UIKit
+import OpenTok
 
-class SelectRoomViewController: UIViewController {
+class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var roomName: UITextField?
     @IBOutlet weak var userName: UITextField?
     @IBOutlet weak var joinButton: UIButton?
+    @IBOutlet weak var simulcastLevel: UITextField?
+    @IBOutlet weak var simulcastPickerView: UIPickerView?
     
-    var loadingAlert : UIAlertView?
+    var loadingAlert: UIAlertView?
+    
+    var simulcastLevels = [OTPublisherKitSimulcastLevel.LevelNone,
+        OTPublisherKitSimulcastLevel.LevelVGA,
+        OTPublisherKitSimulcastLevel.Level720p]
+    
+    var selectedSimulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone
     
     var roomInfo = RoomInfo()
     
@@ -23,6 +32,8 @@ class SelectRoomViewController: UIViewController {
         loadingAlert = UIAlertView(title: "Loading", message: "Getting session details", delegate: nil, cancelButtonTitle: nil);
         
         self.userName?.text = UIDevice.currentDevice().name
+        
+        self.simulcastLevel?.text = simulcastLevelToString(selectedSimulcastLevel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,6 +97,52 @@ class SelectRoomViewController: UIViewController {
         if segue.identifier! == "startChat" {
             var destination = segue.destinationViewController as! RoomViewController
             destination.roomInfo = self.roomInfo
+            destination.simulcastLevel = self.selectedSimulcastLevel
+        }
+    }
+    
+    // MARK: picker view code
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField == self.simulcastLevel {
+            simulcastPickerView?.hidden = false
+            self.roomName?.resignFirstResponder()
+            self.userName?.resignFirstResponder()
+            return false
+        } else {
+            simulcastPickerView?.hidden = true
+        }
+        return true
+    }
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return simulcastLevels.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return simulcastLevelToString(simulcastLevels[row])
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        simulcastLevel!.text = simulcastLevelToString(simulcastLevels[row])
+        selectedSimulcastLevel = simulcastLevels[row]
+        
+        simulcastPickerView?.hidden = true
+    }
+    
+    func simulcastLevelToString(level: OTPublisherKitSimulcastLevel) -> String
+    {
+        switch level {
+        case OTPublisherKitSimulcastLevel.LevelNone: return "None"
+        case OTPublisherKitSimulcastLevel.LevelVGA: return "VGA"
+        case OTPublisherKitSimulcastLevel.Level720p: return "720p"
+        default: return ""
         }
     }
 }

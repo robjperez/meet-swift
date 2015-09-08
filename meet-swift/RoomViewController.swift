@@ -38,12 +38,13 @@ class RoomViewController: UIViewController,
     
     var wasSubscribingToVideo = false
     var wasPublishingVideo = false
+    
+    var simulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone;
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         var error:OTError?
         
         session = OTSession(apiKey: roomInfo!.apiKey,
@@ -63,7 +64,7 @@ class RoomViewController: UIViewController,
         session!.connectWithToken(roomInfo!.token,
             error: &error)
         
-        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true);
+        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel);
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
         self.connectingAlert?.show()
