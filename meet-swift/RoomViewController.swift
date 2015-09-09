@@ -40,7 +40,7 @@ class RoomViewController: UIViewController,
     var wasPublishingVideo = false
     
     var simulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone;
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,8 +63,26 @@ class RoomViewController: UIViewController,
         session!.setApiRootURL(envUrl)
         session!.connectWithToken(roomInfo!.token,
             error: &error)
+    
+        var cTempAdj: UnsafeMutablePointer<(Float, Float, Float, Float)> = nil
+        var maxSpatialLayers : Int32 = 0
+        var cTempAdjCount = 0
         
-        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel);
+        if self.simulcastLevel != OTPublisherKitSimulcastLevel.LevelNone {
+            var tempAdj = [(Float, Float, Float, Float)](count: 4, repeatedValue:(0.1, 1.0, 1.0, 1.0));
+            cTempAdjCount = tempAdj.count
+            cTempAdj = UnsafeMutablePointer<(Float, Float, Float, Float)>.alloc(cTempAdjCount)
+            
+            cTempAdj.initializeFrom(tempAdj)
+            
+            maxSpatialLayers = 1
+        }
+
+        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel, maxSpatialLayers: maxSpatialLayers, temporalLayerRateAdjustments: cTempAdj);
+        
+        if cTempAdj != nil {
+            cTempAdj.dealloc(cTempAdjCount)
+        }
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
         self.connectingAlert?.show()
