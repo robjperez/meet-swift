@@ -15,6 +15,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     @IBOutlet weak var joinButton: UIButton?
     @IBOutlet weak var simulcastLevel: UITextField?
     @IBOutlet weak var simulcastPickerView: UIPickerView?
+    @IBOutlet weak var subscriberSimulcast: UISwitch?
     
     var loadingAlert: UIAlertView?
     
@@ -98,6 +99,9 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
             var destination = segue.destinationViewController as! RoomViewController
             destination.roomInfo = self.roomInfo
             destination.simulcastLevel = self.selectedSimulcastLevel
+            if self.subscriberSimulcast!.on {
+                
+            }
         }
     }
     
@@ -111,6 +115,11 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         } else {
             simulcastPickerView?.hidden = true
         }
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     

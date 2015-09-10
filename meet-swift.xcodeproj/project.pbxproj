@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
 		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
+		F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F86ED2031B9DCAF800176973 /* OTKLogger.m */; };
 		F87723591B4FF2760083743A /* icon_arrowLeft_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */; };
 		F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723561B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png */; };
 		F877235B1B4FF2760083743A /* icon_arrowRight_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723571B4FF2760083743A /* icon_arrowRight_enabled-28.png */; };
 		F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */; };
+		F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880C8B91BA04CC70019F957 /* ViewManager.swift */; };
 		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
 		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
+		F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F896100C1BA189CE00E89484 /* ViewUtils.swift */; };
+		F8BD47AD1BA078ED00902BB2 /* SingleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BD47AC1BA078ED00902BB2 /* SingleView.xib */; };
 		F8C97AA41B53AF22001C8097 /* mic_muted-24.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA21B53AF22001C8097 /* mic_muted-24.png */; };
 		F8C97AA51B53AF22001C8097 /* mic_muted-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA31B53AF22001C8097 /* mic_muted-24@2x.png */; };
 		F8C97AAA1B53AFAE001C8097 /* camera_switch-33.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA61B53AFAE001C8097 /* camera_switch-33.png */; };
@@ -60,13 +64,18 @@
 		18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
+		F86ED2031B9DCAF800176973 /* OTKLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTKLogger.m; sourceTree = "<group>"; };
 		F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28.png"; path = "meet-swift/Images/icon_arrowLeft_enabled-28.png"; sourceTree = "<group>"; };
 		F87723561B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28@2x.png"; path = "meet-swift/Images/icon_arrowLeft_enabled-28@2x.png"; sourceTree = "<group>"; };
 		F87723571B4FF2760083743A /* icon_arrowRight_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28.png"; path = "meet-swift/Images/icon_arrowRight_enabled-28.png"; sourceTree = "<group>"; };
 		F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28@2x.png"; path = "meet-swift/Images/icon_arrowRight_enabled-28@2x.png"; sourceTree = "<group>"; };
+		F880C8B91BA04CC70019F957 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		F88721581AE42306001291F5 /* RoomInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomInfo.swift; sourceTree = "<group>"; };
 		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		F896100C1BA189CE00E89484 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		F8BD47AC1BA078ED00902BB2 /* SingleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleView.xib; sourceTree = "<group>"; };
 		F8C97AA21B53AF22001C8097 /* mic_muted-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mic_muted-24.png"; path = "meet-swift/Images/mic_muted-24.png"; sourceTree = "<group>"; };
 		F8C97AA31B53AF22001C8097 /* mic_muted-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mic_muted-24@2x.png"; path = "meet-swift/Images/mic_muted-24@2x.png"; sourceTree = "<group>"; };
 		F8C97AA61B53AFAE001C8097 /* camera_switch-33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_switch-33.png"; path = "meet-swift/Images/camera_switch-33.png"; sourceTree = "<group>"; };
@@ -201,6 +210,11 @@
 				F8FBD03E1ADEB671000090DA /* Supporting Files */,
 				F88721561AE41A83001291F5 /* RoomViewController.swift */,
 				F88721581AE42306001291F5 /* RoomInfo.swift */,
+				F86ED2021B9DCAF800176973 /* OTKLogger.h */,
+				F86ED2031B9DCAF800176973 /* OTKLogger.m */,
+				F880C8B91BA04CC70019F957 /* ViewManager.swift */,
+				F8BD47AC1BA078ED00902BB2 /* SingleView.xib */,
+				F896100C1BA189CE00E89484 /* ViewUtils.swift */,
 			);
 			path = "meet-swift";
 			sourceTree = "<group>";
@@ -322,6 +336,7 @@
 				F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */,
 				F8C97AA51B53AF22001C8097 /* mic_muted-24@2x.png in Resources */,
 				F8FBD04B1ADEB671000090DA /* LaunchScreen.xib in Resources */,
+				F8BD47AD1BA078ED00902BB2 /* SingleView.xib in Resources */,
 				F8FBD0481ADEB671000090DA /* Images.xcassets in Resources */,
 				F8C97AAD1B53AFAE001C8097 /* mic-24@2x.png in Resources */,
 				F87723591B4FF2760083743A /* icon_arrowLeft_enabled-28.png in Resources */,
@@ -372,7 +387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run cde951859fbe1f0ee64bba4c146c6e231717f4ea 9d1f199f01132a5c5385c7af1310dfdee3e4eb3c79f8052231e830caa7b9781c";
+			shellScript = "#./Fabric.framework/run cde951859fbe1f0ee64bba4c146c6e231717f4ea 9d1f199f01132a5c5385c7af1310dfdee3e4eb3c79f8052231e830caa7b9781c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -381,9 +396,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */,
 				F88721591AE42306001291F5 /* RoomInfo.swift in Sources */,
 				F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */,
+				F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */,
 				F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */,
+				F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -521,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0258BE712DC162746D1B6E83 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -12,11 +12,8 @@ import OpenTok
 class RoomViewController: UIViewController,
             OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate
 {
-    @IBOutlet weak var backgroundView :UIView?
-    @IBOutlet weak var publisherView :UIView?
-    
-    @IBOutlet weak var previousSub: UIButton?
-    @IBOutlet weak var nextSub: UIButton?
+    @IBOutlet weak var publisherView: UIView?
+    @IBOutlet weak var statusBar: UIView?
     
     @IBOutlet weak var muteButton: UIButton?
     @IBOutlet weak var cameraButton: UIButton?
@@ -28,8 +25,6 @@ class RoomViewController: UIViewController,
     
     var session: OTSession?
     var publisher: OTPublisher?
-    var subscribers = Dictionary<String, OTSubscriber>()
-    var selectedSubscriber : String?
     
     var roomInfo: RoomInfo?
     
@@ -40,6 +35,11 @@ class RoomViewController: UIViewController,
     var wasPublishingVideo = false
     
     var simulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone;
+    var subscriberSimulcastEnabled = false
+    
+    var viewManager : ViewManager?
+    
+    var subscriberList = Dictionary<String, OTSubscriber>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,29 +60,34 @@ class RoomViewController: UIViewController,
             envUrl = NSURL(string: envs?.objectForKey("meet") as! String)
         }
         
+        if subscriberSimulcastEnabled {
+            viewManager = MultiSubViewManager(frame: self.view.frame, rootView: self.view)
+        } else {
+            viewManager = SingleSubViewManager(frame: self.view.frame, rootView: self.view)
+        }
+        
+        self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
+        
         session!.setApiRootURL(envUrl)
         session!.connectWithToken(roomInfo!.token,
             error: &error)
-    
-        var cTempAdj: UnsafeMutablePointer<(Float, Float, Float, Float)> = nil
-        var maxSpatialLayers : Int32 = 0
-        var cTempAdjCount = 0
         
         if self.simulcastLevel != OTPublisherKitSimulcastLevel.LevelNone {
+            var cTempAdj: UnsafeMutablePointer<(Float, Float, Float, Float)> = nil
+            let maxSpatialLayers : Int32 = 1
+
             var tempAdj = [(Float, Float, Float, Float)](count: 4, repeatedValue:(0.1, 1.0, 1.0, 1.0));
-            cTempAdjCount = tempAdj.count
+            let cTempAdjCount = tempAdj.count
             cTempAdj = UnsafeMutablePointer<(Float, Float, Float, Float)>.alloc(cTempAdjCount)
-            
             cTempAdj.initializeFrom(tempAdj)
             
-            maxSpatialLayers = 1
+            publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel, maxSpatialLayers: maxSpatialLayers, temporalLayerRateAdjustments: cTempAdj);
+            
+            cTempAdj.dealloc(cTempAdjCount)
+        } else {
+            publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true)
         }
 
-        publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel, maxSpatialLayers: maxSpatialLayers, temporalLayerRateAdjustments: cTempAdj);
-        
-        if cTempAdj != nil {
-            cTempAdj.dealloc(cTempAdjCount)
-        }
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
         self.connectingAlert?.show()
@@ -116,31 +121,7 @@ class RoomViewController: UIViewController,
         self.publisher!.publishAudio = !(self.publisher!.publishAudio)
         (sender as! UIButton).selected = !self.publisher!.publishAudio
         NSLog("selected" + (sender as! UIButton).selected.description)
-    }
-    
-    @IBAction func nextSubPresseed(sender: AnyObject?) {
-        if self.subscribers.count <= 1 { return }
-        
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
-        let nextIndex = (currentIndex! + 1) % self.subscribers.count
-        let nextKey = sortedKeys[nextIndex]
-        
-        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
-    }
-    
-    @IBAction func prevSubPresseed(sender: AnyObject) {
-        if self.subscribers.count <= 1 { return }
-        
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
-        var nextIndex = 0
-        if currentIndex == 0 { nextIndex = self.subscribers.count - 1}
-        else { nextIndex = currentIndex! - 1 }
-        let nextKey = sortedKeys[nextIndex]
-        
-        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
-    }
+    }        
 
     @IBAction func endCallPressed(sender: AnyObject) {
         var error : OTError?;
@@ -188,18 +169,16 @@ class RoomViewController: UIViewController,
     func session(session: OTSession!, streamCreated stream: OTStream!) {
         var subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
-        subscribers[stream.streamId] = subscriber
-        self.toggleSubsButtons()
         self.session?.subscribe(subscriber, error: &error)
+        
+        subscriberList[stream.streamId] = subscriber
         
         updateParticipants(true)
     }
     
     func session(session: OTSession!, streamDestroyed stream: OTStream!) {
-        self.nextSubPresseed(nil)
-        self.subscribers.removeValueForKey(stream.streamId)
-        toggleSubsButtons()
-        
+        viewManager!.removeSubscriber(stream.streamId)
+        subscriberList.removeValueForKey(stream.streamId)
         updateParticipants(false)
     }
     
@@ -209,7 +188,7 @@ class RoomViewController: UIViewController,
     func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
         // Add view
         let pubView = self.publisher?.view;
-        self.addVideoView(pubView, container: self.publisherView)
+        ViewUtils.addViewFill(pubView!, rootView: self.publisherView!)
     }
 
     func publisher(publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
@@ -222,91 +201,15 @@ class RoomViewController: UIViewController,
     }
     
     func subscriberDidConnectToStream(subscriber: OTSubscriberKit!) {
-        let sub = self.subscribers[subscriber.stream.streamId];
-        let subView = sub?.view;
-        
-        if self.subscribers.count > 1 && self.selectedSubscriber != nil {
-            self.performSubscriberAnimation(subscriber.stream.streamId)
-        } else {
-            self.addVideoView(subView, container: self.view, atIndex: 0)
+        if let sub = subscriberList[subscriber.stream.streamId] {
+            viewManager?.addSubscriber(sub,
+                streamKey: subscriber.stream.streamId)
         }
-        
-        self.selectedSubscriber = subscriber.stream.streamId
     }
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
     
-    private func performSubscriberAnimation(subId: String) {
-        if selectedSubscriber == subId { return }
-        
-        let previousSubscriber = self.subscribers[self.selectedSubscriber!]
-        let newSubscriber = self.subscribers[subId]!
-        
-        newSubscriber.view.alpha = 0.0
-        self.addVideoView(newSubscriber.view, container: self.view, atIndex: 0)
-        
-        previousSubscriber?.subscribeToVideo = false
-        newSubscriber.subscribeToVideo = true
-        
-        UIView.animateWithDuration(0.4,
-            animations: { () -> Void in
-                previousSubscriber?.view.alpha = 0.0
-                newSubscriber.view.alpha = 1.0
-            },
-            completion: { (finished) -> Void in
-                self.selectedSubscriber = subId
-                previousSubscriber?.view.removeFromSuperview()
-            })
-    }
-    
     // MARK: Private methods
-    private func addVideoView(videoView: UIView?, container:UIView?, atIndex: Int? = nil) {
-        videoView?.setTranslatesAutoresizingMaskIntoConstraints(false)
-        if let unwrappedIndex = atIndex {
-            container?.insertSubview(videoView!, atIndex: unwrappedIndex)
-        } else {
-            container?.addSubview(videoView!)
-        }
-        
-        let constraints = [
-            NSLayoutConstraint(
-                item:container!,
-                attribute:NSLayoutAttribute.Left,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: videoView!,
-                attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: container!,
-                attribute:NSLayoutAttribute.Top,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: videoView!,
-                attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: container!,
-                attribute:NSLayoutAttribute.Width,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: videoView!,
-                attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0),
-            NSLayoutConstraint(
-                item: container!,
-                attribute:NSLayoutAttribute.Height,
-                relatedBy: NSLayoutRelation.Equal,
-                toItem: videoView!,
-                attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-        ];
-        
-        container?.addConstraints(constraints)
-    }
-    
-    private func toggleSubsButtons() {
-        if self.subscribers.count > 1 {
-            self.previousSub?.hidden = false
-            self.nextSub?.hidden = false
-        } else {
-            self.previousSub?.hidden = true
-            self.nextSub?.hidden = true
-        }
-    }
     
     private func updateParticipants(increment: Bool) {
         if let currentNumber = self.numberOfStreams?.text {
@@ -322,15 +225,7 @@ class RoomViewController: UIViewController,
             pub.publishVideo = false
         }
 
-        if let subId = self.selectedSubscriber {
-            let sub = self.subscribers[subId]
-            if let videoEnabled = sub?.subscribeToVideo {
-                self.wasPublishingVideo = videoEnabled
-            }
-            
-            sub?.subscribeToVideo = false
-        }
-
+        viewManager!.onEnterBackground()
     }
     
     func onEnterForeground() {
@@ -338,10 +233,7 @@ class RoomViewController: UIViewController,
             pub.publishVideo = self.wasPublishingVideo
         }
         
-        if let subId = self.selectedSubscriber {
-            let sub = self.subscribers[subId]
-            sub?.subscribeToVideo = self.wasSubscribingToVideo
-        }
+        viewManager!.onEnterForeground()
     }
 
 }
