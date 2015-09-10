@@ -156,4 +156,59 @@ class SingleSubViewManager : ViewManager {
 }
 
 class MultiSubViewManager : ViewManager {
+    @IBOutlet weak var bigView: UIView?
+    @IBOutlet weak var scrollView: UIScrollView?
+    
+    var selectedSubscriber : String?
+    
+    
+    required init!(frame: CGRect, rootView: UIView) {
+        super.init(frame: frame, rootView: rootView)
+        NSBundle.mainBundle().loadNibNamed("MultiView", owner: self, options: nil)
+        self.addSubview(self.view)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func addSubscriber(sub: OTSubscriber, streamKey: String) {
+        super.addSubscriber(sub, streamKey: streamKey)
+        
+        let subView = sub.view;
+        
+        if let selSub = selectedSubscriber {
+            self.addSubscriberToScroll(sub)
+        } else {
+            self.selectedSubscriber = streamKey
+            self.addSubscriberToBigView(sub)
+        }
+    }
+    
+    func addSubscriberToScroll(sub: OTSubscriber) {
+        sub.view.frame = CGRectMake(0, 0, self.scrollView!.frame.size.height * 1.3, self.scrollView!.frame.size.height)
+        var tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        tapGesture.numberOfTapsRequired = 2
+        sub.view.addGestureRecognizer(tapGesture)
+        sub.view.tag = find(subscribers.keys.array, sub.stream.streamId)!
+        self.scrollView?.addSubview(sub.view)
+    }
+    
+    func addSubscriberToBigView(sub: OTSubscriber) {
+        ViewUtils.addViewFill(sub.view, rootView: self.bigView!)
+    }
+    
+    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        if let subIndex = gestureRecognizer.view?.tag,
+            sub = subscribers[subscribers.keys.array[subIndex]],
+            selectedSub = subscribers[self.selectedSubscriber!]
+        {
+            selectedSub.view.removeFromSuperview()
+            addSubscriberToScroll(selectedSub)
+            
+            sub.view.removeFromSuperview()
+            addSubscriberToBigView(sub)
+        }
+    }
+    
 }

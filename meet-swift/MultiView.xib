@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MultiSubViewManager" customModule="meet_swift" customModuleProvider="target">
+            <connections>
+                <outlet property="bigView" destination="TpN-KJ-gtP" id="YXG-N3-VBN"/>
+                <outlet property="scrollView" destination="kqv-hF-JXN" id="Q0I-jN-j5y"/>
+                <outlet property="view" destination="iN0-l3-epB" id="NMC-uP-Uk4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqv-hF-JXN">
+                    <rect key="frame" x="8" y="346" width="359" height="190"/>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TpN-KJ-gtP">
+                    <rect key="frame" x="8" y="57" width="359" height="281"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="TpN-KJ-gtP" secondAttribute="height" multiplier="359:281" id="sX0-Gd-xa7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="TpN-KJ-gtP" secondAttribute="trailing" constant="8" id="8wT-hU-IAe"/>
+                <constraint firstItem="TpN-KJ-gtP" firstAttribute="width" secondItem="kqv-hF-JXN" secondAttribute="height" multiplier="359:190" id="AgE-0M-eD1"/>
+                <constraint firstAttribute="trailing" secondItem="kqv-hF-JXN" secondAttribute="trailing" constant="8" id="UvX-bm-uF3"/>
+                <constraint firstItem="kqv-hF-JXN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="b51-ip-n3I"/>
+                <constraint firstItem="TpN-KJ-gtP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="57" id="dRG-2W-nn8"/>
+                <constraint firstAttribute="bottom" secondItem="kqv-hF-JXN" secondAttribute="bottom" constant="131" id="nE1-9G-LkR"/>
+                <constraint firstItem="TpN-KJ-gtP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="rGu-gv-8Yr"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="581.5" y="288.5"/>
+        </view>
+    </objects>
+</document>

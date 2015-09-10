@@ -99,9 +99,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
             var destination = segue.destinationViewController as! RoomViewController
             destination.roomInfo = self.roomInfo
             destination.simulcastLevel = self.selectedSimulcastLevel
-            if self.subscriberSimulcast!.on {
-                
-            }
+            destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.on
         }
     }
     
