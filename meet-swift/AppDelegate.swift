@@ -15,6 +15,8 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static let kInitialBatteryKey = "initialBatteryLevel"
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -23,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         checkForUpdates()
         
-        NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: "initialBatteryLevel")
+        NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: AppDelegate.kInitialBatteryKey)
         
         //let a = OTKLogger()
         return true

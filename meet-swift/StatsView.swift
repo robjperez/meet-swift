@@ -23,12 +23,11 @@ class StatsView : UIView {
         NSBundle.mainBundle().loadNibNamed("StatsViewer", owner: self, options: nil)
         self.addSubview(self.view)
         
-        initialBattery = NSUserDefaults.standardUserDefaults().objectForKey("initialBatteryLevel")!.floatValue
+        initialBattery = NSUserDefaults.standardUserDefaults().objectForKey(AppDelegate.kInitialBatteryKey)!.floatValue
         
         refreshTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("updateStats:"), userInfo: nil, repeats: true)
         
         refreshTimer!.fire()
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -38,7 +37,7 @@ class StatsView : UIView {
     func updateStats(timer: NSTimer) {
         cpu?.text = "CPU: \(StatsUtil.cpuUsage())"
         memory?.text = "Memory: \(StatsUtil.memoryUsage())"
-        battery?.text = "Battery: \(UIDevice.currentDevice().batteryLevel - initialBattery!)"
+        battery?.text = "Battery: \(initialBattery! - UIDevice.currentDevice().batteryLevel)"
     }
     
     deinit {

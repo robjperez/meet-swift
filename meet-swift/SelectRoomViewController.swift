@@ -23,7 +23,13 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         OTPublisherKitSimulcastLevel.LevelVGA,
         OTPublisherKitSimulcastLevel.Level720p]
     
+    var simulcastLevelsCustomValues = [
+        OTPublisherKitSimulcastLevel.LevelVGA,
+        OTPublisherKitSimulcastLevel.Level720p
+    ]
+    
     var selectedSimulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone
+    var selectedSimulcastCustomValues : Bool = false
     
     var roomInfo = RoomInfo()
     
@@ -34,7 +40,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         self.userName?.text = UIDevice.currentDevice().name
         
-        self.simulcastLevel?.text = simulcastLevelToString(selectedSimulcastLevel)
+        self.simulcastLevel?.text = simulcastLevelToString(OTPublisherKitSimulcastLevel.LevelNone)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +106,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
             destination.roomInfo = self.roomInfo
             destination.simulcastLevel = self.selectedSimulcastLevel
             destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.on
+            destination.simulcastUseCustomValues = self.selectedSimulcastCustomValues
         }
     }
     
@@ -128,29 +135,53 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return simulcastLevels.count
+        return simulcastLevels.count + simulcastLevelsCustomValues.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return simulcastLevelToString(simulcastLevels[row])
+        var calculatedRow = row
+        if row >= simulcastLevels.count {
+            calculatedRow = row - simulcastLevels.count + 1
+        }
+        
+        return simulcastLevelToString(simulcastLevels[calculatedRow],
+            customValues: isUsingSimulcastCustomValues(row))
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        simulcastLevel!.text = simulcastLevelToString(simulcastLevels[row])
-        selectedSimulcastLevel = simulcastLevels[row]
+        var calculatedRow = row
+        if row >= simulcastLevels.count {
+            calculatedRow = row - simulcastLevels.count + 1
+        }
+        
+        simulcastLevel!.text = simulcastLevelToString(simulcastLevels[calculatedRow],
+            customValues: isUsingSimulcastCustomValues(row))
+        selectedSimulcastLevel = simulcastLevels[calculatedRow]
+        selectedSimulcastCustomValues = isUsingSimulcastCustomValues(row)
         
         simulcastPickerView?.hidden = true
     }
     
-    func simulcastLevelToString(level: OTPublisherKitSimulcastLevel) -> String
+    func simulcastLevelToString(level: OTPublisherKitSimulcastLevel, customValues: Bool = false) -> String
     {
+        var retValue = ""
         switch level {
-        case OTPublisherKitSimulcastLevel.LevelNone: return "None"
-        case OTPublisherKitSimulcastLevel.LevelVGA: return "VGA"
-        case OTPublisherKitSimulcastLevel.Level720p: return "720p"
-        default: return ""
+        case OTPublisherKitSimulcastLevel.LevelNone: retValue = "None"
+        case OTPublisherKitSimulcastLevel.LevelVGA: retValue = "VGA"
+        case OTPublisherKitSimulcastLevel.Level720p: retValue = "720p"
+        default: retValue = "None"
         }
+        
+        if customValues {
+            return retValue + " (CUSTOM)"
+        } else {
+            return retValue
+        }
+    }
+    
+    func isUsingSimulcastCustomValues(index: Int) -> Bool {
+        return index > (simulcastLevels.count - 1)
     }
 }
 
