@@ -41,6 +41,10 @@ class RoomViewController: UIViewController,
     
     var subscriberList = Dictionary<String, OTSubscriber>()
     
+    var statsView : UIView?
+    
+    var roomTapGestureRecognizer : UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -101,6 +105,10 @@ class RoomViewController: UIViewController,
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterForeground", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
+        roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleRoomNameTap:"))
+        roomTapGestureRecognizer?.numberOfTapsRequired = 2
+        roomName?.addGestureRecognizer(roomTapGestureRecognizer!)
 
     }
 
@@ -234,6 +242,16 @@ class RoomViewController: UIViewController,
         }
         
         viewManager!.onEnterForeground()
+    }
+    
+    func handleRoomNameTap(tapRecognizer: UITapGestureRecognizer) {
+        if let stats = statsView {
+            stats.removeFromSuperview()
+            self.statsView = nil
+        } else {
+            statsView = StatsView(frame: CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200))
+            self.view.addSubview(statsView!)
+        }
     }
 
 }

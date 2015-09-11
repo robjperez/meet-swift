@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         checkForUpdates()
         
+        NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: "initialBatteryLevel")
         
         //let a = OTKLogger()
         return true

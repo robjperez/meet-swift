@@ -20,6 +20,11 @@
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
 		F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F896100C1BA189CE00E89484 /* ViewUtils.swift */; };
 		F896100F1BA1969400E89484 /* MultiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F896100E1BA1969400E89484 /* MultiView.xib */; };
+		F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89610101BA2EF0200E89484 /* MultiSubViewManager.swift */; };
+		F89610131BA2EF3300E89484 /* SingleSubViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89610121BA2EF3300E89484 /* SingleSubViewManager.swift */; };
+		F89610171BA2F13D00E89484 /* StatsViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = F89610161BA2F13D00E89484 /* StatsViewer.xib */; };
+		F896101A1BA2F25600E89484 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89610191BA2F25600E89484 /* StatsView.swift */; };
+		F896101D1BA2F75B00E89484 /* StatsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F896101C1BA2F75B00E89484 /* StatsUtil.m */; };
 		F8BD47AD1BA078ED00902BB2 /* SingleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BD47AC1BA078ED00902BB2 /* SingleView.xib */; };
 		F8C97AA41B53AF22001C8097 /* mic_muted-24.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA21B53AF22001C8097 /* mic_muted-24.png */; };
 		F8C97AA51B53AF22001C8097 /* mic_muted-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA31B53AF22001C8097 /* mic_muted-24@2x.png */; };
@@ -77,6 +82,12 @@
 		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		F896100C1BA189CE00E89484 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		F896100E1BA1969400E89484 /* MultiView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiView.xib; sourceTree = "<group>"; };
+		F89610101BA2EF0200E89484 /* MultiSubViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiSubViewManager.swift; sourceTree = "<group>"; };
+		F89610121BA2EF3300E89484 /* SingleSubViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSubViewManager.swift; sourceTree = "<group>"; };
+		F89610161BA2F13D00E89484 /* StatsViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsViewer.xib; sourceTree = "<group>"; };
+		F89610191BA2F25600E89484 /* StatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		F896101B1BA2F75B00E89484 /* StatsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsUtil.h; sourceTree = "<group>"; };
+		F896101C1BA2F75B00E89484 /* StatsUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsUtil.m; sourceTree = "<group>"; };
 		F8BD47AC1BA078ED00902BB2 /* SingleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleView.xib; sourceTree = "<group>"; };
 		F8C97AA21B53AF22001C8097 /* mic_muted-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mic_muted-24.png"; path = "meet-swift/Images/mic_muted-24.png"; sourceTree = "<group>"; };
 		F8C97AA31B53AF22001C8097 /* mic_muted-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mic_muted-24@2x.png"; path = "meet-swift/Images/mic_muted-24@2x.png"; sourceTree = "<group>"; };
@@ -182,6 +193,39 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		F89610141BA2EF5700E89484 /* View Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F880C8B91BA04CC70019F957 /* ViewManager.swift */,
+				F8BD47AC1BA078ED00902BB2 /* SingleView.xib */,
+				F896100E1BA1969400E89484 /* MultiView.xib */,
+				F89610101BA2EF0200E89484 /* MultiSubViewManager.swift */,
+				F89610121BA2EF3300E89484 /* SingleSubViewManager.swift */,
+			);
+			name = "View Manager";
+			sourceTree = "<group>";
+		};
+		F89610151BA2EF6300E89484 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				F86ED2021B9DCAF800176973 /* OTKLogger.h */,
+				F86ED2031B9DCAF800176973 /* OTKLogger.m */,
+			);
+			name = Logger;
+			sourceTree = "<group>";
+		};
+		F89610181BA2F24000E89484 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				F89610161BA2F13D00E89484 /* StatsViewer.xib */,
+				F88721561AE41A83001291F5 /* RoomViewController.swift */,
+				F89610191BA2F25600E89484 /* StatsView.swift */,
+				F896101B1BA2F75B00E89484 /* StatsUtil.h */,
+				F896101C1BA2F75B00E89484 /* StatsUtil.m */,
+			);
+			name = Room;
+			sourceTree = "<group>";
+		};
 		F8FBD0321ADEB671000090DA = {
 			isa = PBXGroup;
 			children = (
@@ -209,15 +253,12 @@
 				F8FBD0441ADEB671000090DA /* Main.storyboard */,
 				F8FBD0471ADEB671000090DA /* Images.xcassets */,
 				F8FBD0491ADEB671000090DA /* LaunchScreen.xib */,
-				F8FBD03E1ADEB671000090DA /* Supporting Files */,
-				F88721561AE41A83001291F5 /* RoomViewController.swift */,
+				F89610181BA2F24000E89484 /* Room */,
 				F88721581AE42306001291F5 /* RoomInfo.swift */,
-				F86ED2021B9DCAF800176973 /* OTKLogger.h */,
-				F86ED2031B9DCAF800176973 /* OTKLogger.m */,
-				F880C8B91BA04CC70019F957 /* ViewManager.swift */,
-				F8BD47AC1BA078ED00902BB2 /* SingleView.xib */,
+				F89610151BA2EF6300E89484 /* Logger */,
+				F89610141BA2EF5700E89484 /* View Manager */,
 				F896100C1BA189CE00E89484 /* ViewUtils.swift */,
-				F896100E1BA1969400E89484 /* MultiView.xib */,
+				F8FBD03E1ADEB671000090DA /* Supporting Files */,
 			);
 			path = "meet-swift";
 			sourceTree = "<group>";
@@ -332,6 +373,7 @@
 				F8C97AAA1B53AFAE001C8097 /* camera_switch-33.png in Resources */,
 				F8C97AAC1B53AFAE001C8097 /* mic-24.png in Resources */,
 				F8FBD0461ADEB671000090DA /* Main.storyboard in Resources */,
+				F89610171BA2F13D00E89484 /* StatsViewer.xib in Resources */,
 				F896100F1BA1969400E89484 /* MultiView.xib in Resources */,
 				F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */,
 				F8C97AA41B53AF22001C8097 /* mic_muted-24.png in Resources */,
@@ -401,12 +443,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */,
+				F89610131BA2EF3300E89484 /* SingleSubViewManager.swift in Sources */,
 				F88721591AE42306001291F5 /* RoomInfo.swift in Sources */,
+				F896101D1BA2F75B00E89484 /* StatsUtil.m in Sources */,
 				F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */,
 				F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */,
 				F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */,
+				F896101A1BA2F25600E89484 /* StatsView.swift in Sources */,
 				F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
+				F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
