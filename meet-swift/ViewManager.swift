@@ -161,6 +161,7 @@ class MultiSubViewManager : ViewManager {
     
     var selectedSubscriber : String?
     
+    var subsInScroll = Set<OTSubscriber>()
     
     required init!(frame: CGRect, rootView: UIView) {
         super.init(frame: frame, rootView: rootView)
@@ -185,17 +186,61 @@ class MultiSubViewManager : ViewManager {
         }
     }
     
+    override func removeSubscriber(streamKey: String) {
+        if let sub = subscribers[streamKey] {
+            super.removeSubscriber(streamKey)
+            
+            if selectedSubscriber == streamKey {
+                sub.view.removeFromSuperview()
+                if let newSelectedSub = subsInScroll.first {
+                    promoteSubToBigView(newSelectedSub)
+                }
+            } else {
+                removeSubscriberFromScroll(sub)
+            }
+        }
+    }
+    
     func addSubscriberToScroll(sub: OTSubscriber) {
-        sub.view.frame = CGRectMake(0, 0, self.scrollView!.frame.size.height * 1.3, self.scrollView!.frame.size.height)
+        subsInScroll.insert(sub)
+        
         var tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
         tapGesture.numberOfTapsRequired = 2
         sub.view.addGestureRecognizer(tapGesture)
-        sub.view.tag = find(subscribers.keys.array, sub.stream.streamId)!
-        self.scrollView?.addSubview(sub.view)
+        
+        updateScrollView()
+        
+        sub.preferredResolution = sub.view.frame.size
+        sub.preferredFrameRate = 15
+    }
+    
+    func updateScrollView() {
+        let viewWidth = self.scrollView!.frame.size.height * 1.3
+        let padding : CGFloat = 20
+        
+        for (index,sub) in enumerate(subsInScroll) {
+            sub.view.removeFromSuperview()
+            sub.view.frame = CGRectMake(CGFloat(index) * (viewWidth + padding), 0,
+                viewWidth, self.scrollView!.frame.size.height)
+            
+            sub.view.tag = find(subscribers.keys.array, sub.stream.streamId)!
+            
+            self.scrollView?.addSubview(sub.view)
+        }
+        
+        self.scrollView?.contentSize = CGSizeMake(CGFloat(subsInScroll.count) * (viewWidth + padding), self.scrollView!.frame.size.height)
+    }
+    
+    func removeSubscriberFromScroll(sub: OTSubscriber) {
+        subsInScroll.remove(sub)
+        updateScrollView()
     }
     
     func addSubscriberToBigView(sub: OTSubscriber) {
-        ViewUtils.addViewFill(sub.view, rootView: self.bigView!)
+        sub.view.frame = CGRectMake(0, 0, self.bigView!.frame.size.width, self.bigView!.frame.size.height)
+        self.bigView!.addSubview(sub.view)
+        sub.preferredResolution = self.bigView!.frame.size
+        sub.preferredFrameRate = 30
     }
     
     func handleTap(gestureRecognizer: UITapGestureRecognizer) {
@@ -206,9 +251,15 @@ class MultiSubViewManager : ViewManager {
             selectedSub.view.removeFromSuperview()
             addSubscriberToScroll(selectedSub)
             
-            sub.view.removeFromSuperview()
-            addSubscriberToBigView(sub)
+            promoteSubToBigView(sub)
         }
+    }
+    
+    func promoteSubToBigView(sub: OTSubscriber) {
+        removeSubscriberFromScroll(sub)
+        addSubscriberToBigView(sub)
+        
+        selectedSubscriber = sub.stream.streamId
     }
     
 }

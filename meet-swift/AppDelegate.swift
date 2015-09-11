@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics()])
 
         checkForUpdates()
+        
+        
+        //let a = OTKLogger()
         return true
     }
 
