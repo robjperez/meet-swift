@@ -79,7 +79,7 @@ class RoomViewController: UIViewController,
         
         if self.simulcastLevel != OTPublisherKitSimulcastLevel.LevelNone {
             var cTempAdj: UnsafeMutablePointer<(Float, Float, Float, Float)> = nil
-            let maxSpatialLayers : Int32 = 1
+            var maxSpatialLayers : Int32 = 0
             var cTempAdjCount = 0
             
             if simulcastUseCustomValues {
@@ -87,6 +87,8 @@ class RoomViewController: UIViewController,
                 cTempAdjCount = tempAdj.count
                 cTempAdj = UnsafeMutablePointer<(Float, Float, Float, Float)>.alloc(cTempAdjCount)
                 cTempAdj.initializeFrom(tempAdj)
+                
+                maxSpatialLayers = 1
             }
             
             publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel, maxSpatialLayers: maxSpatialLayers, temporalLayerRateAdjustments: cTempAdj);
