@@ -143,7 +143,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         return simulcastLevels.count + simulcastLevelsCustomValues.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var calculatedRow = row
         if row >= simulcastLevels.count {
             calculatedRow = row - simulcastLevels.count + 1

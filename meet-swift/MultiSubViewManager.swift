@@ -30,9 +30,7 @@ class MultiSubViewManager : ViewManager {
     override func addSubscriber(sub: OTSubscriber, streamKey: String) {
         super.addSubscriber(sub, streamKey: streamKey)
         
-        let subView = sub.view;
-        
-        if let selSub = selectedSubscriber {
+        if let _ = selectedSubscriber {
             self.addSubscriberToScroll(sub)
         } else {
             self.selectedSubscriber = streamKey
@@ -58,7 +56,7 @@ class MultiSubViewManager : ViewManager {
     func addSubscriberToScroll(sub: OTSubscriber) {
         subsInScroll.insert(sub)
         
-        var tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
         tapGesture.numberOfTapsRequired = 2
         sub.view.addGestureRecognizer(tapGesture)
         
@@ -72,12 +70,12 @@ class MultiSubViewManager : ViewManager {
         let viewWidth = self.scrollView!.frame.size.height * 1.3
         let padding : CGFloat = 20
         
-        for (index,sub) in enumerate(subsInScroll) {
+        for (index,sub) in subsInScroll.enumerate() {
             sub.view.removeFromSuperview()
             sub.view.frame = CGRectMake(CGFloat(index) * (viewWidth + padding), 0,
                 viewWidth, self.scrollView!.frame.size.height)
             
-            sub.view.tag = find(subscribers.keys.array, sub.stream.streamId)!
+            sub.view.tag = Array(subscribers.keys).indexOf(sub.stream.streamId)!
             
             self.scrollView?.addSubview(sub.view)
         }
@@ -99,7 +97,7 @@ class MultiSubViewManager : ViewManager {
     
     func handleTap(gestureRecognizer: UITapGestureRecognizer) {
         if let subIndex = gestureRecognizer.view?.tag,
-            sub = subscribers[subscribers.keys.array[subIndex]],
+            sub = subscribers[Array(subscribers.keys)[subIndex]],
             selectedSub = subscribers[self.selectedSubscriber!]
         {
             selectedSub.view.removeFromSuperview()

@@ -83,7 +83,7 @@ class RoomViewController: UIViewController,
             var cTempAdjCount = 0
             
             if simulcastUseCustomValues {
-                var tempAdj = [(Float, Float, Float, Float)](count: 4, repeatedValue:(0.1, 1.0, 1.0, 1.0));
+                let tempAdj = [(Float, Float, Float, Float)](count: 4, repeatedValue:(0.1, 1.0, 1.0, 1.0));
                 cTempAdjCount = tempAdj.count
                 cTempAdj = UnsafeMutablePointer<(Float, Float, Float, Float)>.alloc(cTempAdjCount)
                 cTempAdj.initializeFrom(tempAdj)

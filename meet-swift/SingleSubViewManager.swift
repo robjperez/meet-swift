@@ -39,8 +39,8 @@ class SingleSubViewManager : ViewManager {
     @IBAction func nextSubPresseed(sender: AnyObject?) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sort(<)
+        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
         let nextIndex = (currentIndex! + 1) % self.subscribers.count
         let nextKey = sortedKeys[nextIndex]
         
@@ -50,8 +50,8 @@ class SingleSubViewManager : ViewManager {
     @IBAction func prevSubPresseed(sender: AnyObject) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sort(<)
+        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
         var nextIndex = 0
         if currentIndex == 0 { nextIndex = self.subscribers.count - 1}
         else { nextIndex = currentIndex! - 1 }
