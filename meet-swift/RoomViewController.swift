@@ -55,7 +55,7 @@ class RoomViewController: UIViewController,
         if let path = NSBundle.mainBundle().pathForResource("environment", ofType: "plist") {
             envs = NSDictionary(contentsOfFile: path)
         }
-        if let dict = envs {
+        if let _ = envs {
             envUrl = NSURL(string: envs?.objectForKey("meet") as! String)
         }
         
@@ -102,8 +102,8 @@ class RoomViewController: UIViewController,
     @IBAction func nextSubPresseed(sender: AnyObject?) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sort(<)
+        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
         let nextIndex = (currentIndex! + 1) % self.subscribers.count
         let nextKey = sortedKeys[nextIndex]
         
@@ -113,8 +113,8 @@ class RoomViewController: UIViewController,
     @IBAction func prevSubPresseed(sender: AnyObject) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sorted(<)
-        let currentIndex = find(sortedKeys, self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sort(<)
+        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
         var nextIndex = 0
         if currentIndex == 0 { nextIndex = self.subscribers.count - 1}
         else { nextIndex = currentIndex! - 1 }
@@ -167,7 +167,7 @@ class RoomViewController: UIViewController,
     }
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
-        var subscriber = OTSubscriber(stream: stream, delegate: self)
+        let subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
         subscribers[stream.streamId] = subscriber
         self.toggleSubsButtons()
@@ -242,7 +242,7 @@ class RoomViewController: UIViewController,
     
     // MARK: Private methods
     private func addVideoView(videoView: UIView?, container:UIView?, atIndex: Int? = nil) {
-        videoView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        // videoView?.setTranslatesAutoresizingMaskIntoConstraints(false)
         if let unwrappedIndex = atIndex {
             container?.insertSubview(videoView!, atIndex: unwrappedIndex)
         } else {
@@ -291,8 +291,8 @@ class RoomViewController: UIViewController,
     
     private func updateParticipants(increment: Bool) {
         if let currentNumber = self.numberOfStreams?.text {
-            let number = currentNumber.substringFromIndex(advance(currentNumber.startIndex, 2)).toInt()!
-            let text = "👥 " + (increment ? number+1 : number-1).description
+            let number = Int(currentNumber.substringFromIndex(currentNumber.startIndex.advancedBy(2)))
+            let text = "👥 " + (increment ? number!+1 : number!-1).description
             self.numberOfStreams!.text = text
         }
     }
