@@ -61,7 +61,7 @@ class RoomViewController: UIViewController,
         if let path = NSBundle.mainBundle().pathForResource("environment", ofType: "plist") {
             envs = NSDictionary(contentsOfFile: path)
         }
-        if let dict = envs {
+        if let _ = envs {
             envUrl = NSURL(string: envs?.objectForKey("meet") as! String)
         }
         
@@ -137,7 +137,7 @@ class RoomViewController: UIViewController,
         self.publisher!.publishAudio = !(self.publisher!.publishAudio)
         (sender as! UIButton).selected = !self.publisher!.publishAudio
         NSLog("selected" + (sender as! UIButton).selected.description)
-    }        
+    }
 
     @IBAction func endCallPressed(sender: AnyObject) {
         var error : OTError?;
@@ -183,7 +183,7 @@ class RoomViewController: UIViewController,
     }
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
-        var subscriber = OTSubscriber(stream: stream, delegate: self)
+        let subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
         self.session?.subscribe(subscriber, error: &error)
         
@@ -225,12 +225,10 @@ class RoomViewController: UIViewController,
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
     
-    // MARK: Private methods
-    
     private func updateParticipants(increment: Bool) {
         if let currentNumber = self.numberOfStreams?.text {
-            let number = currentNumber.substringFromIndex(advance(currentNumber.startIndex, 2)).toInt()!
-            let text = "👥 " + (increment ? number+1 : number-1).description
+            let number = Int(currentNumber.substringFromIndex(currentNumber.startIndex.advancedBy(2)))
+            let text = "👥 " + (increment ? number!+1 : number!-1).description
             self.numberOfStreams!.text = text
         }
     }

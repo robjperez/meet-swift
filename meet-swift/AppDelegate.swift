@@ -52,8 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         session.dataTaskWithURL(NSURL(string: "https://mobile-meet.tokbox.com/latest?product=meet-ios")!,
             completionHandler: { (data, reponse, error) -> Void in
-                if error == nil {
-                    let json = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: nil) as! NSDictionary
+                if let _ = error {
+                    return
+                }
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                 
                     if let updatedAppVersion = json["app_version"] as? String {
                         
@@ -62,11 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let path = NSBundle.mainBundle().pathForResource("environment", ofType: "plist") {
                             envs = NSDictionary(contentsOfFile: path)
                         }
-                        if let dict = envs {
+                        if let _ = envs {
                             appVersion = (envs?.objectForKey("version") as! String)
                         }
                         
-                        if let appVersionInt = appVersion!.toInt(), updatedAppVersionInt = updatedAppVersion.toInt() {
+                        if let appVersionInt = Int(appVersion!), updatedAppVersionInt = Int(updatedAppVersion) {
                             if  updatedAppVersionInt > appVersionInt {
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     UIAlertView(title: "New version!",
@@ -78,6 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                     }
+                } catch {
+                    NSLog("Error while searching for a new version")
                 }
             }
         ).resume()
