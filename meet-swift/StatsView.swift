@@ -35,9 +35,9 @@ class StatsView : UIView {
     }
     
     func updateStats(timer: NSTimer) {
-        cpu?.text = "CPU: \(StatsUtil.cpuUsage())"
-        memory?.text = "Memory: \(StatsUtil.memoryUsage())"
-        battery?.text = "Battery: \(initialBattery! - UIDevice.currentDevice().batteryLevel)"
+        cpu?.text = "CPU: \(StatsUtil.cpuUsage())%"
+        memory?.text = String(format:"Memory: %.2fMb", StatsUtil.memoryUsage())
+        battery?.text = String(format:"Battery: %.2f%%",((initialBattery! - UIDevice.currentDevice().batteryLevel) * 100))
     }
     
     deinit {

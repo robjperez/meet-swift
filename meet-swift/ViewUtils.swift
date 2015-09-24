@@ -10,7 +10,7 @@ import Foundation
 
 class ViewUtils {
     static func addViewFill (view: UIView, rootView: UIView) {
-//        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         rootView.insertSubview(view, atIndex: 0)
         
         let constraints = [

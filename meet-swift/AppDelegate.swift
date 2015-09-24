@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics()])
 
+        UIDevice.currentDevice().batteryMonitoringEnabled = true
         checkForUpdates()
         
         NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: AppDelegate.kInitialBatteryKey)

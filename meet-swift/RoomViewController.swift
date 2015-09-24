@@ -99,7 +99,12 @@ class RoomViewController: UIViewController,
         } else {
             publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true)
         }
-
+        
+        if self.simulcastLevel == OTPublisherKitSimulcastLevel.Level720p {
+            publisher!.cameraResolution = OTCameraResolutionHigh
+        } else {
+            publisher!.cameraResolution = OTCameraResolutionDefault
+        }
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
         self.connectingAlert?.show()

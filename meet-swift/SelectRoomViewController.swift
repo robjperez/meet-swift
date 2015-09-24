@@ -59,7 +59,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         self.view.endEditing(true)
 
-        let urlString = "http://meet.tokbox.com/\(roomName!.text)"
+        let urlString = "https://meet.tokbox.com/\(roomName!.text!)"
         let urlRequest = NSURL(string: urlString)
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
