@@ -230,6 +230,14 @@ class RoomViewController: UIViewController,
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
     
+    func subscriberVideoDisabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
+        viewManager?.subscriberVideoDisabled(subscriber.stream.streamId)
+    }
+    
+    func subscriberVideoEnabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
+        viewManager?.subscriberVideoEnabled(subscriber.stream.streamId)
+    }
+    
     private func updateParticipants(increment: Bool) {
         if let currentNumber = self.numberOfStreams?.text {
             let number = Int(currentNumber.substringFromIndex(currentNumber.startIndex.advancedBy(2)))

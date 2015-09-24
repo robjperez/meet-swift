@@ -13,6 +13,7 @@ class ViewManager : UIView {
     var rootView: UIView?
     var subscribers = Dictionary<String, OTSubscriber>()
     var wasSubscribingToVideo = false
+    let avatarImageTag = 100
     
     @IBOutlet var view: UIView!
     
@@ -32,6 +33,21 @@ class ViewManager : UIView {
     
     func removeSubscriber(streamKey: String) {
         self.subscribers.removeValueForKey(streamKey)
+    }
+    
+    func subscriberVideoDisabled(streamKey: String) {
+        if let sub = subscribers[streamKey] {
+            let imageView = UIImageView(image: UIImage(named: "avatar.png"))
+            imageView.tag = avatarImageTag
+            imageView.frame = sub.view.frame
+            sub.view.addSubview(imageView)
+        }
+    }
+    
+    func subscriberVideoEnabled(streamKey: String) {
+        if let sub = subscribers[streamKey] {
+            sub.view.viewWithTag(avatarImageTag)?.removeFromSuperview()
+        }
     }
     
     func onEnterBackground () {

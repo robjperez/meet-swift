@@ -57,8 +57,12 @@ class MultiSubViewManager : ViewManager {
         subsInScroll.insert(sub)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
-        tapGesture.numberOfTapsRequired = 2
+        tapGesture.numberOfTapsRequired = 1
         sub.view.addGestureRecognizer(tapGesture)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipe:"))
+        swipeGesture.direction = UISwipeGestureRecognizerDirection.Up
+        sub.view.addGestureRecognizer(swipeGesture)
         
         updateScrollView()
         
@@ -95,7 +99,7 @@ class MultiSubViewManager : ViewManager {
         sub.preferredFrameRate = 30
     }
     
-    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+    func handleSwipe(gestureRecognizer: UISwipeGestureRecognizer) {
         if let subIndex = gestureRecognizer.view?.tag,
             sub = subscribers[Array(subscribers.keys)[subIndex]],
             selectedSub = subscribers[self.selectedSubscriber!]
@@ -107,12 +111,19 @@ class MultiSubViewManager : ViewManager {
         }
     }
     
+    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        if let subIndex = gestureRecognizer.view?.tag,
+            sub = subscribers[Array(subscribers.keys)[subIndex]]
+        {
+            sub.subscribeToVideo = !sub.subscribeToVideo
+        }
+    }
+    
     func promoteSubToBigView(sub: OTSubscriber) {
         removeSubscriberFromScroll(sub)
         addSubscriberToBigView(sub)
         
         selectedSubscriber = sub.stream.streamId
-    }
-    
+    }    
 }
 
