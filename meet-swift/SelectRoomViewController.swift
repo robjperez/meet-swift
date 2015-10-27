@@ -7,13 +7,29 @@
 //
 
 import UIKit
+import OpenTok
 
-class SelectRoomViewController: UIViewController {
+class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var roomName: UITextField?
     @IBOutlet weak var userName: UITextField?
     @IBOutlet weak var joinButton: UIButton?
+    @IBOutlet weak var simulcastLevel: UITextField?
+    @IBOutlet weak var simulcastPickerView: UIPickerView?
+    @IBOutlet weak var subscriberSimulcast: UISwitch?
     
-    var loadingAlert : UIAlertView?
+    var loadingAlert: UIAlertView?
+    
+    var simulcastLevels = [OTPublisherKitSimulcastLevel.LevelNone,
+        OTPublisherKitSimulcastLevel.LevelVGA,
+        OTPublisherKitSimulcastLevel.Level720p]
+    
+    var simulcastLevelsCustomValues = [
+        OTPublisherKitSimulcastLevel.LevelVGA,
+        OTPublisherKitSimulcastLevel.Level720p
+    ]
+    
+    var selectedSimulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone
+    var selectedSimulcastCustomValues : Bool = false
     
     var roomInfo = RoomInfo()
     
@@ -23,6 +39,8 @@ class SelectRoomViewController: UIViewController {
         loadingAlert = UIAlertView(title: "Loading", message: "Getting session details", delegate: nil, cancelButtonTitle: nil);
         
         self.userName?.text = UIDevice.currentDevice().name
+        
+        self.simulcastLevel?.text = simulcastLevelToString(OTPublisherKitSimulcastLevel.LevelNone)
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +59,7 @@ class SelectRoomViewController: UIViewController {
         
         self.view.endEditing(true)
 
-        let urlString = "http://meet.tokbox.com/\(roomName!.text)"
+        let urlString = "https://meet.tokbox.com/\(roomName!.text!)"
         let urlRequest = NSURL(string: urlString)
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -91,7 +109,84 @@ class SelectRoomViewController: UIViewController {
         if segue.identifier! == "startChat" {
             let destination = segue.destinationViewController as! RoomViewController
             destination.roomInfo = self.roomInfo
+            destination.simulcastLevel = self.selectedSimulcastLevel
+            destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.on
+            destination.simulcastUseCustomValues = self.selectedSimulcastCustomValues
         }
+    }
+    
+    // MARK: picker view code
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField == self.simulcastLevel {
+            simulcastPickerView?.hidden = false
+            self.roomName?.resignFirstResponder()
+            self.userName?.resignFirstResponder()
+            return false
+        } else {
+            simulcastPickerView?.hidden = true
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return simulcastLevels.count + simulcastLevelsCustomValues.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var calculatedRow = row
+        if row >= simulcastLevels.count {
+            calculatedRow = row - simulcastLevels.count + 1
+        }
+        
+        return simulcastLevelToString(simulcastLevels[calculatedRow],
+            customValues: isUsingSimulcastCustomValues(row))
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        var calculatedRow = row
+        if row >= simulcastLevels.count {
+            calculatedRow = row - simulcastLevels.count + 1
+        }
+        
+        simulcastLevel!.text = simulcastLevelToString(simulcastLevels[calculatedRow],
+            customValues: isUsingSimulcastCustomValues(row))
+        selectedSimulcastLevel = simulcastLevels[calculatedRow]
+        selectedSimulcastCustomValues = isUsingSimulcastCustomValues(row)
+        
+        simulcastPickerView?.hidden = true
+    }
+    
+    func simulcastLevelToString(level: OTPublisherKitSimulcastLevel, customValues: Bool = false) -> String
+    {
+        var retValue = ""
+        switch level {
+        case OTPublisherKitSimulcastLevel.LevelNone: retValue = "None"
+        case OTPublisherKitSimulcastLevel.LevelVGA: retValue = "VGA"
+        case OTPublisherKitSimulcastLevel.Level720p: retValue = "720p"
+        default: retValue = "None"
+        }
+        
+        if customValues {
+            return retValue + " (CUSTOM)"
+        } else {
+            return retValue
+        }
+    }
+    
+    func isUsingSimulcastCustomValues(index: Int) -> Bool {
+        return index > (simulcastLevels.count - 1)
     }
 }
 

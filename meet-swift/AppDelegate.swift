@@ -15,13 +15,20 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static let kInitialBatteryKey = "initialBatteryLevel"
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics()])
 
+        UIDevice.currentDevice().batteryMonitoringEnabled = true
         checkForUpdates()
+        
+        NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: AppDelegate.kInitialBatteryKey)
+        
+        //let a = OTKLogger()
         return true
     }
 
