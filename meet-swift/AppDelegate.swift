@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSUserDefaults.standardUserDefaults().setObject(UIDevice.currentDevice().batteryLevel, forKey: AppDelegate.kInitialBatteryKey)
         
-        //let a = OTKLogger()
+        //let _ = OTKLogger()
         return true
     }
 

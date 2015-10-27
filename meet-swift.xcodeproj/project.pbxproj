@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
 		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
+		F849B48F1BDFB6F8004354C4 /* OTCustomSession.m in Sources */ = {isa = PBXBuildFile; fileRef = F849B48E1BDFB6F8004354C4 /* OTCustomSession.m */; };
 		F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F86ED2031B9DCAF800176973 /* OTKLogger.m */; };
 		F87723591B4FF2760083743A /* icon_arrowLeft_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */; };
 		F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723561B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png */; };
@@ -18,7 +19,7 @@
 		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
 		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
-		F88C1DC81BB404B700165320 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F88C1DC71BB404B700165320 /* avatar.png */; settings = {ASSET_TAGS = (); }; };
+		F88C1DC81BB404B700165320 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F88C1DC71BB404B700165320 /* avatar.png */; };
 		F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F896100C1BA189CE00E89484 /* ViewUtils.swift */; };
 		F896100F1BA1969400E89484 /* MultiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F896100E1BA1969400E89484 /* MultiView.xib */; };
 		F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89610101BA2EF0200E89484 /* MultiSubViewManager.swift */; };
@@ -71,6 +72,8 @@
 		18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		F849B48D1BDFB6F8004354C4 /* OTCustomSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTCustomSession.h; sourceTree = "<group>"; };
+		F849B48E1BDFB6F8004354C4 /* OTCustomSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTCustomSession.m; sourceTree = "<group>"; };
 		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
 		F86ED2031B9DCAF800176973 /* OTKLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTKLogger.m; sourceTree = "<group>"; };
 		F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28.png"; path = "meet-swift/Images/icon_arrowLeft_enabled-28.png"; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				F8F80E6A1B4FF539000C3FEB /* environment.plist */,
 				F8FBD03F1ADEB671000090DA /* Info.plist */,
 				F8FBD0931ADEB72B000090DA /* meet-swift-Bridging-Header.h */,
+				F849B48D1BDFB6F8004354C4 /* OTCustomSession.h */,
+				F849B48E1BDFB6F8004354C4 /* OTCustomSession.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -456,6 +461,7 @@
 				F896101A1BA2F25600E89484 /* StatsView.swift in Sources */,
 				F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
+				F849B48F1BDFB6F8004354C4 /* OTCustomSession.m in Sources */,
 				F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

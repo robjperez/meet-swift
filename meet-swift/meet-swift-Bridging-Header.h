@@ -13,9 +13,6 @@
 
 #import "OTKLogger.h"
 #import "StatsUtil.h"
-
-@interface OTSession (APIURL)
-- (void)setApiRootURL:(NSURL*)aURL;
-@end
+#import "OTCustomSession.h"
 
 #endif

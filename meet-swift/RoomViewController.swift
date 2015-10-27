@@ -23,7 +23,7 @@ class RoomViewController: UIViewController,
     
     @IBOutlet weak var muteSubscriber: UIButton?
     
-    var session: OTSession?
+    var session: OTCustomSession?
     var publisher: OTPublisher?
     
     var roomInfo: RoomInfo?
@@ -34,8 +34,6 @@ class RoomViewController: UIViewController,
     var wasSubscribingToVideo = false
     var wasPublishingVideo = false
     
-    var simulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone
-    var simulcastUseCustomValues = false
     var subscriberSimulcastEnabled = false
     
     var viewManager : ViewManager?
@@ -46,13 +44,15 @@ class RoomViewController: UIViewController,
     
     var roomTapGestureRecognizer : UITapGestureRecognizer?
     
+    var selectedCapturerResolution = OTCameraCaptureResolution.Medium
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         var error:OTError?
         
-        session = OTSession(apiKey: roomInfo!.apiKey,
+        session = OTCustomSession(apiKey: roomInfo!.apiKey,
             sessionId: roomInfo!.sessionId,
             delegate: self)
         
@@ -72,39 +72,14 @@ class RoomViewController: UIViewController,
         }
         
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
-        
+
         session!.setApiRootURL(envUrl)
         session!.connectWithToken(roomInfo!.token,
             error: &error)
         
-        if self.simulcastLevel != OTPublisherKitSimulcastLevel.LevelNone {
-            var cTempAdj: UnsafeMutablePointer<(Float, Float, Float, Float)> = nil
-            var maxSpatialLayers : Int32 = 0
-            var cTempAdjCount = 0
-            
-            if simulcastUseCustomValues {
-                let tempAdj = [(Float, Float, Float, Float)](count: 4, repeatedValue:(0.1, 1.0, 1.0, 1.0));
-                cTempAdjCount = tempAdj.count
-                cTempAdj = UnsafeMutablePointer<(Float, Float, Float, Float)>.alloc(cTempAdjCount)
-                cTempAdj.initializeFrom(tempAdj)
-                
-                maxSpatialLayers = 1
-            }
-            
-            publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true, simulcastLevel:self.simulcastLevel, maxSpatialLayers: maxSpatialLayers, temporalLayerRateAdjustments: cTempAdj);
-            
-            if cTempAdjCount > 0 {
-                cTempAdj.dealloc(cTempAdjCount)
-            }
-        } else {
-            publisher = OTPublisher(delegate: self, name: roomInfo!.userName, audioTrack: true, videoTrack: true)
-        }
-        
-        if self.simulcastLevel == OTPublisherKitSimulcastLevel.Level720p {
-            publisher!.cameraResolution = OTCameraResolutionHigh
-        } else {
-            publisher!.cameraResolution = OTCameraResolutionDefault
-        }
+        publisher = OTPublisher(delegate: self, name: roomInfo!.userName,
+            cameraResolution: self.selectedCapturerResolution,
+            cameraFrameRate: OTCameraCaptureFrameRate.Rate30FPS)
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
         self.connectingAlert?.show()

@@ -13,23 +13,19 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     @IBOutlet weak var roomName: UITextField?
     @IBOutlet weak var userName: UITextField?
     @IBOutlet weak var joinButton: UIButton?
-    @IBOutlet weak var simulcastLevel: UITextField?
-    @IBOutlet weak var simulcastPickerView: UIPickerView?
+    @IBOutlet weak var capturerResolution: UITextField?
+    @IBOutlet weak var capturerResolutionPickerView: UIPickerView?
     @IBOutlet weak var subscriberSimulcast: UISwitch?
     
     var loadingAlert: UIAlertView?
     
-    var simulcastLevels = [OTPublisherKitSimulcastLevel.LevelNone,
-        OTPublisherKitSimulcastLevel.LevelVGA,
-        OTPublisherKitSimulcastLevel.Level720p]
+    var capturerResolutions : [OTCameraCaptureResolution] = [
+            OTCameraCaptureResolution.Low,
+            OTCameraCaptureResolution.Medium,
+            OTCameraCaptureResolution.High]
     
-    var simulcastLevelsCustomValues = [
-        OTPublisherKitSimulcastLevel.LevelVGA,
-        OTPublisherKitSimulcastLevel.Level720p
-    ]
-    
-    var selectedSimulcastLevel: OTPublisherKitSimulcastLevel = OTPublisherKitSimulcastLevel.LevelNone
-    var selectedSimulcastCustomValues : Bool = false
+    var selectedCapturerResolution: OTCameraCaptureResolution =
+        OTCameraCaptureResolution.Medium
     
     var roomInfo = RoomInfo()
     
@@ -40,7 +36,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         self.userName?.text = UIDevice.currentDevice().name
         
-        self.simulcastLevel?.text = simulcastLevelToString(OTPublisherKitSimulcastLevel.LevelNone)
+        self.capturerResolution?.text = capturerResolutionToString(OTCameraCaptureResolution.Medium)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,21 +105,20 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         if segue.identifier! == "startChat" {
             let destination = segue.destinationViewController as! RoomViewController
             destination.roomInfo = self.roomInfo
-            destination.simulcastLevel = self.selectedSimulcastLevel
+            destination.selectedCapturerResolution = self.selectedCapturerResolution
             destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.on
-            destination.simulcastUseCustomValues = self.selectedSimulcastCustomValues
         }
     }
     
     // MARK: picker view code
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        if textField == self.simulcastLevel {
-            simulcastPickerView?.hidden = false
+        if textField == self.capturerResolution {
+            capturerResolutionPickerView?.hidden = false
             self.roomName?.resignFirstResponder()
             self.userName?.resignFirstResponder()
             return false
         } else {
-            simulcastPickerView?.hidden = true
+            capturerResolutionPickerView?.hidden = true
         }
         return true
     }
@@ -140,53 +135,28 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return simulcastLevels.count + simulcastLevelsCustomValues.count
+        return capturerResolutions.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        var calculatedRow = row
-        if row >= simulcastLevels.count {
-            calculatedRow = row - simulcastLevels.count + 1
-        }
-        
-        return simulcastLevelToString(simulcastLevels[calculatedRow],
-            customValues: isUsingSimulcastCustomValues(row))
+        return capturerResolutionToString(capturerResolutions[row])
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        var calculatedRow = row
-        if row >= simulcastLevels.count {
-            calculatedRow = row - simulcastLevels.count + 1
-        }
+        capturerResolution!.text = capturerResolutionToString(capturerResolutions[row])
+        selectedCapturerResolution = capturerResolutions[row]
         
-        simulcastLevel!.text = simulcastLevelToString(simulcastLevels[calculatedRow],
-            customValues: isUsingSimulcastCustomValues(row))
-        selectedSimulcastLevel = simulcastLevels[calculatedRow]
-        selectedSimulcastCustomValues = isUsingSimulcastCustomValues(row)
-        
-        simulcastPickerView?.hidden = true
+        capturerResolutionPickerView?.hidden = true
     }
     
-    func simulcastLevelToString(level: OTPublisherKitSimulcastLevel, customValues: Bool = false) -> String
+    func capturerResolutionToString(level: OTCameraCaptureResolution) -> String
     {
-        var retValue = ""
         switch level {
-        case OTPublisherKitSimulcastLevel.LevelNone: retValue = "None"
-        case OTPublisherKitSimulcastLevel.LevelVGA: retValue = "VGA"
-        case OTPublisherKitSimulcastLevel.Level720p: retValue = "720p"
-        default: retValue = "None"
+        case OTCameraCaptureResolution.Low: return "Low (QVGA)"
+        case OTCameraCaptureResolution.Medium: return "Medium (VGA)"
+        case OTCameraCaptureResolution.High: return "High (HD)"
         }
-        
-        if customValues {
-            return retValue + " (CUSTOM)"
-        } else {
-            return retValue
-        }
-    }
-    
-    func isUsingSimulcastCustomValues(index: Int) -> Bool {
-        return index > (simulcastLevels.count - 1)
     }
 }
 
