@@ -13,6 +13,5 @@
 
 #import "OTKLogger.h"
 #import "StatsUtil.h"
-#import "OTCustomSession.h"
 
 #endif

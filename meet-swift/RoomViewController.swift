@@ -23,7 +23,9 @@ class RoomViewController: UIViewController,
     
     @IBOutlet weak var muteSubscriber: UIButton?
     
-    var session: OTCustomSession?
+    var reconnectingAlertDialog : UIAlertView?
+    
+    var session: OTSession?
     var publisher: OTPublisher?
     
     var roomInfo: RoomInfo?
@@ -52,18 +54,9 @@ class RoomViewController: UIViewController,
         // Do any additional setup after loading the view.
         var error:OTError?
         
-        session = OTCustomSession(apiKey: roomInfo!.apiKey,
+        session = OTSession(apiKey: roomInfo!.apiKey,
             sessionId: roomInfo!.sessionId,
             delegate: self)
-        
-        var envs: NSDictionary?
-        var envUrl : NSURL?
-        if let path = NSBundle.mainBundle().pathForResource("environment", ofType: "plist") {
-            envs = NSDictionary(contentsOfFile: path)
-        }
-        if let _ = envs {
-            envUrl = NSURL(string: envs?.objectForKey("meet") as! String)
-        }
         
         if subscriberSimulcastEnabled {
             viewManager = MultiSubViewManager(frame: self.view.frame, rootView: self.view)
@@ -72,8 +65,6 @@ class RoomViewController: UIViewController,
         }
         
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
-
-        session!.setApiRootURL(envUrl)
         session!.connectWithToken(roomInfo!.token,
             error: &error)
         
@@ -97,6 +88,8 @@ class RoomViewController: UIViewController,
         roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleRoomNameTap:"))
         roomTapGestureRecognizer?.numberOfTapsRequired = 2
         roomName?.addGestureRecognizer(roomTapGestureRecognizer!)
+        
+        reconnectingAlertDialog = UIAlertView(title: "Session is reconnecting", message: "Please wait until we try to restablish your session", delegate: nil, cancelButtonTitle: nil)
 
     }
 
@@ -159,7 +152,8 @@ class RoomViewController: UIViewController,
     }
     
     func session(session: OTSession!, didFailWithError error: OTError!) {
-            self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
+        reconnectingAlertDialog?.dismissWithClickedButtonIndex(0, animated: true)
+        self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true)
     }
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
@@ -176,6 +170,14 @@ class RoomViewController: UIViewController,
         viewManager!.removeSubscriber(stream.streamId)
         subscriberList.removeValueForKey(stream.streamId)
         updateParticipants(false)
+    }
+    
+    func sessionDidBeginReconnecting(session: OTSession!) {
+        reconnectingAlertDialog?.show()
+    }
+    
+    func sessionDidReconnect(session: OTSession!) {
+        reconnectingAlertDialog?.dismissWithClickedButtonIndex(0, animated: true)
     }
     
     // MARK: Publisher Delegate
@@ -201,6 +203,14 @@ class RoomViewController: UIViewController,
             viewManager?.addSubscriber(sub,
                 streamKey: subscriber.stream.streamId)
         }
+    }
+    
+    func subscriberDidDisconnectFromStream(subscriber: OTSubscriberKit!) {
+        NSLog("Subscriber disconnected")
+    }
+    
+    func subscriberDidReconnectToStream(subscriber: OTSubscriberKit!) {
+        NSLog("Subscriber reconnected")
     }
     
     func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}

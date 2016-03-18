@@ -4,7 +4,5 @@
 <dict>
 	<key>version</key>
 	<string>$$VERSION$$</string>
-	<key>meet</key>
-	<string>$$MEET_ENVIRONMENT$$</string>
 </dict>
 </plist>
