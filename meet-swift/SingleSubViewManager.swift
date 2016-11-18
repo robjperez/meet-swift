@@ -17,7 +17,7 @@ class SingleSubViewManager : ViewManager {
     
     required init!(frame: CGRect, rootView: UIView) {
         super.init(frame: frame, rootView: rootView)
-        NSBundle.mainBundle().loadNibNamed("SingleView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("SingleView", owner: self, options: nil)
         self.addSubview(self.view)
     }
     
@@ -26,41 +26,41 @@ class SingleSubViewManager : ViewManager {
     }
     
     
-    private func toggleSubsButtons() {
+    fileprivate func toggleSubsButtons() {
         if self.subscribers.count > 1 {
-            self.previousSub?.hidden = false
-            self.nextSub?.hidden = false
+            self.previousSub?.isHidden = false
+            self.nextSub?.isHidden = false
         } else {
-            self.previousSub?.hidden = true
-            self.nextSub?.hidden = true
+            self.previousSub?.isHidden = true
+            self.nextSub?.isHidden = true
         }
     }
     
-    @IBAction func nextSubPresseed(sender: AnyObject?) {
+    @IBAction func nextSubPresseed(_ sender: AnyObject?) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sort(<)
-        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sorted(by: <)
+        let currentIndex = sortedKeys.index(of: self.selectedSubscriber!)
         let nextIndex = (currentIndex! + 1) % self.subscribers.count
         let nextKey = sortedKeys[nextIndex]
         
-        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
+        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream!.streamId)
     }
     
-    @IBAction func prevSubPresseed(sender: AnyObject) {
+    @IBAction func prevSubPresseed(_ sender: AnyObject) {
         if self.subscribers.count <= 1 { return }
         
-        let sortedKeys = Array(self.subscribers.keys).sort(<)
-        let currentIndex = sortedKeys.indexOf(self.selectedSubscriber!)
+        let sortedKeys = Array(self.subscribers.keys).sorted(by: <)
+        let currentIndex = sortedKeys.index(of: self.selectedSubscriber!)
         var nextIndex = 0
         if currentIndex == 0 { nextIndex = self.subscribers.count - 1}
         else { nextIndex = currentIndex! - 1 }
         let nextKey = sortedKeys[nextIndex]
         
-        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream.streamId)
+        self.performSubscriberAnimation(self.subscribers[nextKey]!.stream!.streamId)
     }
     
-    override func addSubscriber(sub: OTSubscriber, streamKey: String) {
+    override func addSubscriber(_ sub: OTSubscriber, streamKey: String) {
         super.addSubscriber(sub, streamKey: streamKey)
         
         let subView = sub.view;
@@ -75,13 +75,13 @@ class SingleSubViewManager : ViewManager {
         toggleSubsButtons()
     }
     
-    override func removeSubscriber(streamKey: String) {
+    override func removeSubscriber(_ streamKey: String) {
         
         super.removeSubscriber(streamKey)
         toggleSubsButtons()
     }
     
-    private func performSubscriberAnimation(subId: String) {
+    fileprivate func performSubscriberAnimation(_ subId: String) {
         if selectedSubscriber == subId { return }
         
         let previousSubscriber = self.subscribers[self.selectedSubscriber!]
@@ -93,7 +93,7 @@ class SingleSubViewManager : ViewManager {
         previousSubscriber?.subscribeToVideo = false
         newSubscriber.subscribeToVideo = true
         
-        UIView.animateWithDuration(0.4,
+        UIView.animate(withDuration: 0.4,
             animations: { () -> Void in
                 previousSubscriber?.view.alpha = 0.0
                 newSubscriber.view.alpha = 1.0

@@ -9,35 +9,35 @@
 import Foundation
 
 class ViewUtils {
-    static func addViewFill (view: UIView, rootView: UIView) {
+    static func addViewFill (_ view: UIView, rootView: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        rootView.insertSubview(view, atIndex: 0)
+        rootView.insertSubview(view, at: 0)
         
         let constraints = [
             NSLayoutConstraint(
                 item:rootView,
-                attribute:NSLayoutAttribute.Left,
-                relatedBy: NSLayoutRelation.Equal,
+                attribute:NSLayoutAttribute.left,
+                relatedBy: NSLayoutRelation.equal,
                 toItem: view,
-                attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0),
+                attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0),
             NSLayoutConstraint(
                 item: rootView,
-                attribute:NSLayoutAttribute.Top,
-                relatedBy: NSLayoutRelation.Equal,
+                attribute:NSLayoutAttribute.top,
+                relatedBy: NSLayoutRelation.equal,
                 toItem: view,
-                attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
+                attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
             NSLayoutConstraint(
                 item: rootView,
-                attribute:NSLayoutAttribute.Width,
-                relatedBy: NSLayoutRelation.Equal,
+                attribute:NSLayoutAttribute.width,
+                relatedBy: NSLayoutRelation.equal,
                 toItem: view,
-                attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0),
+                attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0),
             NSLayoutConstraint(
                 item: rootView,
-                attribute:NSLayoutAttribute.Height,
-                relatedBy: NSLayoutRelation.Equal,
+                attribute:NSLayoutAttribute.height,
+                relatedBy: NSLayoutRelation.equal,
                 toItem: view,
-                attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+                attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
         ];
         
         rootView.addConstraints(constraints)

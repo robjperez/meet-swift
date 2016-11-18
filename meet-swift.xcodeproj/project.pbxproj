@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C28D0C871EF41ACE9508D67B /* libPods-meet-swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */; };
 		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
 		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
 		F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F86ED2031B9DCAF800176973 /* OTKLogger.m */; };
@@ -33,7 +34,6 @@
 		F8C97AAB1B53AFAE001C8097 /* camera_switch-33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA71B53AFAE001C8097 /* camera_switch-33@2x.png */; };
 		F8C97AAC1B53AFAE001C8097 /* mic-24.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA81B53AFAE001C8097 /* mic-24.png */; };
 		F8C97AAD1B53AFAE001C8097 /* mic-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C97AA91B53AFAE001C8097 /* mic-24@2x.png */; };
-		F8E94E47CD6442E0A22BEBEC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17ACCC294C676BF5DA3D6D4D /* libPods.a */; };
 		F8F80E6B1B4FF539000C3FEB /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8F80E6A1B4FF539000C3FEB /* environment.plist */; };
 		F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0401ADEB671000090DA /* AppDelegate.swift */; };
 		F8FBD0431ADEB671000090DA /* SelectRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBD0421ADEB671000090DA /* SelectRoomViewController.swift */; };
@@ -66,9 +66,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0258BE712DC162746D1B6E83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		17ACCC294C676BF5DA3D6D4D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.release.xcconfig"; sourceTree = "<group>"; };
+		73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.debug.xcconfig"; sourceTree = "<group>"; };
+		8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meet-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
@@ -162,18 +162,18 @@
 				F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */,
 				F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */,
 				F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */,
-				F8E94E47CD6442E0A22BEBEC /* libPods.a in Frameworks */,
+				C28D0C871EF41ACE9508D67B /* libPods-meet-swift.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BF5E8674AA93A7CC60CB5D10 /* Pods */ = {
+		9EA6B7F9A5CED4D0FE5A0791 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */,
-				0258BE712DC162746D1B6E83 /* Pods.release.xcconfig */,
+				73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */,
+				2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -236,7 +236,7 @@
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
 				F8FBD03C1ADEB671000090DA /* Products */,
 				F8FBD0621ADEB690000090DA /* Frameworks */,
-				BF5E8674AA93A7CC60CB5D10 /* Pods */,
+				9EA6B7F9A5CED4D0FE5A0791 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -305,7 +305,7 @@
 				F8FBD0781ADEB6A3000090DA /* Foundation.framework */,
 				F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */,
 				F8FBD0601ADEB689000090DA /* VideoToolbox.framework */,
-				17ACCC294C676BF5DA3D6D4D /* libPods.a */,
+				8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,13 +317,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8FBD05A1ADEB671000090DA /* Build configuration list for PBXNativeTarget "meet-swift" */;
 			buildPhases = (
-				5EFB676387E6A8DE75678122 /* Check Pods Manifest.lock */,
+				1FC5F931B34705360AAA564D /* [CP] Check Pods Manifest.lock */,
 				F8FBD0371ADEB671000090DA /* Sources */,
 				F8FBD0381ADEB671000090DA /* Frameworks */,
 				F8FBD0391ADEB671000090DA /* Resources */,
-				8211D97E94E640C47E38AA9C /* Copy Pods Resources */,
 				F8210BD01B4FEB22006754E4 /* ShellScript */,
-				9B1AA1A8453138EA527B92C3 /* Embed Pods Frameworks */,
+				90D5E592778D9FF9509AD7FD /* [CP] Embed Pods Frameworks */,
+				0C11B3F27363551FBBBEC657 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,7 +346,8 @@
 				TargetAttributes = {
 					F8FBD03A1ADEB671000090DA = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 3YZZL55SSX;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -397,49 +398,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5EFB676387E6A8DE75678122 /* Check Pods Manifest.lock */ = {
+		0C11B3F27363551FBBBEC657 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8211D97E94E640C47E38AA9C /* Copy Pods Resources */ = {
+		1FC5F931B34705360AAA564D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9B1AA1A8453138EA527B92C3 /* Embed Pods Frameworks */ = {
+		90D5E592778D9FF9509AD7FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8210BD01B4FEB22006754E4 /* ShellScript */ = {
@@ -587,7 +588,7 @@
 		};
 		F8FBD05B1ADEB671000090DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18B33971C76A3ADAF3834504 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -606,17 +607,19 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		F8FBD05C1ADEB671000090DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0258BE712DC162746D1B6E83 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -630,6 +633,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "meet-swift/meet-swift-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

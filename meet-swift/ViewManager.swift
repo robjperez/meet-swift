@@ -27,15 +27,15 @@ class ViewManager : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubscriber(sub: OTSubscriber, streamKey: String) {
+    func addSubscriber(_ sub: OTSubscriber, streamKey: String) {
         subscribers[streamKey] = sub
     }
     
-    func removeSubscriber(streamKey: String) {
-        self.subscribers.removeValueForKey(streamKey)
+    func removeSubscriber(_ streamKey: String) {
+        self.subscribers.removeValue(forKey: streamKey)
     }
     
-    func subscriberVideoDisabled(streamKey: String) {
+    func subscriberVideoDisabled(_ streamKey: String) {
         if let sub = subscribers[streamKey] {
             let imageView = UIImageView(image: UIImage(named: "avatar.png"))
             imageView.tag = avatarImageTag
@@ -44,7 +44,7 @@ class ViewManager : UIView {
         }
     }
     
-    func subscriberVideoEnabled(streamKey: String) {
+    func subscriberVideoEnabled(_ streamKey: String) {
         if let sub = subscribers[streamKey] {
             sub.view.viewWithTag(avatarImageTag)?.removeFromSuperview()
         }

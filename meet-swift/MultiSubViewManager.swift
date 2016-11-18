@@ -19,7 +19,7 @@ class MultiSubViewManager : ViewManager {
     
     required init!(frame: CGRect, rootView: UIView) {
         super.init(frame: frame, rootView: rootView)
-        NSBundle.mainBundle().loadNibNamed("MultiView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("MultiView", owner: self, options: nil)
         self.addSubview(self.view)
     }
     
@@ -27,7 +27,7 @@ class MultiSubViewManager : ViewManager {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func addSubscriber(sub: OTSubscriber, streamKey: String) {
+    override func addSubscriber(_ sub: OTSubscriber, streamKey: String) {
         super.addSubscriber(sub, streamKey: streamKey)
         
         if let _ = selectedSubscriber {
@@ -38,7 +38,7 @@ class MultiSubViewManager : ViewManager {
         }
     }
     
-    override func removeSubscriber(streamKey: String) {
+    override func removeSubscriber(_ streamKey: String) {
         if let sub = subscribers[streamKey] {
             super.removeSubscriber(streamKey)
             
@@ -53,15 +53,15 @@ class MultiSubViewManager : ViewManager {
         }
     }
     
-    func addSubscriberToScroll(sub: OTSubscriber) {
+    func addSubscriberToScroll(_ sub: OTSubscriber) {
         subsInScroll.insert(sub)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MultiSubViewManager.handleTap(_:)))
         tapGesture.numberOfTapsRequired = 1
         sub.view.addGestureRecognizer(tapGesture)
         
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipe:"))
-        swipeGesture.direction = UISwipeGestureRecognizerDirection.Up
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(MultiSubViewManager.handleSwipe(_:)))
+        swipeGesture.direction = UISwipeGestureRecognizerDirection.up
         sub.view.addGestureRecognizer(swipeGesture)
         
         updateScrollView()
@@ -74,35 +74,35 @@ class MultiSubViewManager : ViewManager {
         let viewWidth = self.scrollView!.frame.size.height * 1.3
         let padding : CGFloat = 20
         
-        for (index,sub) in subsInScroll.enumerate() {
+        for (index,sub) in subsInScroll.enumerated() {
             sub.view.removeFromSuperview()
-            sub.view.frame = CGRectMake(CGFloat(index) * (viewWidth + padding), 0,
-                viewWidth, self.scrollView!.frame.size.height)
+            sub.view.frame = CGRect(x: CGFloat(index) * (viewWidth + padding), y: 0,
+                width: viewWidth, height: self.scrollView!.frame.size.height)
             
-            sub.view.tag = Array(subscribers.keys).indexOf(sub.stream.streamId)!
+            sub.view.tag = Array(subscribers.keys).index(of: (sub.stream?.streamId)!)!
             
             self.scrollView?.addSubview(sub.view)
         }
         
-        self.scrollView?.contentSize = CGSizeMake(CGFloat(subsInScroll.count) * (viewWidth + padding), self.scrollView!.frame.size.height)
+        self.scrollView?.contentSize = CGSize(width: CGFloat(subsInScroll.count) * (viewWidth + padding), height: self.scrollView!.frame.size.height)
     }
     
-    func removeSubscriberFromScroll(sub: OTSubscriber) {
+    func removeSubscriberFromScroll(_ sub: OTSubscriber) {
         subsInScroll.remove(sub)
         updateScrollView()
     }
     
-    func addSubscriberToBigView(sub: OTSubscriber) {
-        sub.view.frame = CGRectMake(0, 0, self.bigView!.frame.size.width, self.bigView!.frame.size.height)
+    func addSubscriberToBigView(_ sub: OTSubscriber) {
+        sub.view.frame = CGRect(x: 0, y: 0, width: self.bigView!.frame.size.width, height: self.bigView!.frame.size.height)
         self.bigView!.addSubview(sub.view)
         sub.preferredResolution = self.bigView!.frame.size
         sub.preferredFrameRate = 30
     }
     
-    func handleSwipe(gestureRecognizer: UISwipeGestureRecognizer) {
+    func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
         if let subIndex = gestureRecognizer.view?.tag,
-            sub = subscribers[Array(subscribers.keys)[subIndex]],
-            selectedSub = subscribers[self.selectedSubscriber!]
+            let sub = subscribers[Array(subscribers.keys)[subIndex]],
+            let selectedSub = subscribers[self.selectedSubscriber!]
         {
             selectedSub.view.removeFromSuperview()
             addSubscriberToScroll(selectedSub)
@@ -111,19 +111,19 @@ class MultiSubViewManager : ViewManager {
         }
     }
     
-    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+    func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         if let subIndex = gestureRecognizer.view?.tag,
-            sub = subscribers[Array(subscribers.keys)[subIndex]]
+            let sub = subscribers[Array(subscribers.keys)[subIndex]]
         {
             sub.subscribeToVideo = !sub.subscribeToVideo
         }
     }
     
-    func promoteSubToBigView(sub: OTSubscriber) {
+    func promoteSubToBigView(_ sub: OTSubscriber) {
         removeSubscriberFromScroll(sub)
         addSubscriberToBigView(sub)
         
-        selectedSubscriber = sub.stream.streamId
+        selectedSubscriber = sub.stream?.streamId
     }    
 }
 

@@ -20,30 +20,30 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     var loadingAlert: UIAlertView?
     
     var capturerResolutions : [OTCameraCaptureResolution] = [
-            OTCameraCaptureResolution.Low,
-            OTCameraCaptureResolution.Medium,
-            OTCameraCaptureResolution.High]
+            OTCameraCaptureResolution.low,
+            OTCameraCaptureResolution.medium,
+            OTCameraCaptureResolution.high]
     
     var selectedCapturerResolution: OTCameraCaptureResolution =
-        OTCameraCaptureResolution.Medium
+        OTCameraCaptureResolution.medium
     
     var roomInfo = RoomInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadingAlert = UIAlertView(title: "Loading", message: "Getting session details", delegate: nil, cancelButtonTitle: nil);
+        loadingAlert = UIAlertView(title: "Loading", message: "Getting session details", delegate: nil, cancelButtonTitle: nil)
         
-        self.userName?.text = UIDevice.currentDevice().name
+        self.userName?.text = UIDevice.current.name
         
-        self.capturerResolution?.text = capturerResolutionToString(OTCameraCaptureResolution.Medium)
+        self.capturerResolution?.text = capturerResolutionToString(OTCameraCaptureResolution.medium)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func joinClicked(sender: UIButton) {
+    @IBAction func joinClicked(_ sender: UIButton) {
         guard let _ = roomName!.text else {
             let alert = UIAlertView(title: "error",
                 message: "You need to enter a room name",
@@ -56,17 +56,17 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         self.view.endEditing(true)
 
         let urlString = "https://meet.tokbox.com/\(roomName!.text!)"
-        let urlRequest = NSURL(string: urlString)
+        let urlRequest = URL(string: urlString)
         
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = ["content-type": "application/json"]
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["content-type": "application/json"]
         
-        let session = NSURLSession(configuration: configuration)
+        let session = URLSession(configuration: configuration)
         
         self.roomInfo.roomName = roomName!.text
         self.roomInfo.userName = userName!.text
         
-        let task = session.dataTaskWithURL(urlRequest!,
+        let task = session.dataTask(with: urlRequest!,
             completionHandler: {
                 [weak self]
                 (data, response, error) -> Void in
@@ -77,16 +77,16 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
                 }
                 
                 do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSDictionary
                     
                     self!.roomInfo.apiKey = json["apiKey"] as? String
                     self!.roomInfo.token = json["token"] as? String
                     self!.roomInfo.sessionId = json["sessionId"] as? String
+                                                            
+                    self!.loadingAlert!.dismiss(withClickedButtonIndex: 0, animated: false)
                     
-                    self!.loadingAlert!.dismissWithClickedButtonIndex(0, animated: false)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self!.performSegueWithIdentifier("startChat", sender: self)
+                    DispatchQueue.main.async {
+                        self!.performSegue(withIdentifier: "startChat", sender: self)
                     }
                 } catch {
                     UIAlertView(title: "Error", message: "Error while getting session details", delegate: nil, cancelButtonTitle: "Ok").show()
@@ -101,61 +101,61 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         task.resume()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "startChat" {
-            let destination = segue.destinationViewController as! RoomViewController
+            let destination = segue.destination as! RoomViewController
             destination.roomInfo = self.roomInfo
-            destination.selectedCapturerResolution = self.selectedCapturerResolution
-            destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.on
+            //destination.selectedCapturerResolution = self.selectedCapturerResolution
+            destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.isOn
         }
     }
     
     // MARK: picker view code
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == self.capturerResolution {
-            capturerResolutionPickerView?.hidden = false
+            capturerResolutionPickerView?.isHidden = false
             self.roomName?.resignFirstResponder()
             self.userName?.resignFirstResponder()
             return false
         } else {
-            capturerResolutionPickerView?.hidden = true
+            capturerResolutionPickerView?.isHidden = true
         }
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     // returns the number of 'columns' to display.
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
     // returns the # of rows in each component..
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         return capturerResolutions.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return capturerResolutionToString(capturerResolutions[row])
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         capturerResolution!.text = capturerResolutionToString(capturerResolutions[row])
         selectedCapturerResolution = capturerResolutions[row]
         
-        capturerResolutionPickerView?.hidden = true
+        capturerResolutionPickerView?.isHidden = true
     }
     
-    func capturerResolutionToString(level: OTCameraCaptureResolution) -> String
+    func capturerResolutionToString(_ level: OTCameraCaptureResolution) -> String
     {
         switch level {
-        case OTCameraCaptureResolution.Low: return "Low (QVGA)"
-        case OTCameraCaptureResolution.Medium: return "Medium (VGA)"
-        case OTCameraCaptureResolution.High: return "High (HD)"
+        case OTCameraCaptureResolution.low: return "Low (QVGA)"
+        case OTCameraCaptureResolution.medium: return "Medium (VGA)"
+        case OTCameraCaptureResolution.high: return "High (HD)"
         }
     }
 }

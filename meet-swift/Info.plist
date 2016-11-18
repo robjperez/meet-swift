@@ -59,7 +59,11 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-        <string>audio</string>
-    </array>
+		<string>audio</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>${EXECUTABLE_NAME} needs access to the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>${EXECUTABLE_NAME} needs access to the microphone</string>
 </dict>
 </plist>

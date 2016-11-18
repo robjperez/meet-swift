@@ -14,18 +14,18 @@ class StatsView : UIView {
     @IBOutlet weak var battery: UILabel?
     @IBOutlet var view: UIView!
     
-    var refreshTimer : NSTimer?
+    var refreshTimer : Timer?
     
     var initialBattery : Float?
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
-        NSBundle.mainBundle().loadNibNamed("StatsViewer", owner: self, options: nil)
+        Bundle.main.loadNibNamed("StatsViewer", owner: self, options: nil)
         self.addSubview(self.view)
         
-        initialBattery = NSUserDefaults.standardUserDefaults().objectForKey(AppDelegate.kInitialBatteryKey)!.floatValue
+        initialBattery = (UserDefaults.standard.object(forKey: AppDelegate.kInitialBatteryKey)! as AnyObject).floatValue
         
-        refreshTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("updateStats:"), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(StatsView.updateStats(_:)), userInfo: nil, repeats: true)
         
         refreshTimer!.fire()
     }
@@ -34,10 +34,10 @@ class StatsView : UIView {
         super.init(coder: aDecoder)!
     }
     
-    func updateStats(timer: NSTimer) {
+    func updateStats(_ timer: Timer) {
         cpu?.text = "CPU: \(StatsUtil.cpuUsage())%"
         memory?.text = String(format:"Memory: %.2fMb", StatsUtil.memoryUsage())
-        battery?.text = String(format:"Battery: %.2f%%",((initialBattery! - UIDevice.currentDevice().batteryLevel) * 100))
+        battery?.text = String(format:"Battery: %.2f%%",((initialBattery! - UIDevice.current.batteryLevel) * 100))
     }
     
     deinit {

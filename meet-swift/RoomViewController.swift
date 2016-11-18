@@ -46,7 +46,7 @@ class RoomViewController: UIViewController,
     
     var roomTapGestureRecognizer : UITapGestureRecognizer?
     
-    var selectedCapturerResolution = OTCameraCaptureResolution.Medium
+    var selectedCapturerResolution = OTCameraCaptureResolution.medium
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +54,8 @@ class RoomViewController: UIViewController,
         // Do any additional setup after loading the view.
         var error:OTError?
         
-        session = OTSession(apiKey: roomInfo!.apiKey,
-            sessionId: roomInfo!.sessionId,
+        session = OTSession(apiKey: roomInfo!.apiKey!,
+            sessionId: roomInfo!.sessionId!,
             delegate: self)
         
         if subscriberSimulcastEnabled {
@@ -65,27 +65,27 @@ class RoomViewController: UIViewController,
         }
         
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
-        session!.connectWithToken(roomInfo!.token,
+        session!.connect(withToken: roomInfo!.token!,
             error: &error)
         
         publisher = OTPublisher(delegate: self, name: roomInfo!.userName,
             cameraResolution: self.selectedCapturerResolution,
-            cameraFrameRate: OTCameraCaptureFrameRate.Rate30FPS)
+            cameraFrameRate: OTCameraCaptureFrameRate.rate30FPS)
         
-        self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil);
+        self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil)
         self.connectingAlert?.show()
         
         self.roomName?.text = roomInfo!.roomName
         self.numberOfStreams?.text = "👥 1"
         
-        self.muteSubscriber?.hidden = true
+        self.muteSubscriber?.isHidden = true
         
-        UIApplication.sharedApplication().idleTimerDisabled = true;
+        UIApplication.shared.isIdleTimerDisabled = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onEnterForeground", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
-        roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleRoomNameTap:"))
+        roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RoomViewController.handleRoomNameTap(_:)))
         roomTapGestureRecognizer?.numberOfTapsRequired = 2
         roomName?.addGestureRecognizer(roomTapGestureRecognizer!)
         
@@ -98,31 +98,31 @@ class RoomViewController: UIViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func switchCameraPressed(sender: AnyObject?) {
-        if self.publisher?.cameraPosition == AVCaptureDevicePosition.Back {
-            self.publisher?.cameraPosition = AVCaptureDevicePosition.Front
+    @IBAction func switchCameraPressed(_ sender: AnyObject?) {
+        if self.publisher?.cameraPosition == AVCaptureDevicePosition.back {
+            self.publisher?.cameraPosition = AVCaptureDevicePosition.front
         } else {
-            self.publisher?.cameraPosition = AVCaptureDevicePosition.Back
+            self.publisher?.cameraPosition = AVCaptureDevicePosition.back
         }
     }
     
-    @IBAction func mutePressed(sender: AnyObject?) {
+    @IBAction func mutePressed(_ sender: AnyObject?) {
         self.publisher!.publishAudio = !(self.publisher!.publishAudio)
-        (sender as! UIButton).selected = !self.publisher!.publishAudio
-        NSLog("selected" + (sender as! UIButton).selected.description)
+        (sender as! UIButton).isSelected = !self.publisher!.publishAudio
+        NSLog("selected" + (sender as! UIButton).isSelected.description)
     }
 
-    @IBAction func endCallPressed(sender: AnyObject) {
-        var error : OTError?;
-        if self.session?.sessionConnectionStatus == OTSessionConnectionStatus.Connected ||
-            self.session?.sessionConnectionStatus == OTSessionConnectionStatus.Connecting
+    @IBAction func endCallPressed(_ sender: AnyObject) {
+        var error : OTError?
+        if self.session?.sessionConnectionStatus == OTSessionConnectionStatus.connected ||
+            self.session?.sessionConnectionStatus == OTSessionConnectionStatus.connecting
         {
-            self.session?.disconnect(&error);
+            self.session?.disconnect(&error)
         
-            self.disconnectingAlert = UIAlertView(title: "Disconnecting", message: "Disconnecting from session...", delegate: nil, cancelButtonTitle: nil);
+            self.disconnectingAlert = UIAlertView(title: "Disconnecting", message: "Disconnecting from session...", delegate: nil, cancelButtonTitle: nil)
             self.disconnectingAlert?.show()
         } else {
-            self.dismissViewControllerAnimated(true, completion: nil);
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -137,26 +137,37 @@ class RoomViewController: UIViewController,
     */
 
     // MARK: Session Delegate
-    func sessionDidConnect(session: OTSession!) {
-        self.muteButton?.enabled = true;
-        self.cameraButton?.enabled = true;
+    func sessionDidConnect(_ session: OTSession) {
+        print("Session \(session) is connected")
+        self.muteButton?.isEnabled = true
+        self.cameraButton?.isEnabled = true
         
-        self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true);
+        self.connectingAlert?.dismiss(withClickedButtonIndex: 0, animated: true)
         var error: OTError?
-        session!.publish(publisher, error: &error)
+        session.publish(publisher!, error: &error)
     }
     
-    func sessionDidDisconnect(session: OTSession!) {
-        self.disconnectingAlert?.dismissWithClickedButtonIndex(0, animated: false);
-        self.dismissViewControllerAnimated(true, completion: nil);
+    func sessionDidDisconnect(_ session: OTSession) {
+        print("Session \(session) is disconnected")
+        self.disconnectingAlert?.dismiss(withClickedButtonIndex: 0, animated: false)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func session(session: OTSession!, didFailWithError error: OTError!) {
-        reconnectingAlertDialog?.dismissWithClickedButtonIndex(0, animated: true)
-        self.connectingAlert?.dismissWithClickedButtonIndex(0, animated: true)
+    func session(_ session: OTSession, didFailWithError error: OTError) {
+        print("Session \(session) error: \(error)")
+        
+        reconnectingAlertDialog?.dismiss(withClickedButtonIndex: 0, animated: true)
+        self.connectingAlert?.dismiss(withClickedButtonIndex: 0, animated: true)
+        
+        let errorAc = UIAlertController(
+            title: "Error connecting",
+            message: "There was an error trying to join the session: \(error.localizedDescription)",
+            preferredStyle: .alert)
+        errorAc.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in self.dismiss(animated: true, completion: nil) } ))
+        present(errorAc, animated: true, completion: nil)
     }
     
-    func session(session: OTSession!, streamCreated stream: OTStream!) {
+    func session(_ session: OTSession, streamCreated stream: OTStream) {
         let subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
         self.session?.subscribe(subscriber, error: &error)
@@ -166,66 +177,66 @@ class RoomViewController: UIViewController,
         updateParticipants(true)
     }
     
-    func session(session: OTSession!, streamDestroyed stream: OTStream!) {
+    func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         viewManager!.removeSubscriber(stream.streamId)
-        subscriberList.removeValueForKey(stream.streamId)
+        subscriberList.removeValue(forKey: stream.streamId)
         updateParticipants(false)
     }
     
-    func sessionDidBeginReconnecting(session: OTSession!) {
+    func sessionDidBeginReconnecting(_ session: OTSession) {
         reconnectingAlertDialog?.show()
     }
     
-    func sessionDidReconnect(session: OTSession!) {
-        reconnectingAlertDialog?.dismissWithClickedButtonIndex(0, animated: true)
+    func sessionDidReconnect(_ session: OTSession) {
+        reconnectingAlertDialog?.dismiss(withClickedButtonIndex: 0, animated: true)
     }
     
     // MARK: Publisher Delegate
-    func publisher(publisher: OTPublisherKit!, didFailWithError error: OTError!) {}
+    func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {}
     
-    func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
         // Add view
-        let pubView = self.publisher?.view;
+        let pubView = self.publisher?.view
         ViewUtils.addViewFill(pubView!, rootView: self.publisherView!)
     }
 
-    func publisher(publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
         // Remove view
     }
     
     // MARK: Subscriber Delegate
-    func subscriberVideoDataReceived(subscriber: OTSubscriber!) {
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
         
     }
     
-    func subscriberDidConnectToStream(subscriber: OTSubscriberKit!) {
-        if let sub = subscriberList[subscriber.stream.streamId] {
+    func subscriberDidConnect(toStream subscriber: OTSubscriberKit) {
+        if let sub = subscriberList[subscriber.stream!.streamId] {
             viewManager?.addSubscriber(sub,
-                streamKey: subscriber.stream.streamId)
+                streamKey: subscriber.stream!.streamId)
         }
     }
     
-    func subscriberDidDisconnectFromStream(subscriber: OTSubscriberKit!) {
-        NSLog("Subscriber disconnected")
+    func subscriberDidDisconnect(fromStream subscriber: OTSubscriberKit) {
+        print("Subscriber disconnected")
     }
     
-    func subscriberDidReconnectToStream(subscriber: OTSubscriberKit!) {
-        NSLog("Subscriber reconnected")
+    func subscriberDidReconnect(toStream subscriber: OTSubscriberKit) {
+        print("Subscriber reconnected")
     }
     
-    func subscriber(subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {}
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {}
     
-    func subscriberVideoDisabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        viewManager?.subscriberVideoDisabled(subscriber.stream.streamId)
+    func subscriberVideoDisabled(_ subscriber: OTSubscriberKit, reason: OTSubscriberVideoEventReason) {        
+        viewManager?.subscriberVideoDisabled(subscriber.stream!.streamId)
     }
     
-    func subscriberVideoEnabled(subscriber: OTSubscriberKit!, reason: OTSubscriberVideoEventReason) {
-        viewManager?.subscriberVideoEnabled(subscriber.stream.streamId)
+    func subscriberVideoEnabled(_ subscriber: OTSubscriberKit, reason: OTSubscriberVideoEventReason) {
+        viewManager?.subscriberVideoEnabled(subscriber.stream!.streamId)
     }
     
-    private func updateParticipants(increment: Bool) {
+    fileprivate func updateParticipants(_ increment: Bool) {
         if let currentNumber = self.numberOfStreams?.text {
-            let number = Int(currentNumber.substringFromIndex(currentNumber.startIndex.advancedBy(2)))
+            let number = Int(currentNumber.substring(from: currentNumber.characters.index(currentNumber.startIndex, offsetBy: 2)))
             let text = "👥 " + (increment ? number!+1 : number!-1).description
             self.numberOfStreams!.text = text
         }
@@ -248,12 +259,12 @@ class RoomViewController: UIViewController,
         viewManager!.onEnterForeground()
     }
     
-    func handleRoomNameTap(tapRecognizer: UITapGestureRecognizer) {
+    func handleRoomNameTap(_ tapRecognizer: UITapGestureRecognizer) {
         if let stats = statsView {
             stats.removeFromSuperview()
             self.statsView = nil
         } else {
-            statsView = StatsView(frame: CGRectMake(0, self.view.frame.size.height - 200, self.view.frame.size.width, 200))
+            statsView = StatsView(frame: CGRect(x: 0, y: self.view.frame.size.height - 200, width: self.view.frame.size.width, height: 200))
             self.view.addSubview(statsView!)
         }
     }
