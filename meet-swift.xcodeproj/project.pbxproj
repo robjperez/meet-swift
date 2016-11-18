@@ -17,7 +17,6 @@
 		F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */; };
 		F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880C8B91BA04CC70019F957 /* ViewManager.swift */; };
 		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
-		F88721591AE42306001291F5 /* RoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721581AE42306001291F5 /* RoomInfo.swift */; };
 		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
 		F88C1DC81BB404B700165320 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F88C1DC71BB404B700165320 /* avatar.png */; };
 		F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F896100C1BA189CE00E89484 /* ViewUtils.swift */; };
@@ -79,7 +78,6 @@
 		F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28@2x.png"; path = "meet-swift/Images/icon_arrowRight_enabled-28@2x.png"; sourceTree = "<group>"; };
 		F880C8B91BA04CC70019F957 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
-		F88721581AE42306001291F5 /* RoomInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomInfo.swift; sourceTree = "<group>"; };
 		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		F88C1DC71BB404B700165320 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar.png; path = "meet-swift/Images/avatar.png"; sourceTree = "<group>"; };
 		F896100C1BA189CE00E89484 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				F8FBD0471ADEB671000090DA /* Images.xcassets */,
 				F8FBD0491ADEB671000090DA /* LaunchScreen.xib */,
 				F89610181BA2F24000E89484 /* Room */,
-				F88721581AE42306001291F5 /* RoomInfo.swift */,
 				F89610151BA2EF6300E89484 /* Logger */,
 				F89610141BA2EF5700E89484 /* View Manager */,
 				F896100C1BA189CE00E89484 /* ViewUtils.swift */,
@@ -465,7 +462,6 @@
 			files = (
 				F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */,
 				F89610131BA2EF3300E89484 /* SingleSubViewManager.swift in Sources */,
-				F88721591AE42306001291F5 /* RoomInfo.swift in Sources */,
 				F896101D1BA2F75B00E89484 /* StatsUtil.m in Sources */,
 				F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */,
 				F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */,

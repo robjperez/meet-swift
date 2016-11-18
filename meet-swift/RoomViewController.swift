@@ -28,7 +28,7 @@ class RoomViewController: UIViewController,
     var session: OTSession?
     var publisher: OTPublisher?
     
-    var roomInfo: RoomInfo?
+    var roomInfo: RoomInfo!
     
     var disconnectingAlert : UIAlertView?
     var connectingAlert: UIAlertView?
@@ -54,8 +54,8 @@ class RoomViewController: UIViewController,
         // Do any additional setup after loading the view.
         var error:OTError?
         
-        session = OTSession(apiKey: roomInfo!.apiKey!,
-            sessionId: roomInfo!.sessionId!,
+        session = OTSession(apiKey: roomInfo.apiKey,
+            sessionId: roomInfo.sessionId,
             delegate: self)
         
         if subscriberSimulcastEnabled {
@@ -65,17 +65,17 @@ class RoomViewController: UIViewController,
         }
         
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
-        session!.connect(withToken: roomInfo!.token!,
+        session!.connect(withToken: roomInfo.token,
             error: &error)
         
-        publisher = OTPublisher(delegate: self, name: roomInfo!.userName,
+        publisher = OTPublisher(delegate: self, name: roomInfo.userName,
             cameraResolution: self.selectedCapturerResolution,
             cameraFrameRate: OTCameraCaptureFrameRate.rate30FPS)
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil)
         self.connectingAlert?.show()
         
-        self.roomName?.text = roomInfo!.roomName
+        self.roomName?.text = roomInfo.roomName
         self.numberOfStreams?.text = "👥 1"
         
         self.muteSubscriber?.isHidden = true

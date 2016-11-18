@@ -9,6 +9,14 @@
 import UIKit
 import OpenTok
 
+struct RoomInfo {
+    let sessionId: String
+    let token :String
+    let apiKey: String
+    let roomName: String
+    let userName: String
+}
+
 class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBOutlet weak var roomName: UITextField?
     @IBOutlet weak var userName: UITextField?
@@ -27,7 +35,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     var selectedCapturerResolution: OTCameraCaptureResolution =
         OTCameraCaptureResolution.medium
     
-    var roomInfo = RoomInfo()
+    var roomInfo: RoomInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +71,6 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         let session = URLSession(configuration: configuration)
         
-        self.roomInfo.roomName = roomName!.text
-        self.roomInfo.userName = userName!.text
-        
         let task = session.dataTask(with: urlRequest!,
             completionHandler: {
                 [weak self]
@@ -79,14 +84,22 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! NSDictionary
                     
-                    self!.roomInfo.apiKey = json["apiKey"] as? String
-                    self!.roomInfo.token = json["token"] as? String
-                    self!.roomInfo.sessionId = json["sessionId"] as? String
+                    if let sessionId = json["sessionId"] as? String,
+                        let apiKey = json["apiKey"] as? String,
+                        let token = json["token"] as? String
+                    {
+                        self?.roomInfo = RoomInfo(sessionId: sessionId,
+                                            token: token,
+                                            apiKey: apiKey,
+                                            roomName: self?.roomName?.text ?? "",
+                                            userName: self?.userName?.text ?? "")
+                    }
+                    
                                                             
-                    self!.loadingAlert!.dismiss(withClickedButtonIndex: 0, animated: false)
+                    self?.loadingAlert!.dismiss(withClickedButtonIndex: 0, animated: false)
                     
                     DispatchQueue.main.async {
-                        self!.performSegue(withIdentifier: "startChat", sender: self)
+                        self?.performSegue(withIdentifier: "startChat", sender: self)
                     }
                 } catch {
                     UIAlertView(title: "Error", message: "Error while getting session details", delegate: nil, cancelButtonTitle: "Ok").show()
@@ -104,7 +117,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "startChat" {
             let destination = segue.destination as! RoomViewController
-            destination.roomInfo = self.roomInfo
+            destination.roomInfo = self.roomInfo!
             //destination.selectedCapturerResolution = self.selectedCapturerResolution
             destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.isOn
         }
