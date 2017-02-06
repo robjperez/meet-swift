@@ -68,7 +68,7 @@
                                 <accessibility key="accessibilityConfiguration" label="RoomName"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="TGf-jK-glf" id="6UZ-Sq-Xlz"/>
                                 </connections>
@@ -98,7 +98,7 @@
                                 <rect key="frame" x="55" y="168" width="259" height="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="TGf-jK-glf" id="ykQ-u4-jeL"/>
                                 </connections>
