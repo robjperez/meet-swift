@@ -3,6 +3,8 @@
 
 target 'meet-swift' do 
   pod 'OpenTok'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 post_install do |installer|

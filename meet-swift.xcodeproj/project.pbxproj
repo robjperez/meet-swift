@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C28D0C871EF41ACE9508D67B /* libPods-meet-swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */; };
-		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
-		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
 		F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F86ED2031B9DCAF800176973 /* OTKLogger.m */; };
 		F87723591B4FF2760083743A /* icon_arrowLeft_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */; };
 		F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723561B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png */; };
@@ -17,7 +14,6 @@
 		F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */; };
 		F880C8BA1BA04CC70019F957 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880C8B91BA04CC70019F957 /* ViewManager.swift */; };
 		F88721571AE41A83001291F5 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88721561AE41A83001291F5 /* RoomViewController.swift */; };
-		F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F887215A1AE434A9001291F5 /* OpenTok.framework */; };
 		F88C1DC81BB404B700165320 /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = F88C1DC71BB404B700165320 /* avatar.png */; };
 		F896100D1BA189CE00E89484 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F896100C1BA189CE00E89484 /* ViewUtils.swift */; };
 		F896100F1BA1969400E89484 /* MultiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F896100E1BA1969400E89484 /* MultiView.xib */; };
@@ -39,37 +35,9 @@
 		F8FBD0461ADEB671000090DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0441ADEB671000090DA /* Main.storyboard */; };
 		F8FBD0481ADEB671000090DA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0471ADEB671000090DA /* Images.xcassets */; };
 		F8FBD04B1ADEB671000090DA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FBD0491ADEB671000090DA /* LaunchScreen.xib */; };
-		F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0601ADEB689000090DA /* VideoToolbox.framework */; };
-		F8FBD07B1ADEB6A3000090DA /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0631ADEB6A2000090DA /* libc++.dylib */; };
-		F8FBD07C1ADEB6A3000090DA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0641ADEB6A2000090DA /* GLKit.framework */; };
-		F8FBD07D1ADEB6A3000090DA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0651ADEB6A2000090DA /* libxml2.dylib */; };
-		F8FBD07E1ADEB6A3000090DA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */; };
-		F8FBD07F1ADEB6A3000090DA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */; };
-		F8FBD0801ADEB6A3000090DA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */; };
-		F8FBD0811ADEB6A3000090DA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */; };
-		F8FBD0821ADEB6A3000090DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */; };
-		F8FBD0831ADEB6A3000090DA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */; };
-		F8FBD0841ADEB6A3000090DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06C1ADEB6A2000090DA /* Security.framework */; };
-		F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */; };
-		F8FBD0861ADEB6A3000090DA /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */; };
-		F8FBD0871ADEB6A3000090DA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */; };
-		F8FBD0881ADEB6A3000090DA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */; };
-		F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0711ADEB6A3000090DA /* libz.dylib */; };
-		F8FBD08A1ADEB6A3000090DA /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0721ADEB6A3000090DA /* libicucore.dylib */; };
-		F8FBD08B1ADEB6A3000090DA /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */; };
-		F8FBD08D1ADEB6A3000090DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */; };
-		F8FBD08E1ADEB6A3000090DA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */; };
-		F8FBD08F1ADEB6A3000090DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0771ADEB6A3000090DA /* UIKit.framework */; };
-		F8FBD0901ADEB6A3000090DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0781ADEB6A3000090DA /* Foundation.framework */; };
-		F8FBD0911ADEB6A3000090DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.release.xcconfig"; sourceTree = "<group>"; };
-		73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.debug.xcconfig"; sourceTree = "<group>"; };
-		8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meet-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
 		F86ED2031B9DCAF800176973 /* OTKLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTKLogger.m; sourceTree = "<group>"; };
 		F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28.png"; path = "meet-swift/Images/icon_arrowLeft_enabled-28.png"; sourceTree = "<group>"; };
@@ -78,7 +46,6 @@
 		F87723581B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowRight_enabled-28@2x.png"; path = "meet-swift/Images/icon_arrowRight_enabled-28@2x.png"; sourceTree = "<group>"; };
 		F880C8B91BA04CC70019F957 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		F88721561AE41A83001291F5 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
-		F887215A1AE434A9001291F5 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		F88C1DC71BB404B700165320 /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar.png; path = "meet-swift/Images/avatar.png"; sourceTree = "<group>"; };
 		F896100C1BA189CE00E89484 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		F896100E1BA1969400E89484 /* MultiView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiView.xib; sourceTree = "<group>"; };
@@ -103,29 +70,6 @@
 		F8FBD0451ADEB671000090DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F8FBD0471ADEB671000090DA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F8FBD04A1ADEB671000090DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		F8FBD0601ADEB689000090DA /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		F8FBD0631ADEB6A2000090DA /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		F8FBD0641ADEB6A2000090DA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		F8FBD0651ADEB6A2000090DA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		F8FBD06C1ADEB6A2000090DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		F8FBD0711ADEB6A3000090DA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		F8FBD0721ADEB6A3000090DA /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F8FBD0771ADEB6A3000090DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F8FBD0781ADEB6A3000090DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F8FBD0931ADEB72B000090DA /* meet-swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meet-swift-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,48 +78,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F887215B1AE434A9001291F5 /* OpenTok.framework in Frameworks */,
-				F8FBD08D1ADEB6A3000090DA /* QuartzCore.framework in Frameworks */,
-				F8FBD08F1ADEB6A3000090DA /* UIKit.framework in Frameworks */,
-				F8FBD07B1ADEB6A3000090DA /* libc++.dylib in Frameworks */,
-				F8FBD0821ADEB6A3000090DA /* SystemConfiguration.framework in Frameworks */,
-				F8FBD0861ADEB6A3000090DA /* CoreAudio.framework in Frameworks */,
-				F8FBD0901ADEB6A3000090DA /* Foundation.framework in Frameworks */,
-				F8FBD08E1ADEB6A3000090DA /* AVFoundation.framework in Frameworks */,
-				F8FBD0801ADEB6A3000090DA /* MobileCoreServices.framework in Frameworks */,
-				F8FBD0841ADEB6A3000090DA /* Security.framework in Frameworks */,
-				F8FBD0881ADEB6A3000090DA /* OpenGLES.framework in Frameworks */,
-				F8FBD0811ADEB6A3000090DA /* CFNetwork.framework in Frameworks */,
-				F8FBD0911ADEB6A3000090DA /* CoreGraphics.framework in Frameworks */,
-				F8FBD0831ADEB6A3000090DA /* CoreMedia.framework in Frameworks */,
-				F8FBD08B1ADEB6A3000090DA /* libstdc++.dylib in Frameworks */,
-				F8FBD0871ADEB6A3000090DA /* CoreVideo.framework in Frameworks */,
-				F8FBD08A1ADEB6A3000090DA /* libicucore.dylib in Frameworks */,
-				F8FBD07D1ADEB6A3000090DA /* libxml2.dylib in Frameworks */,
-				F8FBD07C1ADEB6A3000090DA /* GLKit.framework in Frameworks */,
-				F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */,
-				F8FBD07E1ADEB6A3000090DA /* libsqlite3.dylib in Frameworks */,
-				F8FBD07F1ADEB6A3000090DA /* CoreTelephony.framework in Frameworks */,
-				F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */,
-				F8FBD0891ADEB6A3000090DA /* libz.dylib in Frameworks */,
-				F8FBD0611ADEB689000090DA /* VideoToolbox.framework in Frameworks */,
-				F8FBD0851ADEB6A3000090DA /* AudioToolbox.framework in Frameworks */,
-				C28D0C871EF41ACE9508D67B /* libPods-meet-swift.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9EA6B7F9A5CED4D0FE5A0791 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */,
-				2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F87723541B4FF2570083743A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,8 +141,6 @@
 				F87723541B4FF2570083743A /* Images */,
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
 				F8FBD03C1ADEB671000090DA /* Products */,
-				F8FBD0621ADEB690000090DA /* Frameworks */,
-				9EA6B7F9A5CED4D0FE5A0791 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,40 +179,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F8FBD0621ADEB690000090DA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F8210BD11B4FEB4E006754E4 /* Fabric.framework */,
-				F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */,
-				F887215A1AE434A9001291F5 /* OpenTok.framework */,
-				F8FBD0631ADEB6A2000090DA /* libc++.dylib */,
-				F8FBD0641ADEB6A2000090DA /* GLKit.framework */,
-				F8FBD0651ADEB6A2000090DA /* libxml2.dylib */,
-				F8FBD0661ADEB6A2000090DA /* libsqlite3.dylib */,
-				F8FBD0671ADEB6A2000090DA /* CoreTelephony.framework */,
-				F8FBD0681ADEB6A2000090DA /* MobileCoreServices.framework */,
-				F8FBD0691ADEB6A2000090DA /* CFNetwork.framework */,
-				F8FBD06A1ADEB6A2000090DA /* SystemConfiguration.framework */,
-				F8FBD06B1ADEB6A2000090DA /* CoreMedia.framework */,
-				F8FBD06C1ADEB6A2000090DA /* Security.framework */,
-				F8FBD06D1ADEB6A2000090DA /* AudioToolbox.framework */,
-				F8FBD06E1ADEB6A2000090DA /* CoreAudio.framework */,
-				F8FBD06F1ADEB6A3000090DA /* CoreVideo.framework */,
-				F8FBD0701ADEB6A3000090DA /* OpenGLES.framework */,
-				F8FBD0711ADEB6A3000090DA /* libz.dylib */,
-				F8FBD0721ADEB6A3000090DA /* libicucore.dylib */,
-				F8FBD0731ADEB6A3000090DA /* libstdc++.dylib */,
-				F8FBD0751ADEB6A3000090DA /* QuartzCore.framework */,
-				F8FBD0761ADEB6A3000090DA /* AVFoundation.framework */,
-				F8FBD0771ADEB6A3000090DA /* UIKit.framework */,
-				F8FBD0781ADEB6A3000090DA /* Foundation.framework */,
-				F8FBD0791ADEB6A3000090DA /* CoreGraphics.framework */,
-				F8FBD0601ADEB689000090DA /* VideoToolbox.framework */,
-				8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,13 +186,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8FBD05A1ADEB671000090DA /* Build configuration list for PBXNativeTarget "meet-swift" */;
 			buildPhases = (
-				1FC5F931B34705360AAA564D /* [CP] Check Pods Manifest.lock */,
 				F8FBD0371ADEB671000090DA /* Sources */,
 				F8FBD0381ADEB671000090DA /* Frameworks */,
 				F8FBD0391ADEB671000090DA /* Resources */,
-				F8210BD01B4FEB22006754E4 /* ShellScript */,
-				90D5E592778D9FF9509AD7FD /* [CP] Embed Pods Frameworks */,
-				0C11B3F27363551FBBBEC657 /* [CP] Copy Pods Resources */,
+				A0A0E8A41E480466003F319C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -395,52 +264,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C11B3F27363551FBBBEC657 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1FC5F931B34705360AAA564D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		90D5E592778D9FF9509AD7FD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F8210BD01B4FEB22006754E4 /* ShellScript */ = {
+		A0A0E8A41E480466003F319C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -451,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#./Fabric.framework/run cde951859fbe1f0ee64bba4c146c6e231717f4ea 9d1f199f01132a5c5385c7af1310dfdee3e4eb3c79f8052231e830caa7b9781c";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e148233c6cae706cd80ae2cf63c263a294276a4f 56ce09a5320df7b642be150fe0d6525e000dd2fff12201c6ea4e72c3453b5f30";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -584,7 +408,6 @@
 		};
 		F8FBD05B1ADEB671000090DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -609,7 +432,6 @@
 		};
 		F8FBD05C1ADEB671000090DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
