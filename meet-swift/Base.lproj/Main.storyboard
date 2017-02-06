@@ -324,7 +324,7 @@
                             <constraint firstAttribute="trailing" secondItem="dvn-Xj-aSa" secondAttribute="trailing" id="PoO-qM-WkS"/>
                             <constraint firstItem="1Ya-pJ-9gS" firstAttribute="top" secondItem="75A-5T-4G6" secondAttribute="bottom" constant="8" id="SJ0-I6-dDk"/>
                             <constraint firstItem="dvn-Xj-aSa" firstAttribute="leading" secondItem="5Fu-jf-Yey" secondAttribute="leading" id="l4c-9u-Rpc"/>
-                            <constraint firstItem="dvn-Xj-aSa" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="top" id="sq1-dD-sog"/>
+                            <constraint firstItem="dvn-Xj-aSa" firstAttribute="top" secondItem="run-dX-e6g" secondAttribute="top" constant="8" id="sq1-dD-sog"/>
                             <constraint firstItem="DpI-eO-5AV" firstAttribute="bottom" secondItem="1Ya-pJ-9gS" secondAttribute="bottom" id="yCA-73-Y5L"/>
                         </constraints>
                     </view>
