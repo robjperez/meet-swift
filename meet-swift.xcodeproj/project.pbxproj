@@ -70,7 +70,7 @@
 		2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.release.xcconfig"; sourceTree = "<group>"; };
 		73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meet-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0A0E89C1E47ED28003F319C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		A0A0E89C1E47ED28003F319C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0A0E89E1E47ED2C003F319C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };

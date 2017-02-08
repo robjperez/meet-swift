@@ -1,8 +1,8 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :ios, '9.0'
 
 target 'meet-swift' do 
-  pod 'OpenTok', '2.10.0'
+  
 end
 
 post_install do |installer|
