@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0A0E89D1E47ED28003F319C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0A0E89C1E47ED28003F319C /* Podfile */; };
+		A0A0E89F1E47ED2C003F319C /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A0A0E89E1E47ED2C003F319C /* README.md */; };
 		C28D0C871EF41ACE9508D67B /* libPods-meet-swift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */; };
 		F8210BD31B4FEB4E006754E4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD11B4FEB4E006754E4 /* Fabric.framework */; };
 		F8210BD41B4FEB4E006754E4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */; };
@@ -68,6 +70,8 @@
 		2BC5F5D7F14FB456F99E2373 /* Pods-meet-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.release.xcconfig"; sourceTree = "<group>"; };
 		73EEE1092E4A7E6058651F0F /* Pods-meet-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8F64A4B00B1C527E2EB2582A /* libPods-meet-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meet-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A0E89C1E47ED28003F319C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0A0E89E1E47ED2C003F319C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F8210BD11B4FEB4E006754E4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		F8210BD21B4FEB4E006754E4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 		F8FBD0321ADEB671000090DA = {
 			isa = PBXGroup;
 			children = (
+				A0A0E89E1E47ED2C003F319C /* README.md */,
+				A0A0E89C1E47ED28003F319C /* Podfile */,
 				F87723541B4FF2570083743A /* Images */,
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
 				F8FBD03C1ADEB671000090DA /* Products */,
@@ -380,6 +386,7 @@
 				F896100F1BA1969400E89484 /* MultiView.xib in Resources */,
 				F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */,
 				F8C97AA41B53AF22001C8097 /* mic_muted-24.png in Resources */,
+				A0A0E89D1E47ED28003F319C /* Podfile in Resources */,
 				F8C97AAB1B53AFAE001C8097 /* camera_switch-33@2x.png in Resources */,
 				F877235B1B4FF2760083743A /* icon_arrowRight_enabled-28.png in Resources */,
 				F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */,
@@ -469,6 +476,7 @@
 				F896101A1BA2F25600E89484 /* StatsView.swift in Sources */,
 				F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
+				A0A0E89F1E47ED2C003F319C /* README.md in Sources */,
 				F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,7 +606,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "meet-swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -624,7 +632,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "meet-swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d6fd7e98-4eb0-483d-a5db-76d70e261010";
