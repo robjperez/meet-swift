@@ -39,14 +39,14 @@ class ViewManager : UIView {
         if let sub = subscribers[streamKey] {
             let imageView = UIImageView(image: UIImage(named: "avatar.png"))
             imageView.tag = avatarImageTag
-            imageView.frame = sub.view.frame
-            sub.view.addSubview(imageView)
+            imageView.frame = (sub.view?.frame)!
+            sub.view?.addSubview(imageView)
         }
     }
     
     func subscriberVideoEnabled(_ streamKey: String) {
         if let sub = subscribers[streamKey] {
-            sub.view.viewWithTag(avatarImageTag)?.removeFromSuperview()
+            sub.view?.viewWithTag(avatarImageTag)?.removeFromSuperview()
         }
     }
     

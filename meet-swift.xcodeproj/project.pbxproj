@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0571FF41E60C9A300B9654A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0571FF21E60C9A300B9654A /* Podfile */; };
+		A0571FF51E60C9A300B9654A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A0571FF31E60C9A300B9654A /* README.md */; };
 		F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F86ED2031B9DCAF800176973 /* OTKLogger.m */; };
 		F87723591B4FF2760083743A /* icon_arrowLeft_enabled-28.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */; };
 		F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F87723561B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0571FF21E60C9A300B9654A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		A0571FF31E60C9A300B9654A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F86ED2021B9DCAF800176973 /* OTKLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKLogger.h; sourceTree = "<group>"; };
 		F86ED2031B9DCAF800176973 /* OTKLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTKLogger.m; sourceTree = "<group>"; };
 		F87723551B4FF2760083743A /* icon_arrowLeft_enabled-28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_arrowLeft_enabled-28.png"; path = "meet-swift/Images/icon_arrowLeft_enabled-28.png"; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 		F8FBD0321ADEB671000090DA = {
 			isa = PBXGroup;
 			children = (
+				A0571FF21E60C9A300B9654A /* Podfile */,
+				A0571FF31E60C9A300B9654A /* README.md */,
 				F87723541B4FF2570083743A /* Images */,
 				F8FBD03D1ADEB671000090DA /* meet-swift */,
 				F8FBD03C1ADEB671000090DA /* Products */,
@@ -249,6 +255,7 @@
 				F896100F1BA1969400E89484 /* MultiView.xib in Resources */,
 				F877235C1B4FF2760083743A /* icon_arrowRight_enabled-28@2x.png in Resources */,
 				F8C97AA41B53AF22001C8097 /* mic_muted-24.png in Resources */,
+				A0571FF41E60C9A300B9654A /* Podfile in Resources */,
 				F8C97AAB1B53AFAE001C8097 /* camera_switch-33@2x.png in Resources */,
 				F877235B1B4FF2760083743A /* icon_arrowRight_enabled-28.png in Resources */,
 				F877235A1B4FF2760083743A /* icon_arrowLeft_enabled-28@2x.png in Resources */,
@@ -293,6 +300,7 @@
 				F896101A1BA2F25600E89484 /* StatsView.swift in Sources */,
 				F86ED2041B9DCAF800176973 /* OTKLogger.m in Sources */,
 				F8FBD0411ADEB671000090DA /* AppDelegate.swift in Sources */,
+				A0571FF51E60C9A300B9654A /* README.md in Sources */,
 				F89610111BA2EF0200E89484 /* MultiSubViewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

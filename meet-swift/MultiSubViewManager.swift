@@ -43,7 +43,7 @@ class MultiSubViewManager : ViewManager {
             super.removeSubscriber(streamKey)
             
             if selectedSubscriber == streamKey {
-                sub.view.removeFromSuperview()
+                sub.view?.removeFromSuperview()
                 if let newSelectedSub = subsInScroll.first {
                     promoteSubToBigView(newSelectedSub)
                 }
@@ -58,15 +58,15 @@ class MultiSubViewManager : ViewManager {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MultiSubViewManager.handleTap(_:)))
         tapGesture.numberOfTapsRequired = 1
-        sub.view.addGestureRecognizer(tapGesture)
+        sub.view?.addGestureRecognizer(tapGesture)
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(MultiSubViewManager.handleSwipe(_:)))
         swipeGesture.direction = UISwipeGestureRecognizerDirection.up
-        sub.view.addGestureRecognizer(swipeGesture)
+        sub.view?.addGestureRecognizer(swipeGesture)
         
         updateScrollView()
         
-        sub.preferredResolution = sub.view.frame.size
+        sub.preferredResolution = (sub.view?.frame.size)!
         sub.preferredFrameRate = 15
     }
     
@@ -75,13 +75,13 @@ class MultiSubViewManager : ViewManager {
         let padding : CGFloat = 20
         
         for (index,sub) in subsInScroll.enumerated() {
-            sub.view.removeFromSuperview()
-            sub.view.frame = CGRect(x: CGFloat(index) * (viewWidth + padding), y: 0,
+            sub.view?.removeFromSuperview()
+            sub.view?.frame = CGRect(x: CGFloat(index) * (viewWidth + padding), y: 0,
                 width: viewWidth, height: self.scrollView!.frame.size.height)
             
-            sub.view.tag = Array(subscribers.keys).index(of: (sub.stream?.streamId)!)!
+            sub.view?.tag = Array(subscribers.keys).index(of: (sub.stream?.streamId)!)!
             
-            self.scrollView?.addSubview(sub.view)
+            self.scrollView?.addSubview(sub.view!)
         }
         
         self.scrollView?.contentSize = CGSize(width: CGFloat(subsInScroll.count) * (viewWidth + padding), height: self.scrollView!.frame.size.height)
@@ -93,8 +93,8 @@ class MultiSubViewManager : ViewManager {
     }
     
     func addSubscriberToBigView(_ sub: OTSubscriber) {
-        sub.view.frame = CGRect(x: 0, y: 0, width: self.bigView!.frame.size.width, height: self.bigView!.frame.size.height)
-        self.bigView!.addSubview(sub.view)
+        sub.view?.frame = CGRect(x: 0, y: 0, width: self.bigView!.frame.size.width, height: self.bigView!.frame.size.height)
+        self.bigView!.addSubview(sub.view!)
         sub.preferredResolution = self.bigView!.frame.size
         sub.preferredFrameRate = 30
     }
@@ -104,7 +104,7 @@ class MultiSubViewManager : ViewManager {
             let sub = subscribers[Array(subscribers.keys)[subIndex]],
             let selectedSub = subscribers[self.selectedSubscriber!]
         {
-            selectedSub.view.removeFromSuperview()
+            selectedSub.view?.removeFromSuperview()
             addSubscriberToScroll(selectedSub)
             
             promoteSubToBigView(sub)
