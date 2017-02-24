@@ -170,7 +170,7 @@ class RoomViewController: UIViewController,
     func session(_ session: OTSession, streamCreated stream: OTStream) {
         let subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
-        self.session?.subscribe(subscriber, error: &error)
+        self.session?.subscribe(subscriber!, error: &error)
         
         subscriberList[stream.streamId] = subscriber
         

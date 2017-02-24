@@ -63,7 +63,10 @@ class SingleSubViewManager : ViewManager {
     override func addSubscriber(_ sub: OTSubscriber, streamKey: String) {
         super.addSubscriber(sub, streamKey: streamKey)
         
-        let subView = sub.view;
+        guard let subView = sub.view else {
+            return
+        }
+        
         self.selectedSubscriber = streamKey
         
         if self.subscribers.count > 1 && self.selectedSubscriber != nil {
@@ -87,20 +90,20 @@ class SingleSubViewManager : ViewManager {
         let previousSubscriber = self.subscribers[self.selectedSubscriber!]
         let newSubscriber = self.subscribers[subId]!
         
-        newSubscriber.view.alpha = 0.0
-        ViewUtils.addViewFill(newSubscriber.view, rootView: self.view)
+        newSubscriber.view?.alpha = 0.0
+        ViewUtils.addViewFill(newSubscriber.view!, rootView: self.view)
         
         previousSubscriber?.subscribeToVideo = false
         newSubscriber.subscribeToVideo = true
         
         UIView.animate(withDuration: 0.4,
             animations: { () -> Void in
-                previousSubscriber?.view.alpha = 0.0
-                newSubscriber.view.alpha = 1.0
+                previousSubscriber?.view?.alpha = 0.0
+                newSubscriber.view?.alpha = 1.0
             },
             completion: { (finished) -> Void in
                 self.selectedSubscriber = subId
-                previousSubscriber?.view.removeFromSuperview()
+                previousSubscriber?.view?.removeFromSuperview()
         })
     }
     
