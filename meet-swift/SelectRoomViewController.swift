@@ -27,7 +27,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     var loadingAlert: UIAlertView?
     
-    var capturerResolutions : [OTCameraCaptureResolution] = [
+    let capturerResolutions : [OTCameraCaptureResolution] = [
             OTCameraCaptureResolution.low,
             OTCameraCaptureResolution.medium,
             OTCameraCaptureResolution.high]
@@ -45,10 +45,12 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         self.userName?.text = UIDevice.current.name
         
         self.capturerResolution?.text = capturerResolutionToString(OTCameraCaptureResolution.medium)
+        self.capturerResolutionPickerView?.selectRow(1, inComponent: 0, animated: false)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.roomName?.becomeFirstResponder()
     }
     
     @IBAction func joinClicked(_ sender: UIButton) {
@@ -118,10 +120,17 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         if segue.identifier! == "startChat" {
             let destination = segue.destination as! RoomViewController
             destination.roomInfo = self.roomInfo!
-            //destination.selectedCapturerResolution = self.selectedCapturerResolution
+            destination.selectedCapturerResolution = self.selectedCapturerResolution
             destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.isOn
         }
     }
+
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        self.roomName?.resignFirstResponder()
+        self.userName?.resignFirstResponder()
+        capturerResolutionPickerView?.isHidden = true
+    }
+    
     
     // MARK: picker view code
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -155,16 +164,12 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
         return capturerResolutionToString(capturerResolutions[row])
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         capturerResolution!.text = capturerResolutionToString(capturerResolutions[row])
         selectedCapturerResolution = capturerResolutions[row]
-        
-        capturerResolutionPickerView?.isHidden = true
     }
     
-    func capturerResolutionToString(_ level: OTCameraCaptureResolution) -> String
-    {
+    func capturerResolutionToString(_ level: OTCameraCaptureResolution) -> String {
         switch level {
         case OTCameraCaptureResolution.low: return "Low (QVGA)"
         case OTCameraCaptureResolution.medium: return "Medium (VGA)"

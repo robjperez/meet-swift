@@ -63,7 +63,9 @@ class SingleSubViewManager : ViewManager {
     override func addSubscriber(_ sub: OTSubscriber, streamKey: String) {
         super.addSubscriber(sub, streamKey: streamKey)
         
-        let subView = sub.view;
+        guard let subView = sub.view else {
+            return;
+        }
         self.selectedSubscriber = streamKey
         
         if self.subscribers.count > 1 && self.selectedSubscriber != nil {

@@ -92,11 +92,6 @@ class RoomViewController: UIViewController,
         reconnectingAlertDialog = UIAlertView(title: "Session is reconnecting", message: "Please wait until we try to restablish your session", delegate: nil, cancelButtonTitle: nil)
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func switchCameraPressed(_ sender: AnyObject?) {
         if self.publisher?.cameraPosition == AVCaptureDevicePosition.back {
@@ -125,16 +120,6 @@ class RoomViewController: UIViewController,
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: Session Delegate
     func sessionDidConnect(_ session: OTSession) {
