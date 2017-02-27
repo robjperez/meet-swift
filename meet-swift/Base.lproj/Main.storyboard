@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eZF-7c-FFh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eZF-7c-FFh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -123,8 +123,8 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYM-fo-3q6">
                                 <rect key="frame" x="268" y="295" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subscriber stream priorization" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFC-jx-Gbu">
-                                <rect key="frame" x="58" y="302.5" width="194" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Subscriber Stream Priorization" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFC-jx-Gbu">
+                                <rect key="frame" x="58" y="301" width="202" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -142,6 +142,15 @@
                                     <action selector="joinClicked:" destination="TGf-jK-glf" eventType="touchUpInside" id="kBJ-Mr-LZa"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7X6-Z6-9cH">
+                                <rect key="frame" x="268" y="334" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Enable H264 support" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIK-Cj-JHn">
+                                <rect key="frame" x="55" y="339" width="202" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14768052101135254" green="0.14768052101135254" blue="0.14768052101135254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -152,9 +161,12 @@
                             <constraint firstItem="9Lj-D8-d8e" firstAttribute="top" secondItem="Hx5-sU-T4U" secondAttribute="bottom" id="52F-Zh-Fft"/>
                             <constraint firstItem="KJg-2b-bLy" firstAttribute="centerX" secondItem="8df-G9-jO4" secondAttribute="centerX" constant="-3" id="5bd-px-akt"/>
                             <constraint firstItem="Hx5-sU-T4U" firstAttribute="width" secondItem="8df-G9-jO4" secondAttribute="width" id="5cN-se-ATN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7X6-Z6-9cH" secondAttribute="trailing" constant="42" id="5zj-ZT-89y"/>
                             <constraint firstItem="DtQ-kV-RDu" firstAttribute="width" secondItem="KJg-2b-bLy" secondAttribute="width" id="6R2-GN-aVf"/>
+                            <constraint firstItem="RaW-U4-uwV" firstAttribute="top" secondItem="tIK-Cj-JHn" secondAttribute="bottom" constant="17" id="7u8-fC-szf"/>
                             <constraint firstItem="DtQ-kV-RDu" firstAttribute="leading" secondItem="8df-G9-jO4" secondAttribute="leadingMargin" constant="39" id="8Q0-Cp-c7k"/>
                             <constraint firstItem="ntj-as-DaW" firstAttribute="leading" secondItem="yFC-jx-Gbu" secondAttribute="leading" constant="-3" id="AaD-3y-nww"/>
+                            <constraint firstItem="7X6-Z6-9cH" firstAttribute="top" secondItem="QYM-fo-3q6" secondAttribute="bottom" constant="8" id="CaG-tf-iMW"/>
                             <constraint firstItem="a6e-2i-p9o" firstAttribute="centerX" secondItem="8df-G9-jO4" secondAttribute="centerX" id="DWM-08-9wk"/>
                             <constraint firstItem="ntj-as-DaW" firstAttribute="top" secondItem="0Ax-Hd-9kN" secondAttribute="bottom" constant="5" id="EuW-5H-1Bz"/>
                             <constraint firstItem="DtQ-kV-RDu" firstAttribute="top" secondItem="KJg-2b-bLy" secondAttribute="bottom" constant="38" id="FsC-No-ck8"/>
@@ -173,13 +185,14 @@
                             <constraint firstItem="vQg-qm-AEt" firstAttribute="top" secondItem="ntj-as-DaW" secondAttribute="bottom" constant="3" id="XMl-j6-0aJ"/>
                             <constraint firstItem="QYM-fo-3q6" firstAttribute="top" secondItem="vQg-qm-AEt" secondAttribute="bottom" constant="26" id="Y1d-Np-Och"/>
                             <constraint firstItem="a6e-2i-p9o" firstAttribute="top" secondItem="WSZ-LW-gVj" secondAttribute="bottom" constant="29" id="aGr-lE-pZ2"/>
+                            <constraint firstItem="tIK-Cj-JHn" firstAttribute="top" secondItem="yFC-jx-Gbu" secondAttribute="bottom" constant="18" id="afX-NL-uMe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DtQ-kV-RDu" secondAttribute="trailing" constant="45" id="f61-qb-qVD"/>
-                            <constraint firstItem="RaW-U4-uwV" firstAttribute="top" secondItem="yFC-jx-Gbu" secondAttribute="bottom" constant="20" id="hZ6-UI-IDU"/>
                             <constraint firstItem="QYM-fo-3q6" firstAttribute="trailing" secondItem="ntj-as-DaW" secondAttribute="trailing" constant="3" id="iSZ-Kh-c9S"/>
                             <constraint firstItem="0Ax-Hd-9kN" firstAttribute="leading" secondItem="DtQ-kV-RDu" secondAttribute="leading" constant="3" id="jR6-Kf-XVj"/>
                             <constraint firstItem="QYM-fo-3q6" firstAttribute="centerY" secondItem="yFC-jx-Gbu" secondAttribute="centerY" id="jY6-vK-BYq"/>
                             <constraint firstItem="gRN-pI-C1v" firstAttribute="width" secondItem="ntj-as-DaW" secondAttribute="width" id="lVC-h9-a8Y"/>
                             <constraint firstItem="RaW-U4-uwV" firstAttribute="centerX" secondItem="8df-G9-jO4" secondAttribute="centerX" id="p16-AY-WDM"/>
+                            <constraint firstItem="7X6-Z6-9cH" firstAttribute="leading" secondItem="tIK-Cj-JHn" secondAttribute="trailing" constant="11" id="tcW-Go-3pG"/>
                             <constraint firstItem="KJg-2b-bLy" firstAttribute="width" secondItem="k6x-bL-NCG" secondAttribute="width" id="ulW-kN-zky"/>
                             <constraint firstItem="0Ax-Hd-9kN" firstAttribute="top" secondItem="DYg-ZY-Hmm" secondAttribute="bottom" constant="12" id="wUg-8W-JDn"/>
                             <constraint firstAttribute="centerX" secondItem="Hx5-sU-T4U" secondAttribute="centerX" constant="-1" id="xe5-l3-wVM"/>
@@ -192,6 +205,7 @@
                     <connections>
                         <outlet property="capturerResolution" destination="0Ax-Hd-9kN" id="6hd-dM-GGW"/>
                         <outlet property="capturerResolutionPickerView" destination="Hx5-sU-T4U" id="R1Q-pS-xje"/>
+                        <outlet property="h264Support" destination="7X6-Z6-9cH" id="JS2-6Q-2vL"/>
                         <outlet property="joinButton" destination="RaW-U4-uwV" id="omL-hm-mff"/>
                         <outlet property="roomName" destination="KJg-2b-bLy" id="j1W-se-Vda"/>
                         <outlet property="subscriberSimulcast" destination="QYM-fo-3q6" id="ed6-on-sbN"/>
@@ -206,7 +220,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-176.5" y="519.5"/>
+            <point key="canvasLocation" x="-176.80000000000001" y="519.49025487256381"/>
         </scene>
         <!--Room View Controller-->
         <scene sceneID="vOT-iH-i8O">

@@ -38,6 +38,8 @@ class RoomViewController: UIViewController,
     
     var subscriberSimulcastEnabled = false
     
+    var h264SupportEnabled = false
+
     var viewManager : ViewManager?
     
     var subscriberList = Dictionary<String, OTSubscriber>()
@@ -63,7 +65,11 @@ class RoomViewController: UIViewController,
         } else {
             viewManager = SingleSubViewManager(frame: self.view.frame, rootView: self.view)
         }
-        
+
+        if h264SupportEnabled {
+            session!.enableH264Codec()
+        }
+
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
         session!.connect(withToken: roomInfo.token,
             error: &error)
