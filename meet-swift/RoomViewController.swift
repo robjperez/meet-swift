@@ -67,7 +67,7 @@ class RoomViewController: UIViewController,
         }
 
         if h264SupportEnabled {
-            session!.enableH264Codec()
+            MeetPrivateHelper.enableH264Codec()
         }
 
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
