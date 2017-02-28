@@ -41,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36AABFF41E6596B60040A3E8 /* OpenTokSDKImportedMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenTokSDKImportedMethods.h; sourceTree = "<group>"; };
 		413A35ED7006D959B0DD38BC /* libPods-meet-swift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-meet-swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D730A86B97E8C9CF8E87D5E /* Pods-meet-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.release.xcconfig"; sourceTree = "<group>"; };
 		9D77C3322C899ED78E0C5ACF /* Pods-meet-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meet-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-meet-swift/Pods-meet-swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +158,7 @@
 				F89610191BA2F25600E89484 /* StatsView.swift */,
 				F896101B1BA2F75B00E89484 /* StatsUtil.h */,
 				F896101C1BA2F75B00E89484 /* StatsUtil.m */,
+				36AABFF41E6596B60040A3E8 /* OpenTokSDKImportedMethods.h */,
 			);
 			name = Room;
 			sourceTree = "<group>";
