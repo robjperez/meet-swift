@@ -1,18 +1,16 @@
 //
-//  MeetPrivateHelper.h
+//  OpenTokSDKImportedMethods.h
 //  meet-swift
 //
 //  Created by jaoo on 28/2/17.
 //  Copyright © 2017 tokbox. All rights reserved.
 //
 
-#ifndef MeetPrivateHelper_h
-#define MeetPrivateHelper_h
-
-#import <Foundation/Foundation.h>
+#ifndef OpenTokSDKImportedMethods_h
+#define OpenTokSDKImportedMethods_h
 
 @interface OpenTokObjC : NSObject
 + (void)enableH264Codec;
 @end
 
-#endif /* MeetPrivateHelper_h */
+#endif /* OpenTokSDKImportedMethods_h */

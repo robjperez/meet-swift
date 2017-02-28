@@ -13,6 +13,6 @@
 
 #import "OTKLogger.h"
 #import "StatsUtil.h"
-#import "MeetPrivateHelper.h"
+#import "OpenTokSDKImportedMethods.h"
 
 #endif
