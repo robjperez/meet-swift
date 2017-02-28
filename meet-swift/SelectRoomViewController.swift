@@ -24,7 +24,8 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
     @IBOutlet weak var capturerResolution: UITextField?
     @IBOutlet weak var capturerResolutionPickerView: UIPickerView?
     @IBOutlet weak var subscriberSimulcast: UISwitch?
-    
+    @IBOutlet weak var h264Support: UISwitch?
+
     var loadingAlert: UIAlertView?
     
     let capturerResolutions : [OTCameraCaptureResolution] = [
@@ -122,6 +123,7 @@ class SelectRoomViewController: UIViewController, UITextFieldDelegate, UIPickerV
             destination.roomInfo = self.roomInfo!
             destination.selectedCapturerResolution = self.selectedCapturerResolution
             destination.subscriberSimulcastEnabled = self.subscriberSimulcast!.isOn
+            destination.h264SupportEnabled = self.h264Support!.isOn
         }
     }
 
