@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MeetPrivateHelper : NSObject
+@interface OpenTokObjC : NSObject
 + (void)enableH264Codec;
 @end
 

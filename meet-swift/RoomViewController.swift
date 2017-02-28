@@ -67,7 +67,7 @@ class RoomViewController: UIViewController,
         }
 
         if h264SupportEnabled {
-            MeetPrivateHelper.enableH264Codec()
+            OpenTokObjC.enableH264Codec()
         }
 
         self.view.insertSubview(viewManager!, belowSubview: self.statusBar!)
