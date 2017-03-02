@@ -84,9 +84,6 @@ class RoomViewController: UIViewController,
         
         UIApplication.shared.isIdleTimerDisabled = true
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-        
         roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RoomViewController.handleRoomNameTap(_:)))
         roomTapGestureRecognizer?.numberOfTapsRequired = 2
         roomName?.addGestureRecognizer(roomTapGestureRecognizer!)
@@ -224,23 +221,6 @@ class RoomViewController: UIViewController,
             self.numberOfStreams!.text = text
         }
     }
-    
-//    func onEnterBackground() {
-//        if let pub = self.publisher {
-//            self.wasPublishingVideo = pub.publishVideo
-//            pub.publishVideo = false
-//        }
-//
-//        viewManager!.onEnterBackground()
-//    }
-//    
-//    func onEnterForeground() {
-//        if let pub = self.publisher {
-//            pub.publishVideo = self.wasPublishingVideo
-//        }
-//        
-//        viewManager!.onEnterForeground()
-//    }
     
     func handleRoomNameTap(_ tapRecognizer: UITapGestureRecognizer) {
         if let stats = statsView {
