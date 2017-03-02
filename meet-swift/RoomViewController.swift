@@ -21,8 +21,6 @@ class RoomViewController: UIViewController,
     @IBOutlet weak var roomName: UILabel?
     @IBOutlet weak var numberOfStreams: UILabel?
     
-    @IBOutlet weak var muteSubscriber: UIButton?
-    
     var reconnectingAlertDialog : UIAlertView?
     
     var session: OTSession?
@@ -84,12 +82,10 @@ class RoomViewController: UIViewController,
         self.roomName?.text = roomInfo.roomName
         self.numberOfStreams?.text = "👥 1"
         
-        self.muteSubscriber?.isHidden = true
-        
         UIApplication.shared.isIdleTimerDisabled = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
         roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RoomViewController.handleRoomNameTap(_:)))
         roomTapGestureRecognizer?.numberOfTapsRequired = 2
@@ -190,10 +186,6 @@ class RoomViewController: UIViewController,
         let pubView = self.publisher?.view
         ViewUtils.addViewFill(pubView!, rootView: self.publisherView!)
     }
-
-    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
-        // Remove view
-    }
     
     // MARK: Subscriber Delegate
     func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
@@ -233,22 +225,22 @@ class RoomViewController: UIViewController,
         }
     }
     
-    func onEnterBackground() {
-        if let pub = self.publisher {
-            self.wasPublishingVideo = pub.publishVideo
-            pub.publishVideo = false
-        }
-
-        viewManager!.onEnterBackground()
-    }
-    
-    func onEnterForeground() {
-        if let pub = self.publisher {
-            pub.publishVideo = self.wasPublishingVideo
-        }
-        
-        viewManager!.onEnterForeground()
-    }
+//    func onEnterBackground() {
+//        if let pub = self.publisher {
+//            self.wasPublishingVideo = pub.publishVideo
+//            pub.publishVideo = false
+//        }
+//
+//        viewManager!.onEnterBackground()
+//    }
+//    
+//    func onEnterForeground() {
+//        if let pub = self.publisher {
+//            pub.publishVideo = self.wasPublishingVideo
+//        }
+//        
+//        viewManager!.onEnterForeground()
+//    }
     
     func handleRoomNameTap(_ tapRecognizer: UITapGestureRecognizer) {
         if let stats = statsView {
