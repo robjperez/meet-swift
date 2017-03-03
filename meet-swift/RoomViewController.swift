@@ -72,9 +72,10 @@ class RoomViewController: UIViewController,
         session!.connect(withToken: roomInfo.token,
             error: &error)
         
-        publisher = OTPublisher(delegate: self, name: roomInfo.userName,
-            cameraResolution: self.selectedCapturerResolution,
-            cameraFrameRate: OTCameraCaptureFrameRate.rate30FPS)
+        let publisherSettings = OTPublisherSettings.init()
+        publisherSettings.cameraResolution = selectedCapturerResolution;
+        publisherSettings.cameraFrameRate = .rate30FPS
+        publisher = OTPublisher.init(delegate: self, settings: publisherSettings)
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil)
         self.connectingAlert?.show()
@@ -90,6 +91,11 @@ class RoomViewController: UIViewController,
         
         reconnectingAlertDialog = UIAlertView(title: "Session is reconnecting", message: "Please wait until we try to restablish your session", delegate: nil, cancelButtonTitle: nil)
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @IBAction func switchCameraPressed(_ sender: AnyObject?) {
@@ -180,8 +186,10 @@ class RoomViewController: UIViewController,
     
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
         // Add view
-        let pubView = self.publisher?.view
-        ViewUtils.addViewFill(pubView!, rootView: self.publisherView!)
+        guard let pubView = self.publisher?.view else {
+            return
+        }
+        ViewUtils.addViewFill(pubView, rootView: self.publisherView!)
     }
     
     // MARK: Subscriber Delegate
