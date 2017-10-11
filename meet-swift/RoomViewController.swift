@@ -21,8 +21,6 @@ class RoomViewController: UIViewController,
     @IBOutlet weak var roomName: UILabel?
     @IBOutlet weak var numberOfStreams: UILabel?
     
-    @IBOutlet weak var muteSubscriber: UIButton?
-    
     var reconnectingAlertDialog : UIAlertView?
     
     var session: OTSession?
@@ -74,9 +72,10 @@ class RoomViewController: UIViewController,
         session!.connect(withToken: roomInfo.token,
             error: &error)
         
-        publisher = OTPublisher(delegate: self, name: roomInfo.userName,
-            cameraResolution: self.selectedCapturerResolution,
-            cameraFrameRate: OTCameraCaptureFrameRate.rate30FPS)
+        let publisherSettings = OTPublisherSettings.init()
+        publisherSettings.cameraResolution = selectedCapturerResolution;
+        publisherSettings.cameraFrameRate = .rate30FPS
+        publisher = OTPublisher.init(delegate: self, settings: publisherSettings)
         
         self.connectingAlert = UIAlertView(title: "Connecting to session", message: "Connecting to session...", delegate: nil, cancelButtonTitle: nil)
         self.connectingAlert?.show()
@@ -84,12 +83,7 @@ class RoomViewController: UIViewController,
         self.roomName?.text = roomInfo.roomName
         self.numberOfStreams?.text = "👥 1"
         
-        self.muteSubscriber?.isHidden = true
-        
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomViewController.onEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         
         roomTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RoomViewController.handleRoomNameTap(_:)))
         roomTapGestureRecognizer?.numberOfTapsRequired = 2
@@ -97,6 +91,11 @@ class RoomViewController: UIViewController,
         
         reconnectingAlertDialog = UIAlertView(title: "Session is reconnecting", message: "Please wait until we try to restablish your session", delegate: nil, cancelButtonTitle: nil)
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @IBAction func switchCameraPressed(_ sender: AnyObject?) {
@@ -187,12 +186,10 @@ class RoomViewController: UIViewController,
     
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
         // Add view
-        let pubView = self.publisher?.view
-        ViewUtils.addViewFill(pubView!, rootView: self.publisherView!)
-    }
-
-    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
-        // Remove view
+        guard let pubView = self.publisher?.view else {
+            return
+        }
+        ViewUtils.addViewFill(pubView, rootView: self.publisherView!)
     }
     
     // MARK: Subscriber Delegate
@@ -231,23 +228,6 @@ class RoomViewController: UIViewController,
             let text = "👥 " + (increment ? number!+1 : number!-1).description
             self.numberOfStreams!.text = text
         }
-    }
-    
-    func onEnterBackground() {
-        if let pub = self.publisher {
-            self.wasPublishingVideo = pub.publishVideo
-            pub.publishVideo = false
-        }
-
-        viewManager!.onEnterBackground()
-    }
-    
-    func onEnterForeground() {
-        if let pub = self.publisher {
-            pub.publishVideo = self.wasPublishingVideo
-        }
-        
-        viewManager!.onEnterForeground()
     }
     
     func handleRoomNameTap(_ tapRecognizer: UITapGestureRecognizer) {

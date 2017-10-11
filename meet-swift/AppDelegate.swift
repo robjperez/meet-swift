@@ -31,21 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let _ = OTKLogger()
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-    }
     
     fileprivate func checkForUpdates() {
         let sessionConf = URLSessionConfiguration.default
@@ -88,7 +73,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         ).resume()
     }
-
-
 }
 

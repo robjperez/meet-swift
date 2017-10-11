@@ -106,22 +106,4 @@ class SingleSubViewManager : ViewManager {
                 previousSubscriber?.view?.removeFromSuperview()
         })
     }
-    
-    override func onEnterBackground () {
-        if let subId = self.selectedSubscriber {
-            let sub = self.subscribers[subId]
-            if let videoEnabled = sub?.subscribeToVideo {
-                self.wasSubscribingToVideo = videoEnabled
-            }
-            
-            sub?.subscribeToVideo = false
-        }
-    }
-    
-    override func onEnterForeground() {
-        if let subId = self.selectedSubscriber {
-            let sub = self.subscribers[subId]
-            sub?.subscribeToVideo = self.wasSubscribingToVideo
-        }
-    }
 }
